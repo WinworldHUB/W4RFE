@@ -1,25 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PageRoutes } from "./lib/constants";
+import TestPage from "./pages/test";
+import Home from "./pages/home";
+
+export const APP_MENU: MenuItem[] = [
+  {
+    id: 1,
+    label: "Orders",
+    icon: <></>,
+    route: "/",
+  },
+  {
+    id: 2,
+    label: "Invoices",
+    icon: <></>,
+    route: "/invoices",
+  },
+  {
+    id: 3,
+    label: "Members",
+    icon: <></>,
+    route: "/members",
+  },
+  {
+    id: 4,
+    label: "Products",
+    icon: <></>,
+    route: "/products",
+  },
+  {
+    id: 5,
+    label: "Test",
+    icon: <></>,
+    route: "/test",
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path={PageRoutes.Login}
+          element={
+            <Home menuItems={APP_MENU} selectedMenuId={APP_MENU[0].id} />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
