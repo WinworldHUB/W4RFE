@@ -1,8 +1,12 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import Slider from "../lib/components/slider";
+import BannerSlider from "../lib/components/home-page/banner-slider";
+import Tabs from "../lib/components/tabs";
 
 const Home: FC<PageProps> = (pageProps) => {
+  const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
+
   return (
     <PageLayout menuItems={[]} selectedMenuId={0}>
       <div className="mt-side-menu">
@@ -88,85 +92,83 @@ const Home: FC<PageProps> = (pageProps) => {
           </div>
         </div>
       </div>
-      <div className="mt-main-slider">
-        <Slider slideTo={0} className="slider banner-slider">
-          <div
-            className="holder text-center"
-            style={{ backgroundImage: "url(/assets/images/sliders/img04.jpg)" }}
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-xs-12">
-                  <div className="text centerize">
-                    <strong className="title">FURNITURE DESIGNS IDEAS</strong>
-                    <h1>LIGHTING</h1>
-                    <h2>PENDANT LAMPS</h2>
-                    <div className="txt">
-                      <p>
-                        Consectetur adipisicing elit. Beatae accusamus, optio,
-                        repellendus inventore
-                      </p>
-                    </div>
-                    <a href="product-detail.html" className="shop">
-                      shop now
-                    </a>
+      <BannerSlider>
+        <div
+          className="holder text-center"
+          style={{ backgroundImage: "url(/assets/images/sliders/img04.jpg)" }}
+        >
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12">
+                <div className="text centerize">
+                  <strong className="title">FURNITURE DESIGNS IDEAS</strong>
+                  <h1>LIGHTING</h1>
+                  <h2>PENDANT LAMPS</h2>
+                  <div className="txt">
+                    <p>
+                      Consectetur adipisicing elit. Beatae accusamus, optio,
+                      repellendus inventore
+                    </p>
                   </div>
+                  <a href="product-detail.html" className="shop">
+                    shop now
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="holder text-center"
-            style={{ backgroundImage: "url(/assets/images/sliders/img05.jpg)" }}
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-xs-12">
-                  <div className="text right">
-                    <strong className="title">FURNITURE DESIGNS IDEAS</strong>
-                    <h1>LOUNGE CHAIRS</h1>
-                    <h2>SW DAYBED</h2>
-                    <div className="txt">
-                      <p>
-                        Consectetur adipisicing elit. Beatae accusamus, optio,
-                        repellendus inventore
-                      </p>
-                    </div>
-                    <a href="product-detail.html" className="shop">
-                      shop now
-                    </a>
+        </div>
+        <div
+          className="holder text-center"
+          style={{ backgroundImage: "url(/assets/images/sliders/img05.jpg)" }}
+        >
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12">
+                <div className="text right">
+                  <strong className="title">FURNITURE DESIGNS IDEAS</strong>
+                  <h1>LOUNGE CHAIRS</h1>
+                  <h2>SW DAYBED</h2>
+                  <div className="txt">
+                    <p>
+                      Consectetur adipisicing elit. Beatae accusamus, optio,
+                      repellendus inventore
+                    </p>
                   </div>
+                  <a href="product-detail.html" className="shop">
+                    shop now
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="holder text-center"
-            style={{ backgroundImage: "url(/assets/images/sliders/img06.jpg)" }}
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-xs-12">
-                  <div className="text">
-                    <strong className="title">FURNITURE DESIGNS IDEAS</strong>
-                    <h1>CARDBOARD</h1>
-                    <h2> Sofas and Armchairs</h2>
-                    <div className="txt">
-                      <p>
-                        Consectetur adipisicing elit. Beatae accusamus, optio,
-                        repellendus inventore
-                      </p>
-                    </div>
-                    <a href="product-detail.html" className="shop">
-                      shop now
-                    </a>
+        </div>
+        <div
+          className="holder text-center"
+          style={{ backgroundImage: "url(/assets/images/sliders/img06.jpg)" }}
+        >
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12">
+                <div className="text">
+                  <strong className="title">FURNITURE DESIGNS IDEAS</strong>
+                  <h1>CARDBOARD</h1>
+                  <h2> Sofas and Armchairs</h2>
+                  <div className="txt">
+                    <p>
+                      Consectetur adipisicing elit. Beatae accusamus, optio,
+                      repellendus inventore
+                    </p>
                   </div>
+                  <a href="product-detail.html" className="shop">
+                    shop now
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-        </Slider>
-      </div>
+        </div>
+      </BannerSlider>
       <main id="mt-main">
         <div className="container">
           <div className="row">
@@ -251,7 +253,12 @@ const Home: FC<PageProps> = (pageProps) => {
                 className="mt-producttabs wow fadeInUp"
                 data-wow-delay="0.4s"
               >
-                <ul className="producttabs">
+                <Tabs
+                  data={["FEATURED", "LATEST", "BEST SELLER"]}
+                  activeTabIndex={selectedTabIndex}
+                  onChange={setSelectedTabIndex}
+                />
+                {/* <ul className="producttabs">
                   <li>
                     <a href="#tab1" className="active">
                       FEATURED
@@ -263,7 +270,7 @@ const Home: FC<PageProps> = (pageProps) => {
                   <li>
                     <a href="#tab3">BEST SELLER</a>
                   </li>
-                </ul>
+                </ul> */}
                 <div className="tab-content text-center">
                   <div id="tab1">
                     <div className="tabs-slider">
