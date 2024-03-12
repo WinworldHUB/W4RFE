@@ -11,6 +11,7 @@
     "@types/node": "^16.18.87",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "aws-amplify": "^6.0.20",
     "bootstrap": "^5.3.3",
     "luxon": "^3.4.4",
     "react": "^18.2.0",

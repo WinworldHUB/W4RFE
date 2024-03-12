@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // page init
 jQuery(function () {
   "use strict";
@@ -10,7 +11,7 @@ jQuery(function () {
   // initNavOpener();
   initPreLoader();
   //initCountDown();
-  // initSlickSlider();
+  //initSlickSlider();
   // initStickyHeader();
   initCustomScroll();
   //new WOW().init();
@@ -66,12 +67,12 @@ function initNavOpener() {
 
 // SlickSlider init
 function initSlickSlider() {
-  jQuery(".banner-slider").slick({
-    dots: true,
-    arrows: false,
-    infinite: true,
-    adaptiveHeight: true,
-  });
+  // jQuery(".banner-slider").slick({
+  //   dots: true,
+  //   arrows: false,
+  //   infinite: true,
+  //   adaptiveHeight: true,
+  // });
   jQuery(".tabs-slider").slick({
     slidesToShow: 5,
     slidesToScroll: 1,

@@ -258,19 +258,6 @@ const Home: FC<PageProps> = (pageProps) => {
                   activeTabIndex={selectedTabIndex}
                   onChange={setSelectedTabIndex}
                 />
-                {/* <ul className="producttabs">
-                  <li>
-                    <a href="#tab1" className="active">
-                      FEATURED
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#tab2">LATEST</a>
-                  </li>
-                  <li>
-                    <a href="#tab3">BEST SELLER</a>
-                  </li>
-                </ul> */}
                 <div className="tab-content text-center">
                   <div id="tab1">
                     <div className="tabs-slider">
