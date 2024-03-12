@@ -3,9 +3,26 @@ import PageLayout from "../lib/components/page-layout";
 import Slider from "../lib/components/slider";
 import BannerSlider from "../lib/components/home-page/banner-slider";
 import Tabs from "../lib/components/tabs";
+import { Product } from "../../awsApis";
+import ProductTile from "../lib/components/product-tile";
 
 const Home: FC<PageProps> = (pageProps) => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
+
+  const sampleProduct = {
+    featuredImage: "/assets/images/products/img01.jpg",
+    title: "Product Title",
+    variants: "variants",
+    body: "",
+    category: "",
+    id: "",
+    otherImages: [],
+    price: 0.0,
+    published: true,
+    quantity: 0,
+    size: "",
+    taxable: true,
+  } as Product;
 
   return (
     <PageLayout menuItems={[]} selectedMenuId={0}>
@@ -259,8 +276,62 @@ const Home: FC<PageProps> = (pageProps) => {
                   onChange={setSelectedTabIndex}
                 />
                 <div className="tab-content text-center">
-                  <div id="tab1">
-                    <div className="tabs-slider">
+                  <div id="tab1" className="active">
+                    <div className="tabs-slider slick-initialized slick-slider">
+                      <div className="slide">
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
+                      </div>
+                      <div className="slide">
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={3}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={4}
+                        />
+                      </div>
                       <div className="slide">
                         <div className="mt-product1 mt-paddingbottom20">
                           <div className="box">

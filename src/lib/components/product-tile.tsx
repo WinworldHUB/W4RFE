@@ -1,62 +1,43 @@
 import { FC } from "react";
+import StarsRating from "./stars";
+import ProductHoverAction from "./product-hover-action";
+import { Product } from "../../../awsApis";
 
 interface ProductTileProps {
-  imagePath: string;
+  product: Product;
+  isNew: boolean;
+  numberOfStars?: number;
 }
 
-const ProductTile: FC<ProductTileProps> = ({ imagePath }) => {
+const ProductTile: FC<ProductTileProps> = ({
+  product: { featuredImage, title, variants },
+  isNew,
+  numberOfStars,
+}) => {
   return (
     <div className="mt-product1 mt-paddingbottom20">
       <div className="box">
         <div className="b1">
           <div className="b2">
             <a href="product-detail.html">
-              <img src={imagePath} alt="" />
+              <img src={featuredImage} alt="" />
             </a>
-            <span className="caption">
-              <span className="new">NEW</span>
-            </span>
-            <ul className="mt-stars">
-              <li>
-                <i className="fa fa-star"></i>
-              </li>
-              <li>
-                <i className="fa fa-star"></i>
-              </li>
-              <li>
-                <i className="fa fa-star"></i>
-              </li>
-              <li>
-                <i className="fa fa-star-o"></i>
-              </li>
-            </ul>
-            <ul className="links">
-              <li>
-                <a href="#">
-                  <i className="icon-handbag"></i>
-                  <span>Add to Cart</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="icomoon icon-heart-empty"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#popup1" className="lightbox">
-                  <i className="icomoon icon-eye"></i>
-                </a>
-              </li>
-            </ul>
+            {isNew && (
+              <span className="caption">
+                <span className="new">NEW</span>
+              </span>
+            )}
+            <StarsRating filledStars={numberOfStars} />
+            <ProductHoverAction />
           </div>
         </div>
       </div>
       <div className="txt">
         <strong className="title">
-          <a href="product-detail.html">Puff Chair</a>
+          <a href="product-detail.html">{title}</a>
         </strong>
         <span className="price">
-          <i className="fa fa-eur"></i> <span>287,00</span>
+          <i className="fa fa-gbp"></i> <span>{variants}</span>
         </span>
       </div>
     </div>
