@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import MenuBar from "./menubar";
+import PageFooter from "./page-footer";
 
 interface PageLayoutProps {
   isShowSideMenu?: boolean;
@@ -24,6 +25,7 @@ const PageLayout: FC<PageLayoutProps> = ({
       <div className="w1">
         <MenuBar />
         {children}
+        <PageFooter />
         <span id="back-top" className="fa fa-arrow-up"></span>
       </div>
     </div>
