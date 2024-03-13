@@ -1,5 +1,5 @@
-import React, { Children, FC, useEffect, useRef } from "react";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import React, { Children, FC } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -29,7 +29,7 @@ const Slider: FC<SliderProps> = ({
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
-      slidesPerView={1}
+      slidesPerView={4}
       pagination={{
         dynamicBullets: true,
         clickable: true,

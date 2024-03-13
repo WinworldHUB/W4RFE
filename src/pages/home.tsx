@@ -5,6 +5,9 @@ import BannerSlider from "../lib/components/home-page/banner-slider";
 import Tabs from "../lib/components/tabs";
 import { Product } from "../../awsApis";
 import ProductTile from "../lib/components/product-tile";
+import RightSideMenu from "../lib/components/right-side-menu";
+import WebSearch from "../lib/components/web-search";
+import FeaturedCategories from "../lib/components/home-page/featured-categories";
 
 const Home: FC<PageProps> = (pageProps) => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
@@ -26,89 +29,8 @@ const Home: FC<PageProps> = (pageProps) => {
 
   return (
     <PageLayout menuItems={[]} selectedMenuId={0}>
-      <div className="mt-side-menu">
-        <div className="mt-holder">
-          <a href="#" className="side-close">
-            <span></span>
-            <span></span>
-          </a>
-          <strong className="mt-side-title">MY ACCOUNT</strong>
-          <div className="mt-side-widget">
-            <header>
-              <span className="mt-side-subtitle">SIGN IN</span>
-              <p>Welcome back! Sign in to Your Account</p>
-            </header>
-            <form action="#">
-              <fieldset>
-                <input
-                  type="text"
-                  placeholder="Username or email address"
-                  className="input"
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="input"
-                />
-                <div className="box">
-                  <span className="left">
-                    <input className="checkbox" type="checkbox" id="check1" />
-                    <label htmlFor="check1">Remember Me</label>
-                  </span>
-                  <a href="#" className="help">
-                    Help?
-                  </a>
-                </div>
-                <button type="submit" className="btn-type1">
-                  Login
-                </button>
-              </fieldset>
-            </form>
-          </div>
-          <div className="or-divider">
-            <span className="txt">or</span>
-          </div>
-          <div className="mt-side-widget">
-            <header>
-              <span className="mt-side-subtitle">CREATE NEW ACCOUNT</span>
-              <p>Create your very own account</p>
-            </header>
-            <form action="#">
-              <fieldset>
-                <input
-                  type="text"
-                  placeholder="Username or email address"
-                  className="input"
-                />
-                <button type="submit" className="btn-type1">
-                  Register
-                </button>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="mt-search-popup">
-        <div className="mt-holder">
-          <a href="#" className="search-close">
-            <span></span>
-            <span></span>
-          </a>
-          <div className="mt-frame">
-            <form action="#">
-              <fieldset>
-                <input type="text" placeholder="Search..." />
-                <span className="icon-microphone"></span>
-                <button
-                  title="submit"
-                  className="icon-magnifier"
-                  type="submit"
-                ></button>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
+      <RightSideMenu />
+      <WebSearch />
       <BannerSlider>
         <div
           className="holder text-center"
@@ -190,82 +112,7 @@ const Home: FC<PageProps> = (pageProps) => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
-              <div className="banner-frame">
-                <div className="banner-1 wow fadeInLeft" data-wow-delay="0.4s">
-                  <img
-                    alt="image description"
-                    src="/assets/images/banner/img01.jpg"
-                  />
-                  <div className="holder">
-                    <h2>
-                      MY SMALL WRITING <br />
-                      DESK
-                    </h2>
-                    <div className="txts">
-                      <a className="btn-shop" href="product-detail.html">
-                        <span>shop now</span>
-                        <i className="fa fa-angle-right"></i>
-                      </a>
-                      <div className="discount">
-                        <span>-20%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="banner-box first">
-                  <div className="banner-2 wow fadeInUp" data-wow-delay="0.4s">
-                    <img
-                      alt="image description"
-                      src="/assets/images/banner/img02.jpg"
-                    />
-                    <div className="holder">
-                      <h2>
-                        MODULAR LOUNGE <br />
-                        TEAK
-                      </h2>
-                      <span className="price">$ 129.00</span>
-                    </div>
-                  </div>
-                  <div
-                    className="banner-3 right wow fadeInDown"
-                    data-wow-delay="0.4s"
-                  >
-                    <img
-                      alt="image description"
-                      src="/assets/images/banner/img03.jpg"
-                    />
-                    <div className="holder">
-                      <h2>
-                        Modular technical <br />
-                        fabric sofa
-                      </h2>
-                      <a href="product-detail.html" className="shop">
-                        SHOP NOW
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="banner-4 hidden-sm wow fadeInRight"
-                  data-wow-delay="0.4s"
-                >
-                  <img
-                    alt="image description"
-                    src="/assets/images/banner/img04.jpg"
-                  />
-                  <div className="holder">
-                    <h2>
-                      Direct light <br />
-                      pendant lamp
-                    </h2>
-                    <span className="price">$ 129.00</span>
-                    <a className="btn-shop add" href="product-detail.html">
-                      <span>shop now</span>
-                      <i className="fa fa-angle-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <FeaturedCategories />
               <div
                 className="mt-producttabs wow fadeInUp"
                 data-wow-delay="0.4s"
@@ -274,41 +121,20 @@ const Home: FC<PageProps> = (pageProps) => {
                   data={["FEATURED", "LATEST", "BEST SELLER"]}
                   activeTabIndex={selectedTabIndex}
                   onChange={setSelectedTabIndex}
-                />
-                <div className="tab-content text-center">
-                  <div id="tab1" className="active">
-                    <div className="tabs-slider slick-initialized slick-slider">
-                      <div className="slide">
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
+                >
+                  <div className="tabs-slider slick-initialized slick-slider">
+                    <button
+                      type="button"
+                      data-role="none"
+                      className="slick-prev slick-arrow"
+                      aria-label="Previous"
+                      role="button"
+                      style={{ display: "block" }}
+                    >
+                      Previous
+                    </button>
+                    <Slider slideTo={0}>
+                      <div>
                         <ProductTile
                           product={sampleProduct}
                           isNew
@@ -320,1736 +146,271 @@ const Home: FC<PageProps> = (pageProps) => {
                           numberOfStars={2}
                         />
                       </div>
-                      <div className="slide">
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={3}
-                        />
+                      <div>
                         <ProductTile
                           product={sampleProduct}
                           isNew
-                          numberOfStars={4}
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
                         />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img01.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="new">NEW</span>
-                                </span>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Puff Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>287,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img06.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Easy chair with armrests
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>287,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img02.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img07.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                </span>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Upholstered chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img03.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Wood Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>198,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img08.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Trestle-based chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>198,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img04.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                  <span className="new">NEW</span>
-                                </span>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img09.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img05.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img10.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img02.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img07.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                </span>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Upholstered chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                    </div>
+                    </Slider>
+                    <button
+                      type="button"
+                      data-role="none"
+                      className="slick-next slick-arrow"
+                      aria-label="Next"
+                      role="button"
+                      style={{ display: "block" }}
+                    >
+                      Next
+                    </button>
                   </div>
-                  <div id="tab2">
-                    <div className="tabs-slider">
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img06.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Easy chair with armrests
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>287,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img01.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="new">NEW</span>
-                                </span>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Puff Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>287,00</span>
-                            </span>
-                          </div>
-                        </div>
+                  <div className="tabs-slider slick-initialized slick-slider">
+                    <button
+                      type="button"
+                      data-role="none"
+                      className="slick-prev slick-arrow"
+                      aria-label="Previous"
+                      role="button"
+                      style={{ display: "block" }}
+                    >
+                      Previous
+                    </button>
+                    <Slider slideTo={0}>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img07.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                </span>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Upholstered chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img02.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img08.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Trestle-based chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>198,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img03.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Wood Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>198,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img09.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img04.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                  <span className="new">NEW</span>
-                                </span>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img10.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img05.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img07.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                </span>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Upholstered chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img02.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                    </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
+                      </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
+                      </div>
+                    </Slider>
+                    <button
+                      type="button"
+                      data-role="none"
+                      className="slick-next slick-arrow"
+                      aria-label="Next"
+                      role="button"
+                      style={{ display: "block" }}
+                    >
+                      Next
+                    </button>
                   </div>
-                  <div id="tab3">
-                    <div className="tabs-slider">
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img01.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="new">NEW</span>
-                                </span>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Puff Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>287,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img06.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Easy chair with armrests
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>287,00</span>
-                            </span>
-                          </div>
-                        </div>
+                  <div className="tabs-slider slick-initialized slick-slider">
+                    <button
+                      type="button"
+                      data-role="none"
+                      className="slick-prev slick-arrow"
+                      aria-label="Previous"
+                      role="button"
+                      style={{ display: "block" }}
+                    >
+                      Previous
+                    </button>
+                    <Slider slideTo={0}>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img07.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                </span>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Upholstered chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img02.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
+                      <div>
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew
+                          numberOfStars={1}
+                        />
+                        <ProductTile
+                          product={sampleProduct}
+                          isNew={false}
+                          numberOfStars={2}
+                        />
                       </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img03.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Wood Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>198,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img08.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Trestle-based chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>198,00</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img09.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img04.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                  <span className="new">NEW</span>
-                                </span>
-                                <ul className="mt-stars">
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star"></i>
-                                  </li>
-                                  <li>
-                                    <i className="fa fa-star-o"></i>
-                                  </li>
-                                </ul>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img05.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img10.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>200,00</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="slide">
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img07.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <span className="caption">
-                                  <span className="off">15% Off</span>
-                                </span>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">
-                                Upholstered chair
-                              </a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="mt-product1 mt-paddingbottom20">
-                          <div className="box">
-                            <div className="b1">
-                              <div className="b2">
-                                <a href="product-detail.html">
-                                  <img
-                                    src="/assets/images/products/img02.jpg"
-                                    alt="image description"
-                                  />
-                                </a>
-                                <ul className="links">
-                                  <li>
-                                    <a href="#">
-                                      <i className="icon-handbag"></i>
-                                      <span>Add to Cart</span>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      <i className="icomoon icon-heart-empty"></i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#popup1" className="lightbox">
-                                      <i className="icomoon icon-eye"></i>
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="txt">
-                            <strong className="title">
-                              <a href="product-detail.html">Bombi Chair</a>
-                            </strong>
-                            <span className="price">
-                              <i className="fa fa-eur"></i> <span>399,00</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    </Slider>
+                    <button
+                      type="button"
+                      data-role="none"
+                      className="slick-next slick-arrow"
+                      aria-label="Next"
+                      role="button"
+                      style={{ display: "block" }}
+                    >
+                      Next
+                    </button>
                   </div>
-                </div>
+                </Tabs>
               </div>
             </div>
           </div>
