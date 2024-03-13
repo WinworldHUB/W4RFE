@@ -1,39 +1,50 @@
-import React, { Children, FC } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { Children, FC, useEffect, useRef } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 interface SliderProps {
   children: React.ReactNode;
   slideTo: number;
   autoHeight?: boolean;
   className?: string;
+  isShowNavigation?: boolean;
+  isShowPagination?: boolean;
+  slidesPerView?: number;
 }
 
 const Slider: FC<SliderProps> = ({
   children,
-  //slideTo,
+  slideTo,
   autoHeight = true,
   className,
+  isShowNavigation = false,
+  isShowPagination = false,
+  slidesPerView = 4,
 }) => {
-  //const swiperRef = useRef<SwiperClass>();
+  const swiperRef = useRef<SwiperClass>();
 
-  // useEffect(() => {
-  //   if (swiperRef.current) {
-  //     swiperRef.current.slideTo(slideTo);
-  //   }
-  // }, [slideTo]);
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(slideTo);
+    }
+  }, [slideTo]);
 
   return (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
-      slidesPerView={4}
-      pagination={{
-        dynamicBullets: true,
-        clickable: true,
-      }}
+      slidesPerView={slidesPerView}
+      pagination={
+        isShowPagination
+          ? {
+              dynamicBullets: true,
+              clickable: true,
+            }
+          : false
+      }
       //noSwiping
       // allowTouchMove={false}
       autoHeight={autoHeight}
@@ -41,9 +52,10 @@ const Slider: FC<SliderProps> = ({
         delay: 2500,
         disableOnInteraction: false,
       }}
-      // onSwiper={(swiper) => {
-      //   swiperRef.current = swiper;
-      // }}
+      navigation={isShowNavigation}
+      onSwiper={(swiper) => {
+        swiperRef.current = swiper;
+      }}
       //onSlideChange={() => console.log("slide change")}
       className={className}
     >
