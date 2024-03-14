@@ -1,21 +1,32 @@
-const ProductHoverAction = () => {
+import { FC } from "react";
+import { Link } from "react-router-dom";
+
+interface ProductHoverActionProps {
+  onAddToCartClick: VoidFunction;
+  onViewClick: VoidFunction;
+}
+
+const ProductHoverAction: FC<ProductHoverActionProps> = ({
+  onAddToCartClick,
+  onViewClick,
+}) => {
   return (
     <ul className="links">
       <li>
-        <a href="#">
+        <Link to="" onClick={onAddToCartClick}>
           <i className="icon-handbag"></i>
           <span>Add to Cart</span>
-        </a>
+        </Link>
       </li>
-      <li>
+      {/* <li>
         <a href="#">
           <i className="icomoon icon-heart-empty"></i>
         </a>
-      </li>
+      </li> */}
       <li>
-        <a href="#popup1" className="lightbox">
+        <Link to="" className="lightbox" onClick={onViewClick}>
           <i className="icomoon icon-eye"></i>
-        </a>
+        </Link>
       </li>
     </ul>
   );

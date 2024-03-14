@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import StarsRating from "./stars";
 import ProductHoverAction from "./product-hover-action";
 import { Product } from "../../../awsApis";
@@ -6,21 +6,35 @@ import { Product } from "../../../awsApis";
 interface ProductTileProps {
   product: Product;
   isNew?: boolean;
-  numberOfStars?: number;
+  onAddToCartClick: (id: string) => void;
+  onViewClick: (id: string) => void;
 }
 
 const ProductTile: FC<ProductTileProps> = ({
-  product: { featuredImage, title, price },
+  product: { featuredImage, title, price, id },
   isNew = false,
-  numberOfStars,
+  onAddToCartClick,
+  onViewClick,
 }) => {
+  const [isImageLoadError, setIsImageLoadError] = useState<boolean>(false);
+
   return (
     <div className="mt-product1 mt-paddingbottom20">
       <div className="box">
         <div className="b1">
           <div className="b2">
             <a href="product-detail.html">
-              <img src={featuredImage} alt="" className="w4r-thumbnail" />
+              <img
+                src={
+                  isImageLoadError
+                    ? "/assets/images/products/shoe-placeholder.png"
+                    : featuredImage ??
+                      "/assets/images/products/shoe-placeholder.png"
+                }
+                alt=""
+                className="w4r-thumbnail"
+                onError={() => setIsImageLoadError(true)}
+              />
             </a>
             {isNew && (
               <span className="caption">
@@ -28,7 +42,10 @@ const ProductTile: FC<ProductTileProps> = ({
               </span>
             )}
             {/* <StarsRating filledStars={numberOfStars} /> */}
-            <ProductHoverAction />
+            <ProductHoverAction
+              onAddToCartClick={() => onAddToCartClick(id)}
+              onViewClick={() => onViewClick(id)}
+            />
           </div>
         </div>
       </div>

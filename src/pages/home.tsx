@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import Slider from "../lib/components/slider";
 import BannerSlider from "../lib/components/home-page/banner-slider";
@@ -7,8 +7,6 @@ import { Product } from "../../awsApis";
 import ProductTile from "../lib/components/product-tile";
 import RightSideMenu from "../lib/components/right-side-menu";
 import WebSearch from "../lib/components/web-search";
-import BestSellers from "../lib/components/home-page/best-sellers";
-import CategoryHighlights from "../lib/components/home-page/category-highlights";
 import Marquee from "react-fast-marquee";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
@@ -18,6 +16,8 @@ const Home: FC<PageProps> = (pageProps) => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
   const [currentTabbedSliderPageIndex, setCurrentTabbedSliderPageIndex] =
     useState<number>(0);
+
+  const totalPages = useMemo(() => products?.length / 4, [products]);
 
   useEffect(() => {
     setCurrentTabbedSliderPageIndex(0);
@@ -41,6 +41,18 @@ const Home: FC<PageProps> = (pageProps) => {
     size: "",
     taxable: true,
   } as Product;
+
+  const nextPage = () => {
+    if (currentTabbedSliderPageIndex < totalPages - 1) {
+      setCurrentTabbedSliderPageIndex(currentTabbedSliderPageIndex + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentTabbedSliderPageIndex > 0) {
+      setCurrentTabbedSliderPageIndex(currentTabbedSliderPageIndex - 1);
+    }
+  };
 
   return (
     <PageLayout {...pageProps}>
@@ -95,22 +107,23 @@ const Home: FC<PageProps> = (pageProps) => {
                     <button
                       type="button"
                       className="slick-prev slick-arrow d-block"
-                      onClick={() =>
-                        setCurrentTabbedSliderPageIndex(
-                          currentTabbedSliderPageIndex - 1
-                        )
-                      }
+                      onClick={prevPage}
                     >
                       Previous
                     </button>
                     <Slider slideTo={currentTabbedSliderPageIndex}>
                       {(products ?? []).map((product, index) => (
                         <div>
-                          <ProductTile product={product} numberOfStars={0} />
+                          <ProductTile
+                            product={product}
+                            onAddToCartClick={() => {}}
+                            onViewClick={() => {}}
+                          />
                           {index + 1 < products.length && (
                             <ProductTile
                               product={products[index + 1]}
-                              numberOfStars={0}
+                              onAddToCartClick={() => {}}
+                              onViewClick={() => {}}
                             />
                           )}
                         </div>
@@ -119,11 +132,7 @@ const Home: FC<PageProps> = (pageProps) => {
                     <button
                       type="button"
                       className="slick-next slick-arrow d-block"
-                      onClick={() =>
-                        setCurrentTabbedSliderPageIndex(
-                          currentTabbedSliderPageIndex + 1
-                        )
-                      }
+                      onClick={nextPage}
                     >
                       Next
                     </button>
