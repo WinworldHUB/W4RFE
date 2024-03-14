@@ -10,7 +10,7 @@ interface ProductTileProps {
 }
 
 const ProductTile: FC<ProductTileProps> = ({
-  product: { featuredImage, title, variants },
+  product: { featuredImage, title, price },
   isNew = false,
   numberOfStars,
 }) => {
@@ -37,7 +37,7 @@ const ProductTile: FC<ProductTileProps> = ({
           <a href="product-detail.html">{title}</a>
         </strong>
         <span className="price">
-          {/* <i className="fa fa-gbp"></i> <span>{variants}</span> */}
+          <i className="fa fa-gbp"></i> <span>{price ?? "TBD"}</span>
         </span>
       </div>
     </div>
