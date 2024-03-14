@@ -39,6 +39,11 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
               <div className="detial-holder">
                 <ul className="list-unstyled breadcrumbs">
                   <li>
+                    <Link to={PageRoutes.Home}>
+                      Home <i className="fa fa-angle-right"></i>
+                    </Link>
+                  </li>
+                  <li>
                     <Link to={PageRoutes.Products}>
                       Products <i className="fa fa-angle-right"></i>
                     </Link>

@@ -8,6 +8,10 @@
   font-size: 1.6em;
 }
 
+.p-2 {
+  padding: 10px !important;
+}
+
 .w-200 {
   width: 200px !important;
 }
