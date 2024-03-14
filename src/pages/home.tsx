@@ -116,7 +116,7 @@ const Home: FC<PageProps> = (pageProps) => {
       </BannerSlider>
       <main id="mt-main">
         <div className="marquee-container">
-          <Marquee autoFill direction="right">
+          <Marquee autoFill direction="right" pauseOnHover>
             &nbsp;&nbsp;&nbsp;&nbsp;GUARANTEED
             AUTHENTICITY&nbsp;&nbsp;&nbsp;&nbsp;
           </Marquee>
