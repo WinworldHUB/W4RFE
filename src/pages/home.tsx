@@ -37,7 +37,7 @@ const Home: FC<PageProps> = (pageProps) => {
   } as Product;
 
   return (
-    <PageLayout menuItems={[]} selectedMenuId={0}>
+    <PageLayout {...pageProps}>
       <RightSideMenu />
       <WebSearch />
       <BannerSlider>

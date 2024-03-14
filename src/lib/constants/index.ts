@@ -9,8 +9,6 @@ export const DEFAULT_APP_STATE: AppState = {
 export enum PageRoutes {
   Home = "/home",
   Login = "/",
-  Invoices = "/invoices",
-  Members = "/members",
   Products = "/products",
   Test = "/test",
 }

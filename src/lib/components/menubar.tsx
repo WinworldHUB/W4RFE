@@ -1,4 +1,12 @@
-const MenuBar = () => {
+import { FC } from "react";
+import { Link } from "react-router-dom";
+
+interface MenuBarProps {
+  menuItems: MenuItem[];
+  selectedMenuId: number;
+}
+
+const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
   return (
     <header id="mt-header" className="style4">
       <div className="mt-bottom-bar">
@@ -201,7 +209,12 @@ const MenuBar = () => {
               </ul>
               <nav id="nav">
                 <ul>
-                  <li>
+                  {(menuItems ?? []).map((item) => (
+                    <li>
+                      <Link to={item.route}>{item.label} </Link>
+                    </li>
+                  ))}
+                  {/* <li>
                     <a href="homepage1.html">HOME </a>
                   </li>
                   <li>
@@ -228,7 +241,7 @@ const MenuBar = () => {
                         </li>
                       </ul>
                     </div>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>
             </div>

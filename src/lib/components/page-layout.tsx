@@ -17,13 +17,13 @@ const PageLayout: FC<PageLayoutProps> = ({
 }: PageLayoutProps) => {
   return (
     <div id="wrapper">
-      <div id="pre-loader" className="loader-container">
+      {/* <div id="pre-loader" className="loader-container">
         <div className="loader">
           <img src="/assets/images/svg/rings.svg" alt="loader" />
         </div>
-      </div>
+      </div> */}
       <div className="w1">
-        <MenuBar />
+        <MenuBar menuItems={menuItems} selectedMenuId={selectedMenuId} />
         {children}
         <PageFooter />
         <span id="back-top" className="fa fa-arrow-up"></span>
