@@ -5,13 +5,13 @@ import { Product } from "../../../awsApis";
 
 interface ProductTileProps {
   product: Product;
-  isNew: boolean;
+  isNew?: boolean;
   numberOfStars?: number;
 }
 
 const ProductTile: FC<ProductTileProps> = ({
   product: { featuredImage, title, variants },
-  isNew,
+  isNew = false,
   numberOfStars,
 }) => {
   return (
@@ -20,14 +20,14 @@ const ProductTile: FC<ProductTileProps> = ({
         <div className="b1">
           <div className="b2">
             <a href="product-detail.html">
-              <img src={featuredImage} alt="" />
+              <img src={featuredImage} alt="" className="w4r-thumbnail" />
             </a>
             {isNew && (
               <span className="caption">
                 <span className="new">NEW</span>
               </span>
             )}
-            <StarsRating filledStars={numberOfStars} />
+            {/* <StarsRating filledStars={numberOfStars} /> */}
             <ProductHoverAction />
           </div>
         </div>
@@ -37,7 +37,7 @@ const ProductTile: FC<ProductTileProps> = ({
           <a href="product-detail.html">{title}</a>
         </strong>
         <span className="price">
-          <i className="fa fa-gbp"></i> <span>{variants}</span>
+          {/* <i className="fa fa-gbp"></i> <span>{variants}</span> */}
         </span>
       </div>
     </div>

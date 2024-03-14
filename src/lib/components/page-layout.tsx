@@ -25,9 +25,10 @@ const PageLayout: FC<PageLayoutProps> = ({
       <div className="w1">
         <MenuBar menuItems={menuItems} selectedMenuId={selectedMenuId} />
         {children}
-        <PageFooter />
+
         <span id="back-top" className="fa fa-arrow-up"></span>
       </div>
+      <PageFooter />
     </div>
   );
 };

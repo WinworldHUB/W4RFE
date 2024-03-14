@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
+import { PageRoutes } from "../constants";
 
 const PageFooter: FC = () => {
   return (
@@ -10,7 +12,7 @@ const PageFooter: FC = () => {
       <div className="footer-holder dark">
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomsm">
+            <div className="col-xs-12 col-sm-9 mt-paddingbottomsm">
               <div className="f-widget-about">
                 <div className="logo">
                   <a href="#">
@@ -20,7 +22,7 @@ const PageFooter: FC = () => {
                     />
                   </a>
                 </div>
-                <p>
+                <p className="w-25">
                   Exercitation ullamco laboris nisi ut aliquip ex commodo
                   consequat. Duis aute irure dolor in reprehenderit in voluptate
                   velit esse cillum dolore eu fugiat nulla pariatur.
@@ -59,83 +61,8 @@ const PageFooter: FC = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomsm">
-              <div className="f-widget-news">
-                <h3 className="f-widget-heading">Twitter</h3>
-                <div className="news-articles">
-                  <div className="news-column">
-                    <i className="fa fa-twitter"></i>
-                    <div className="txt-box">
-                      <p>
-                        Laboris nisi ut <a href="#">#schön</a> aliquip econse-{" "}
-                        <br />
-                        quat. <a href="#">https://t.co/vreNJ9nEDt</a>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="news-column">
-                    <i className="fa fa-twitter"></i>
-                    <div className="txt-box">
-                      <p>
-                        Ficia deserunt mollit anim id est labo- <br />
-                        rum. incididunt ut labore et dolore <br />
-                        <a href="#">https://t.co/vreNJ9nEDt</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-3 mt-paddingbottomxs">
-              <div className="f-widget-tabs">
-                <h3 className="f-widget-heading">Product Tags</h3>
-                <ul className="list-unstyled tabs">
-                  <li>
-                    <a href="#">Sofas</a>
-                  </li>
-                  <li>
-                    <a href="#">Armchairs</a>
-                  </li>
-                  <li>
-                    <a href="#">Living</a>
-                  </li>
-                  <li>
-                    <a href="#">Bedroom</a>
-                  </li>
-                  <li>
-                    <a href="#">Lighting</a>
-                  </li>
-                  <li>
-                    <a href="#">Tables</a>
-                  </li>
-                  <li>
-                    <a href="#">Pouf</a>
-                  </li>
-                  <li>
-                    <a href="#">Wood</a>
-                  </li>
-                  <li>
-                    <a href="#">Office</a>
-                  </li>
-                  <li>
-                    <a href="#">Outdoor</a>
-                  </li>
-                  <li>
-                    <a href="#">Kitchen</a>
-                  </li>
-                  <li>
-                    <a href="#">Stools</a>
-                  </li>
-                  <li>
-                    <a href="#">Footstools</a>
-                  </li>
-                  <li>
-                    <a href="#">Desks</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-3 text-right">
+
+            <div className="col-xs-12 col-sm-3 text-right">
               <div className="f-widget-about">
                 <h3 className="f-widget-heading">Information</h3>
                 <ul className="list-unstyled address-list align-right">
@@ -166,15 +93,10 @@ const PageFooter: FC = () => {
       <div className="footer-area">
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-sm-6">
+            <div className="col-xs-12 text-center">
               <p>
-                © <a href="#">schön.</a> - All rights Reserved
+                © <Link to={PageRoutes.Home}>W4R</Link> - All rights Reserved
               </p>
-            </div>
-            <div className="col-xs-12 col-sm-6 text-right">
-              <div className="bank-card">
-                <img src="/assets/images/bank-card.png" alt="bank-card" />
-              </div>
             </div>
           </div>
         </div>

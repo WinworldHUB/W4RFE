@@ -7,12 +7,14 @@ import { Product } from "../../awsApis";
 import ProductTile from "../lib/components/product-tile";
 import RightSideMenu from "../lib/components/right-side-menu";
 import WebSearch from "../lib/components/web-search";
-import FeaturedCategories from "../lib/components/home-page/featured-categories";
 import BestSellers from "../lib/components/home-page/best-sellers";
 import CategoryHighlights from "../lib/components/home-page/category-highlights";
 import Marquee from "react-fast-marquee";
+import useApi from "../lib/hooks/useApi";
+import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 
 const Home: FC<PageProps> = (pageProps) => {
+  const { data: products, getData: getProducts } = useApi<Product[]>();
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
   const [currentTabbedSliderPageIndex, setCurrentTabbedSliderPageIndex] =
     useState<number>(0);
@@ -20,6 +22,10 @@ const Home: FC<PageProps> = (pageProps) => {
   useEffect(() => {
     setCurrentTabbedSliderPageIndex(0);
   }, [selectedTabIndex]);
+
+  useEffect(() => {
+    getProducts(PRODUCTS_APIS.GET_ALL_PRODUCTS_API);
+  }, []);
 
   const sampleProduct = {
     featuredImage: "/assets/images/products/img01.jpg",
@@ -44,30 +50,6 @@ const Home: FC<PageProps> = (pageProps) => {
         <div
           className="holder text-center"
           style={{
-            backgroundImage: "url(/assets/images/banner/W4R-banner-01.jpg)",
-          }}
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12">
-                <div className="text">
-                  <strong className="title">THE ALL IN ONE PLATFORM</strong>
-                  <h1>FOR</h1>
-                  <h2>RESELLERS</h2>
-                  <div className="txt">
-                    <p>For Resale Only.</p>
-                  </div>
-                  <a href="product-detail.html" className="shop">
-                    BECOME A MEMBER
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="holder text-center"
-          style={{
             backgroundImage: "url(/assets/images/banner/W4R-banner-02.jpg)",
           }}
         >
@@ -89,30 +71,6 @@ const Home: FC<PageProps> = (pageProps) => {
             </div>
           </div>
         </div>
-        <div
-          className="holder text-center"
-          style={{
-            backgroundImage: "url(/assets/images/banner/W4R-banner-03.jpg)",
-          }}
-        >
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12">
-                <div className="text">
-                  <strong className="title">FURNITURE IS HERE</strong>
-                  <h1>INNOVATING THE</h1>
-                  <h2> RESALE PRINT</h2>
-                  <div className="txt">
-                    <p>Make The Change Today.</p>
-                  </div>
-                  <a href="product-detail.html" className="shop">
-                    BECOME A MEMBER
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </BannerSlider>
       <main id="mt-main">
         <div className="marquee-container">
@@ -124,13 +82,12 @@ const Home: FC<PageProps> = (pageProps) => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
-              <FeaturedCategories />
               <div
                 className="mt-producttabs wow fadeInUp"
                 data-wow-delay="0.4s"
               >
                 <Tabs
-                  data={["FEATURED", "LATEST", "BEST SELLER"]}
+                  data={["BULK PRODUCTS"]}
                   activeTabIndex={selectedTabIndex}
                   onChange={setSelectedTabIndex}
                 >
@@ -147,278 +104,26 @@ const Home: FC<PageProps> = (pageProps) => {
                       Previous
                     </button>
                     <Slider slideTo={currentTabbedSliderPageIndex}>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
+                      {(products ?? []).map((product, index) => (
+                        <div>
+                          <ProductTile product={product} numberOfStars={0} />
+                          {index + 1 < products.length && (
+                            <ProductTile
+                              product={products[index + 1]}
+                              numberOfStars={0}
+                            />
+                          )}
+                        </div>
+                      ))}
                     </Slider>
                     <button
                       type="button"
-                      data-role="none"
-                      className="slick-next slick-arrow"
-                      aria-label="Next"
-                      role="button"
-                      style={{ display: "block" }}
-                    >
-                      Next
-                    </button>
-                  </div>
-                  <div className="tabs-slider slick-initialized slick-slider">
-                    <button
-                      type="button"
-                      data-role="none"
-                      className="slick-prev slick-arrow"
-                      aria-label="Previous"
-                      role="button"
-                      style={{ display: "block" }}
-                    >
-                      Previous
-                    </button>
-                    <Slider slideTo={0}>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                    </Slider>
-                    <button
-                      type="button"
-                      data-role="none"
-                      className="slick-next slick-arrow"
-                      aria-label="Next"
-                      role="button"
-                      style={{ display: "block" }}
-                    >
-                      Next
-                    </button>
-                  </div>
-                  <div className="tabs-slider slick-initialized slick-slider">
-                    <button
-                      type="button"
-                      data-role="none"
-                      className="slick-prev slick-arrow"
-                      aria-label="Previous"
-                      role="button"
-                      style={{ display: "block" }}
-                    >
-                      Previous
-                    </button>
-                    <Slider slideTo={0}>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                      <div>
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew
-                          numberOfStars={1}
-                        />
-                        <ProductTile
-                          product={sampleProduct}
-                          isNew={false}
-                          numberOfStars={2}
-                        />
-                      </div>
-                    </Slider>
-                    <button
-                      type="button"
-                      data-role="none"
-                      className="slick-next slick-arrow"
-                      aria-label="Next"
-                      role="button"
-                      style={{ display: "block" }}
+                      className="slick-next slick-arrow d-block"
+                      onClick={() =>
+                        setCurrentTabbedSliderPageIndex(
+                          currentTabbedSliderPageIndex + 1
+                        )
+                      }
                     >
                       Next
                     </button>
@@ -428,8 +133,6 @@ const Home: FC<PageProps> = (pageProps) => {
             </div>
           </div>
         </div>
-        <BestSellers title="BEST SELLER" subTitle="OUR BEST SELLERS" />
-        <CategoryHighlights />
       </main>
     </PageLayout>
   );
