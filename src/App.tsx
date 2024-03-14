@@ -3,6 +3,7 @@ import { PageRoutes } from "./lib/constants";
 import TestPage from "./pages/test";
 import Home from "./pages/home";
 import Products from "./pages/products";
+import ProductDetail from "./pages/product-detail";
 
 export const APP_MENU: MenuItem[] = [
   {
@@ -39,6 +40,15 @@ function App() {
           path={PageRoutes.Products}
           element={
             <Products menuItems={APP_MENU} selectedMenuId={APP_MENU[1].id} />
+          }
+        />
+        <Route
+          path={PageRoutes.ProductDetail}
+          element={
+            <ProductDetail
+              menuItems={APP_MENU}
+              selectedMenuId={APP_MENU[1].id}
+            />
           }
         />
         <Route

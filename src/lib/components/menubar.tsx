@@ -15,10 +15,7 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
             <div className="col-xs-12">
               <div className="mt-logo">
                 <a href="#">
-                  <img
-                    src="/assets/images/W4R_Website_Logo-04.jpg"
-                    alt="schon"
-                  />
+                  <img src="/assets/images/W4R_Website_Logo-04.jpg" alt="" />
                 </a>
               </div>
               <ul className="mt-icon-list">

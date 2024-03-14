@@ -11,6 +11,7 @@ export const TEST_APIS = {
 
 export const PRODUCTS_APIS = {
   GET_ALL_PRODUCTS_API: "/products",
+  GET_PRODUCT_BY_ID: "/products/",
   ADD_PRODUCT_API: "/products",
   IMPORT_PRODUCTS_API: "/products/imports",
 };

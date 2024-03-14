@@ -2,14 +2,18 @@ export const DEFAULT_APP_STATE: AppState = {
   isUserLoggedIn: false,
   accessToken: "",
   refreshToken: "",
+  selectedProductId: "",
 
   setAppState: () => {},
 };
+
+export const DEFAULT_LOCAL_STORAGE_KEY_FOR_APP_STATE = "W4R_LS_APP_STATE";
 
 export enum PageRoutes {
   Home = "/home",
   Login = "/",
   Products = "/products",
+  ProductDetail = "/productDetail",
   Test = "/test",
 }
 

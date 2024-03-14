@@ -1,12 +1,14 @@
 interface AppState {
-  isUserLoggedIn: boolean;
-  accessToken: string;
-  refreshToken: string;
+  isUserLoggedIn?: boolean;
+  accessToken?: string;
+  refreshToken?: string;
+  selectedProductId?: string;
 
   setAppState: ({
     isUserLoggedIn,
     accessToken,
     refreshToken,
+    selectedProductId,
   }: AppState) => void;
 }
 
@@ -192,12 +194,12 @@ type MenuItem = {
 //   otherImages: string;
 // };
 
-// type ProductVariant = {
-//   size: string;
-//   available: boolean;
-//   price: number;
-//   quantity: number;
-// };
+type ProductVariant = {
+  size: string;
+  available: boolean;
+  price: number;
+  quantity: number;
+};
 
 type Packaging = {
   id: string;

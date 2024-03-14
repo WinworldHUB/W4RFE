@@ -8,6 +8,18 @@
   font-size: 1.6em;
 }
 
+.w-200 {
+  width: 200px !important;
+}
+
+.w-100 {
+  width: 100px !important;
+}
+
+.remove-bg {
+  mix-blend-mode: multiply !important;
+}
+
 .w4r-thumbnail {
   width: 230px !important;
 }

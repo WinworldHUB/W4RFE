@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import StarsRating from "./stars";
 import ProductHoverAction from "./product-hover-action";
 import { Product } from "../../../awsApis";
+import { Link } from "react-router-dom";
 
 interface ProductTileProps {
   product: Product;
@@ -23,7 +24,7 @@ const ProductTile: FC<ProductTileProps> = ({
       <div className="box">
         <div className="b1">
           <div className="b2">
-            <a href="product-detail.html">
+            <Link to="" onClick={() => onViewClick(id)}>
               <img
                 src={
                   isImageLoadError
@@ -35,7 +36,7 @@ const ProductTile: FC<ProductTileProps> = ({
                 className="w4r-thumbnail"
                 onError={() => setIsImageLoadError(true)}
               />
-            </a>
+            </Link>
             {isNew && (
               <span className="caption">
                 <span className="new">NEW</span>
