@@ -11,7 +11,7 @@ import Marquee from "react-fast-marquee";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import { AppContext } from "../lib/contexts/appcontext";
-import { Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 
 const Home: FC<PageProps> = (pageProps) => {

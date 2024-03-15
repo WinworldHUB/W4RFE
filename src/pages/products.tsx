@@ -1,18 +1,29 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useContext, useEffect, useMemo, useState } from "react";
 import { Product } from "../../awsApis";
 import PageLayout from "../lib/components/page-layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import ProductTileLarge from "../lib/components/product-tile-large";
 import { getAllSizes } from "../lib/utils/product-utils";
+import { AppContext } from "../lib/contexts/appcontext";
 
 const Products: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
   const [selectedSizeFilters, setSelectedSizeFilters] = useState<SizeFilter[]>(
     []
   );
+  const [selectedProductId, setSelectedProductId] = useState<string>();
+  const navigatTo = useNavigate();
+  const { appState, updateAppState } = useContext(AppContext);
+
+  useEffect(() => {
+    if (selectedProductId) {
+      updateAppState({ ...appState, selectedProductId: selectedProductId });
+      navigatTo(PageRoutes.ProductDetail);
+    }
+  }, [navigatTo, selectedProductId]);
 
   useEffect(() => {
     getProducts(PRODUCTS_APIS.GET_ALL_PRODUCTS_API);
@@ -110,7 +121,7 @@ const Products: FC<PageProps> = (pageProps) => {
                   <ProductTileLarge
                     product={product}
                     onAddToCartClick={() => {}}
-                    onViewClick={() => {}}
+                    onViewClick={setSelectedProductId}
                   />
                 </li>
               ))}
