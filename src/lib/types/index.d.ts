@@ -210,6 +210,12 @@ type Packaging = {
   available: boolean;
 };
 
+type SizeFilter = {
+  size: string;
+  count: number;
+  productIds: string[];
+};
+
 // /** To be Removed */
 // interface TestUserResponse {
 //   page: number;
