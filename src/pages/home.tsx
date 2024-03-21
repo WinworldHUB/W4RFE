@@ -3,7 +3,7 @@ import PageLayout from "../lib/components/page-layout";
 import Slider from "../lib/components/slider";
 import BannerSlider from "../lib/components/home-page/banner-slider";
 import Tabs from "../lib/components/tabs";
-import { Product } from "../../awsApis";
+import { Product } from "../awsApis";
 import ProductTile from "../lib/components/product-tile";
 import RightSideMenu from "../lib/components/right-side-menu";
 import WebSearch from "../lib/components/web-search";
@@ -111,7 +111,7 @@ const Home: FC<PageProps> = (pageProps) => {
                     </button>
                     <Slider slideTo={currentTabbedSliderPageIndex}>
                       {(products ?? []).map((product, index) => (
-                        <div>
+                        <div key={product.id}>
                           <ProductTile
                             product={product}
                             onAddToCartClick={() => {}}

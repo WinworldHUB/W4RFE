@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { Product } from "../../awsApis";
+import { Product } from "../awsApis";
 import PageLayout from "../lib/components/page-layout";
 import { Link, useLocation } from "react-router-dom";
 import useApi from "../lib/hooks/useApi";

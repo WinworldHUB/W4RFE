@@ -5,7 +5,7 @@ projects:
       - src/graphql/**/*.ts
     excludes:
       - ./amplify/**
-      - awsApis.ts
+      - /src/awsApis.ts
     extensions:
       amplify:
         codeGenTarget: typescript

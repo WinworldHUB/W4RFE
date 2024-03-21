@@ -207,38 +207,10 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
               <nav id="nav">
                 <ul>
                   {(menuItems ?? []).map((item) => (
-                    <li>
+                    <li key={item.id}>
                       <Link to={item.route}>{item.label} </Link>
                     </li>
                   ))}
-                  {/* <li>
-                    <a href="homepage1.html">HOME </a>
-                  </li>
-                  <li>
-                    <a href="product-grid-view.html">PRODUCTS</a>
-                  </li>
-                  <li>
-                    <a href="blog-right-sidebar.html">Blog</a>
-                  </li>
-                  <li>
-                    <a className="drop-link" href="contact-us.html">
-                      Contact{" "}
-                      <i
-                        className="fa fa-angle-down hidden-lg hidden-md"
-                        aria-hidden="true"
-                      ></i>
-                    </a>
-                    <div className="s-drop">
-                      <ul>
-                        <li>
-                          <a href="contact-us.html">Contact</a>
-                        </li>
-                        <li>
-                          <a href="contact-us2.html">Contact 2</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </li> */}
                 </ul>
               </nav>
             </div>

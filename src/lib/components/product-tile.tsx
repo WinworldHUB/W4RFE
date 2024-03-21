@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import StarsRating from "./stars";
 import ProductHoverAction from "./product-hover-action";
-import { Product } from "../../../awsApis";
+import { Product } from "../../awsApis";
 import { Link } from "react-router-dom";
 
 interface ProductTileProps {

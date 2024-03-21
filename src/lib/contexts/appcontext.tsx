@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { createContext, useState } from "react";
 import {
   DEFAULT_APP_STATE,
   DEFAULT_LOCAL_STORAGE_KEY_FOR_APP_STATE,

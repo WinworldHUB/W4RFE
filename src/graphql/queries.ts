@@ -2,7 +2,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from "../../awsApis";
+import * as APITypes from "../awsApis";
 type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryInput: InputType;
   __generatedQueryOutput: OutputType;
@@ -11,11 +11,15 @@ type GeneratedQuery<InputType, OutputType> = string & {
 export const getOrder = /* GraphQL */ `query GetOrder($id: ID!) {
   getOrder(id: $id) {
     id
-    number
-    value
-    currency
+    orderNumber
+    orderDate
+    orderValue
     products
+    deliveryDetails
     status
+    trackingStatus
+    trackingNumber
+    packagingType
     createdAt
     updatedAt
     __typename
@@ -30,11 +34,15 @@ export const listOrders = /* GraphQL */ `query ListOrders(
   listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      number
-      value
-      currency
+      orderNumber
+      orderDate
+      orderValue
       products
+      deliveryDetails
       status
+      trackingStatus
+      trackingNumber
+      packagingType
       createdAt
       updatedAt
       __typename

@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect, useMemo, useState } from "react";
-import { Product } from "../../awsApis";
+import { Product } from "../awsApis";
 import PageLayout from "../lib/components/page-layout";
 import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
