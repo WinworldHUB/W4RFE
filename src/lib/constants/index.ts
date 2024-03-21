@@ -1,3 +1,5 @@
+import { PackagingType } from "../../awsApis";
+
 export const DEFAULT_APP_STATE: AppState = {
   isUserLoggedIn: false,
   accessToken: "",
@@ -40,9 +42,9 @@ export const KEY_LATEST = "Latest";
 export const KEY_UNPAID = "Unpaid";
 export const KEY_ALL = "All";
 
-export const DEFAULT_PACKAGINGS: Packaging[] = [
+export const DEFAULT_PACKAGES: Packaging[] = [
   {
-    id: "1",
+    id: PackagingType.BOX_PACK,
     title: "Box packaging",
     description:
       "With box packaging type you can order minimum 6 quantities and maximum 10 quantities in one order. For more quantities split the order into two or more",
@@ -51,7 +53,7 @@ export const DEFAULT_PACKAGINGS: Packaging[] = [
     available: true,
   },
   {
-    id: "2",
+    id: PackagingType.FLAT_PACK,
     title: "Flat-pack packaging",
     description:
       "With flat-pack packaging type you can order minimum 6 quantities and maximum 12 quantities in one order. For more quantities split the order into two or more",
