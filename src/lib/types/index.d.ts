@@ -19,6 +19,7 @@ interface AppState {
 interface PageProps {
   selectedMenuId: number;
   menuItems: MenuItem[];
+  username: string;
 }
 
 type MenuItem = {

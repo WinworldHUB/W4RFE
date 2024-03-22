@@ -5,6 +5,8 @@ import Home from "./pages/home";
 import Products from "./pages/products";
 import ProductDetail from "./pages/product-detail";
 import SignIn from "./pages/signin";
+import { useContext } from "react";
+import { AppContext } from "./lib/contexts/appcontext";
 
 export const APP_MENU: MenuItem[] = [
   {
@@ -28,19 +30,37 @@ export const APP_MENU: MenuItem[] = [
 ];
 
 function App() {
+  const { appState } = useContext(AppContext);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={PageRoutes.Login}
           element={
-            <SignIn menuItems={APP_MENU} selectedMenuId={APP_MENU[0].id} />
+            appState.isUserLoggedIn ? (
+              <Home
+                menuItems={APP_MENU}
+                selectedMenuId={APP_MENU[0].id}
+                username={appState.username}
+              />
+            ) : (
+              <SignIn
+                menuItems={[]}
+                selectedMenuId={APP_MENU[0].id}
+                username={appState.username}
+              />
+            )
           }
         />
         <Route
           path={PageRoutes.Products}
           element={
-            <Products menuItems={APP_MENU} selectedMenuId={APP_MENU[1].id} />
+            <Products
+              menuItems={APP_MENU}
+              selectedMenuId={APP_MENU[1].id}
+              username={appState.username}
+            />
           }
         />
         <Route
@@ -49,13 +69,18 @@ function App() {
             <ProductDetail
               menuItems={APP_MENU}
               selectedMenuId={APP_MENU[1].id}
+              username={appState.username}
             />
           }
         />
         <Route
           path={PageRoutes.Test}
           element={
-            <TestPage menuItems={APP_MENU} selectedMenuId={APP_MENU[2].id} />
+            <TestPage
+              menuItems={APP_MENU}
+              selectedMenuId={APP_MENU[2].id}
+              username={appState.username}
+            />
           }
         />
       </Routes>

@@ -2,15 +2,18 @@ import { FC, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../contexts/appcontext";
 import { OrderVM } from "../../vms/order";
-import { PageRoutes } from "../constants";
+import { DEFAULT_APP_STATE, PageRoutes } from "../constants";
+import useAuthentication from "../hooks/useAuthentication";
 
 interface MenuBarProps {
   menuItems: MenuItem[];
   selectedMenuId: number;
+  username: string;
 }
 
-const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
-  const { appState } = useContext(AppContext);
+const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
+  const { appState, updateAppState } = useContext(AppContext);
+  const { signOutUser } = useAuthentication();
 
   useEffect(() => {
     console.log(appState);
@@ -18,6 +21,12 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
 
   const order = (appState?.order ?? {}) as OrderVM;
   const totalProducts = order.products === null ? 0 : order.products?.length;
+
+  const handleSignOutClick = () => {
+    signOutUser();
+    updateAppState(DEFAULT_APP_STATE);
+    window.location.reload();
+  };
 
   return (
     <header id="mt-header" className="style4">
@@ -30,28 +39,40 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
                   <img src="/assets/images/W4R_Website_Logo-04.jpg" alt="" />
                 </Link>
               </div>
-              <ul className="mt-icon-list">
-                <li className="hidden-lg hidden-md">
-                  <a
-                    href="/"
-                    className="bar-opener mobile-toggle"
-                    title="mobile menu"
-                  >
-                    <span className="bar"></span>
-                    <span className="bar small"></span>
-                    <span className="bar"></span>
-                  </a>
-                </li>
-                <li>
-                  <Link to={PageRoutes.Home} className="icon-magnifier"></Link>
-                </li>
-                <li className="drop">
-                  <Link to="" className="cart-opener">
-                    <span className="icon-handbag"></span>
-                    <span className="num">{totalProducts}</span>
-                  </Link>
-                </li>
-              </ul>
+
+              {menuItems.length > 0 && (
+                <ul className="mt-icon-list">
+                  <li className="hidden-lg hidden-md">
+                    <a
+                      href="/"
+                      className="bar-opener mobile-toggle"
+                      title="mobile menu"
+                    >
+                      <span className="bar"></span>
+                      <span className="bar small"></span>
+                      <span className="bar"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <Link
+                      to={PageRoutes.Home}
+                      className="icon-magnifier"
+                    ></Link>
+                  </li>
+                  <li className="drop">
+                    <Link to="" className="cart-opener">
+                      <span className="icon-handbag"></span>
+                      <span className="num">{totalProducts}</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={PageRoutes.Login} onClick={handleSignOutClick}>
+                      {" "}
+                      Sign out
+                    </Link>
+                  </li>
+                </ul>
+              )}
               <nav id="nav">
                 <ul>
                   {(menuItems ?? []).map((item) => (

@@ -8,6 +8,7 @@ interface PageLayoutProps {
   children?: React.ReactNode;
   selectedMenuId: number;
   menuItems: MenuItem[];
+  username: string;
 }
 
 const PageLayout: FC<PageLayoutProps> = ({
@@ -15,6 +16,7 @@ const PageLayout: FC<PageLayoutProps> = ({
   children,
   selectedMenuId,
   menuItems,
+  username,
 }: PageLayoutProps) => {
   const { isPageLoaded } = usePageLoaded();
 
@@ -32,7 +34,11 @@ const PageLayout: FC<PageLayoutProps> = ({
   return (
     <div id="wrapper">
       <div className="w1">
-        <MenuBar menuItems={menuItems} selectedMenuId={selectedMenuId} />
+        <MenuBar
+          menuItems={menuItems}
+          selectedMenuId={selectedMenuId}
+          username={username}
+        />
         {children}
 
         <span id="back-top" className="fa fa-arrow-up"></span>

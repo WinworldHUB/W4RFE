@@ -27,7 +27,7 @@ const SignIn: FC<PageProps> = (pageProps) => {
     });
 
     if (isUserSignedIn && username) {
-      //window.location.reload();
+      window.location.reload();
     }
   }, [isUserSignedIn, username]);
 
