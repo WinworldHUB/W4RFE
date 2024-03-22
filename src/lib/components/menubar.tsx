@@ -17,7 +17,7 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
   }, [appState]);
 
   const order = (appState?.order ?? {}) as OrderVM;
-  const totalProducts = order.products === null ? 0 : order.products.length;
+  const totalProducts = order.products === null ? 0 : order.products?.length;
 
   return (
     <header id="mt-header" className="style4">

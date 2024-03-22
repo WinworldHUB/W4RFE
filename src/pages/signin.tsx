@@ -26,8 +26,8 @@ const SignIn: FC<PageProps> = (pageProps) => {
       refreshToken: refreshToken,
     });
 
-    if (isUserSignedIn) {
-      window.location.reload();
+    if (isUserSignedIn && username) {
+      //window.location.reload();
     }
   }, [isUserSignedIn, username]);
 
@@ -137,7 +137,7 @@ const SignIn: FC<PageProps> = (pageProps) => {
                       <fieldset>
                         <div className="box text-center">
                           <button
-                            type="submit"
+                            type="button"
                             className="btn-type1"
                             onClick={() => {
                               signOutUser();
