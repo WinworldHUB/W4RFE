@@ -8,6 +8,10 @@
   font-size: 1.6em;
 }
 
+.sign-in-banner {
+  background-image: url("../images/img43.jpg");
+}
+
 .p-2 {
   padding: 10px !important;
 }

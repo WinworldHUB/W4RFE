@@ -4,6 +4,7 @@ import TestPage from "./pages/test";
 import Home from "./pages/home";
 import Products from "./pages/products";
 import ProductDetail from "./pages/product-detail";
+import SignIn from "./pages/signin";
 
 export const APP_MENU: MenuItem[] = [
   {
@@ -33,7 +34,7 @@ function App() {
         <Route
           path={PageRoutes.Login}
           element={
-            <Home menuItems={APP_MENU} selectedMenuId={APP_MENU[0].id} />
+            <SignIn menuItems={APP_MENU} selectedMenuId={APP_MENU[0].id} />
           }
         />
         <Route

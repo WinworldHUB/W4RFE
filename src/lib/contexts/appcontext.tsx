@@ -16,6 +16,8 @@ interface UseAppStateProps {
     accessToken,
     refreshToken,
     selectedProductId,
+    order,
+    username,
   }: AppState) => void;
 }
 
@@ -32,12 +34,17 @@ const useAppState = (): UseAppStateProps => {
     accessToken,
     refreshToken,
     selectedProductId,
+    order,
+    username,
   }: AppState) => {
     const updatedAppState = appState;
     updatedAppState.isUserLoggedIn = isUserLoggedIn ?? false;
     updatedAppState.accessToken = accessToken ?? "";
     updatedAppState.refreshToken = refreshToken ?? "";
     updatedAppState.selectedProductId = selectedProductId ?? "";
+    updatedAppState.order = order ?? {};
+    updatedAppState.username = username ?? "";
+
     setAppState(updatedAppState);
 
     saveAppState(DEFAULT_LOCAL_STORAGE_KEY_FOR_APP_STATE, updatedAppState);

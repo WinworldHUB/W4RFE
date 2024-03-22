@@ -1,107 +1,113 @@
-// import { useEffect, useState } from "react";
-// import config from "../../amplifyconfiguration.json";
-// import { Amplify } from "aws-amplify";
-// import {
-//   AuthUser,
-//   fetchAuthSession,
-//   getCurrentUser,
-//   signIn,
-//   signOut,
-// } from "aws-amplify/auth";
+import { useEffect, useState } from "react";
+import config from "../../amplifyconfiguration.json";
+import { Amplify } from "aws-amplify";
+import {
+  fetchAuthSession,
+  getCurrentUser,
+  signIn,
+  signOut,
+} from "aws-amplify/auth";
+import useApi from "./useApi";
+import { MEMBERS_APIS } from "../constants/api-constants";
+import { Member } from "../../awsApis";
 
-// Amplify.configure(config);
+Amplify.configure(config);
 
-// interface UseAuthenticationState {
-//   error: string;
-//   accessToken: string;
-//   refreshToken: string;
-//   isUserSignedIn: boolean;
-//   signInUser: (credentials: Credentials) => void;
-//   signOutUser: VoidFunction;
-// }
+interface UseAuthenticationState {
+  error: string;
+  accessToken: string;
+  refreshToken: string;
+  isUserSignedIn: boolean;
+  username: string;
+  signInUser: (credentials: Credentials) => void;
+  signOutUser: VoidFunction;
+}
 
-// const useAuthentication = (): UseAuthenticationState => {
-//   const [signedInUser, setSignedInUser] = useState<AuthUser>(null);
-//   const [accessToken, setAccessToken] = useState<string>(null);
-//   const [refreshToken, setRefreshToken] = useState<string>(null);
-//   const [error, setError] = useState<string>(null);
-//   const [isSignInDone, setIsSignInDone] = useState<boolean>(false);
+const useAuthentication = (): UseAuthenticationState => {
+  const [accessToken, setAccessToken] = useState<string>(null);
+  const [refreshToken, setRefreshToken] = useState<string>(null);
+  const [error, setError] = useState<string>(null);
+  const [isUserSignedIn, setIsSignInDone] = useState<boolean>(false);
+  const { getData: getMemberByEmail } = useApi<Member>();
+  const [username, setUsername] = useState<string>(null);
 
-//   const getUserData = (ignoreError: boolean) => {
-//     getCurrentUser()
-//       .then((user) => {
-//         setSignedInUser(user);
-//         fetchAuthSession()
-//           .then((session) => {
-//             setAccessToken(session.tokens?.accessToken.toString());
-//             setRefreshToken(session.tokens?.idToken.toString());
-//           })
-//           .catch((reason) => {
-//             if (!ignoreError) {
-//               setSignedInUser(null);
-//               setError(reason.message);
-//             }
-//           });
-//       })
-//       .catch((reason) => {
-//         if (!ignoreError) {
-//           setSignedInUser(null);
-//           setError(reason.message);
-//         }
-//       });
-//   };
+  const getUserData = (ignoreError: boolean) => {
+    getCurrentUser()
+      .then((user) => {
+        fetchAuthSession()
+          .then((session) => {
+            setAccessToken(session.tokens?.accessToken.toString());
+            setRefreshToken(session.tokens?.idToken.toString());
+          })
+          .catch((reason) => {
+            if (!ignoreError) {
+              setError(reason.message);
+              setIsSignInDone(false);
+            }
+          });
+      })
+      .catch((reason) => {
+        if (!ignoreError) {
+          setError(reason.message);
+          setIsSignInDone(false);
+        }
+      });
+  };
 
-//   useEffect(() => {
-//     getUserData(true);
-//   }, []);
+  useEffect(() => {
+    getUserData(true);
+  }, []);
 
-//   useEffect(() => {
-//     if (isSignInDone) {
-//       getUserData(false);
-//     }
-//   }, [isSignInDone]);
+  useEffect(() => {
+    if (isUserSignedIn) {
+      getUserData(false);
+    }
+  }, [isUserSignedIn]);
 
-//   const signInUser = (credentials: Credentials) => {
-//     signIn({ username: credentials.email, password: credentials.password })
-//       .then((value) => {
-//         setIsSignInDone(value.isSignedIn);
+  const signInUser = (credentials: Credentials) => {
+    signIn({ username: credentials.email, password: credentials.password })
+      .then((value) => {
+        getMemberByEmail(
+          `${MEMBERS_APIS.GET_MEMBER_BY_EMAIL_API}/${credentials.email}`
+        ).then((member) => {
+          setUsername(member.name);
 
-//         if (value.isSignedIn) {
-//           setError(null);
-//         } else {
-//           setError(value.nextStep?.signInStep);
-//         }
-//       })
-//       .catch((reason) => {
-//         setSignedInUser(null);
-//         setError(reason.message);
-//       });
-//   };
+          setIsSignInDone(value.isSignedIn);
 
-//   const signOutUser = () => {
-//     signOut()
-//       .then(() => {
-//         setSignedInUser(null);
-//         setError(null);
-//       })
-//       .catch((reason) => {
-//         setSignedInUser(null);
-//         setError(reason.message);
-//       });
-//   };
+          if (value.isSignedIn) {
+            setError(null);
+          } else {
+            setError(value.nextStep?.signInStep);
+            setIsSignInDone(false);
+          }
+        });
+      })
+      .catch((reason) => {
+        setError(reason.message);
+        setIsSignInDone(false);
+      });
+  };
 
-//   return {
-//     accessToken,
-//     refreshToken,
-//     isUserSignedIn: signedInUser !== null,
-//     error,
-//     signInUser,
-//     signOutUser,
-//   };
-// };
+  const signOutUser = () => {
+    signOut()
+      .then(() => {
+        setError(null);
+        setIsSignInDone(true);
+      })
+      .catch((reason) => {
+        setError(reason.message);
+      });
+  };
 
-const useAuthentication = () => {
-  return {};
+  return {
+    accessToken,
+    refreshToken,
+    isUserSignedIn,
+    error,
+    username,
+    signInUser,
+    signOutUser,
+  };
 };
 
 export default useAuthentication;

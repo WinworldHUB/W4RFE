@@ -13,6 +13,7 @@ import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import { AppContext } from "../lib/contexts/appcontext";
 import { useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
+import useOrder from "../lib/hooks/useOrder";
 
 const Home: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
@@ -22,7 +23,7 @@ const Home: FC<PageProps> = (pageProps) => {
   const [selectedProductId, setSelectedProductId] = useState<string>();
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
-
+  const { order, setOrder } = useOrder(0);
   const totalPages = useMemo(() => products?.length / 4, [products]);
 
   useEffect(() => {
@@ -51,6 +52,11 @@ const Home: FC<PageProps> = (pageProps) => {
       setCurrentTabbedSliderPageIndex(currentTabbedSliderPageIndex - 1);
     }
   };
+
+  useEffect(() => {
+    console.log(appState);
+    updateAppState({ ...appState, order: order });
+  }, [order]);
 
   return (
     <PageLayout {...pageProps}>
@@ -114,13 +120,23 @@ const Home: FC<PageProps> = (pageProps) => {
                         <div key={product.id}>
                           <ProductTile
                             product={product}
-                            onAddToCartClick={() => {}}
+                            onAddToCartClick={(productId) => {
+                              setOrder({
+                                ...order,
+                                products: [...order.products, product],
+                              });
+                            }}
                             onViewClick={setSelectedProductId}
                           />
                           {index + 1 < products.length && (
                             <ProductTile
                               product={products[index + 1]}
-                              onAddToCartClick={() => {}}
+                              onAddToCartClick={(productId) => {
+                                setOrder({
+                                  ...order,
+                                  products: [...order.products, product],
+                                });
+                              }}
                               onViewClick={setSelectedProductId}
                             />
                           )}

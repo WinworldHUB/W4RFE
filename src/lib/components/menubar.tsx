@@ -1,5 +1,8 @@
-import { FC } from "react";
+import { FC, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../contexts/appcontext";
+import { OrderVM } from "../../vms/order";
+import { PageRoutes } from "../constants";
 
 interface MenuBarProps {
   menuItems: MenuItem[];
@@ -7,6 +10,15 @@ interface MenuBarProps {
 }
 
 const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
+  const { appState } = useContext(AppContext);
+
+  useEffect(() => {
+    console.log(appState);
+  }, [appState]);
+
+  const order = (appState?.order ?? {}) as OrderVM;
+  const totalProducts = order.products === null ? 0 : order.products.length;
+
   return (
     <header id="mt-header" className="style4">
       <div className="mt-bottom-bar">
@@ -14,194 +26,30 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId }) => {
           <div className="row">
             <div className="col-xs-12">
               <div className="mt-logo">
-                <a href="#">
+                <Link to={PageRoutes.Home}>
                   <img src="/assets/images/W4R_Website_Logo-04.jpg" alt="" />
-                </a>
+                </Link>
               </div>
               <ul className="mt-icon-list">
                 <li className="hidden-lg hidden-md">
-                  <a href="#" className="bar-opener mobile-toggle">
+                  <a
+                    href="/"
+                    className="bar-opener mobile-toggle"
+                    title="mobile menu"
+                  >
                     <span className="bar"></span>
                     <span className="bar small"></span>
                     <span className="bar"></span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="icon-magnifier"></a>
+                  <Link to={PageRoutes.Home} className="icon-magnifier"></Link>
                 </li>
                 <li className="drop">
-                  <a href="#" className="icon-heart cart-opener">
-                    <span style={{ marginBottom: "-3px" }} className="num">
-                      3
-                    </span>
-                  </a>
-                  <div className="mt-drop">
-                    <div className="mt-drop-sub">
-                      <div className="mt-side-widget">
-                        <div className="cart-row">
-                          <a href="#" className="img">
-                            <img
-                              src="/assets/images/products/img36.jpg"
-                              alt="image"
-                              className="img-responsive"
-                            />
-                          </a>
-                          <div className="mt-h">
-                            <span className="mt-h-title">
-                              <a href="#">Marvelous Modern 3 Seater</a>
-                            </span>
-                            <span className="price">
-                              <i className="fa fa-eur" aria-hidden="true"></i>{" "}
-                              599,00
-                            </span>
-                          </div>
-                          <a href="#" className="close fa fa-times"></a>
-                        </div>
-                        <div className="cart-row">
-                          <a href="#" className="img">
-                            <img
-                              src="/assets/images/products/img37.jpg"
-                              alt="image"
-                              className="img-responsive"
-                            />
-                          </a>
-                          <div className="mt-h">
-                            <span className="mt-h-title">
-                              <a href="#">Marvelous Modern 3 Seater</a>
-                            </span>
-                            <span className="price">
-                              <i className="fa fa-eur" aria-hidden="true"></i>{" "}
-                              599,00
-                            </span>
-                          </div>
-                          <a href="#" className="close fa fa-times"></a>
-                        </div>
-                        <div className="cart-row">
-                          <a href="#" className="img">
-                            <img
-                              src="/assets/images/products/img38.jpg"
-                              alt="image"
-                              className="img-responsive"
-                            />
-                          </a>
-                          <div className="mt-h">
-                            <span className="mt-h-title">
-                              <a href="#">Marvelous Modern 3 Seater</a>
-                            </span>
-                            <span className="price">
-                              <i className="fa fa-eur" aria-hidden="true"></i>{" "}
-                              599,00
-                            </span>
-                          </div>
-                          <a href="#" className="close fa fa-times"></a>
-                        </div>
-                        <div className="cart-row-total">
-                          <span className="mt-total">Add them all</span>
-                          <span className="mt-total-txt">
-                            <a href="#" className="btn-type2">
-                              add to CART
-                            </a>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <span className="mt-mdropover"></span>
-                </li>
-                <li className="drop">
-                  <a href="#" className="cart-opener">
+                  <Link to="" className="cart-opener">
                     <span className="icon-handbag"></span>
-                    <span className="num">3</span>
-                  </a>
-                  <div className="mt-drop">
-                    <div className="mt-drop-sub">
-                      <div className="mt-side-widget">
-                        <div className="cart-row">
-                          <a href="#" className="img">
-                            <img
-                              src="/assets/images/products/img36.jpg"
-                              alt="image"
-                              className="img-responsive"
-                            />
-                          </a>
-                          <div className="mt-h">
-                            <span className="mt-h-title">
-                              <a href="#">Marvelous Modern 3 Seater</a>
-                            </span>
-                            <span className="price">
-                              <i className="fa fa-eur" aria-hidden="true"></i>{" "}
-                              599,00
-                            </span>
-                            <span className="mt-h-title">Qty: 1</span>
-                          </div>
-                          <a href="#" className="close fa fa-times"></a>
-                        </div>
-                        <div className="cart-row">
-                          <a href="#" className="img">
-                            <img
-                              src="/assets/images/products/img37.jpg"
-                              alt="image"
-                              className="img-responsive"
-                            />
-                          </a>
-                          <div className="mt-h">
-                            <span className="mt-h-title">
-                              <a href="#">Marvelous Modern 3 Seater</a>
-                            </span>
-                            <span className="price">
-                              <i className="fa fa-eur" aria-hidden="true"></i>{" "}
-                              599,00
-                            </span>
-                            <span className="mt-h-title">Qty: 1</span>
-                          </div>
-                          <a href="#" className="close fa fa-times"></a>
-                        </div>
-                        <div className="cart-row">
-                          <a href="#" className="img">
-                            <img
-                              src="/assets/images/products/img38.jpg"
-                              alt="image"
-                              className="img-responsive"
-                            />
-                          </a>
-                          <div className="mt-h">
-                            <span className="mt-h-title">
-                              <a href="#">Marvelous Modern 3 Seater</a>
-                            </span>
-                            <span className="price">
-                              <i className="fa fa-eur" aria-hidden="true"></i>{" "}
-                              599,00
-                            </span>
-                            <span className="mt-h-title">Qty: 1</span>
-                          </div>
-                          <a href="#" className="close fa fa-times"></a>
-                        </div>
-                        <div className="cart-row-total">
-                          <span className="mt-total">Sub Total</span>
-                          <span className="mt-total-txt">
-                            <i className="fa fa-eur" aria-hidden="true"></i>{" "}
-                            799,00
-                          </span>
-                        </div>
-                        <div className="cart-btn-row">
-                          <a href="#" className="btn-type2">
-                            VIEW CART
-                          </a>
-                          <a href="#" className="btn-type3">
-                            CHECKOUT
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <span className="mt-mdropover"></span>
-                </li>
-                <li>
-                  <a href="#" className="bar-opener side-opener">
-                    <span className="bar"></span>
-                    <span className="bar small"></span>
-                    <span className="bar"></span>
-                  </a>
+                    <span className="num">{totalProducts}</span>
+                  </Link>
                 </li>
               </ul>
               <nav id="nav">

@@ -5,6 +5,8 @@ export const DEFAULT_APP_STATE: AppState = {
   accessToken: "",
   refreshToken: "",
   selectedProductId: "",
+  order: null,
+  username: "",
 
   setAppState: () => {},
 };

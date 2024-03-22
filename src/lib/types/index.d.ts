@@ -3,12 +3,16 @@ interface AppState {
   accessToken?: string;
   refreshToken?: string;
   selectedProductId?: string;
+  order: unknown;
+  username: string;
 
   setAppState: ({
     isUserLoggedIn,
     accessToken,
     refreshToken,
     selectedProductId,
+    order,
+    username,
   }: AppState) => void;
 }
 
@@ -53,3 +57,7 @@ type OrderDeliveryDetails = {
   deliverTo: string;
   deliverAt: string;
 };
+interface Credentials {
+  email: string;
+  password: string;
+}
