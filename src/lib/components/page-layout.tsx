@@ -39,7 +39,7 @@ const PageLayout: FC<PageLayoutProps> = ({
           selectedMenuId={selectedMenuId}
           username={username}
         />
-        {children}
+        <div className="pt-70">{children}</div>
 
         <span id="back-top" className="fa fa-arrow-up"></span>
       </div>

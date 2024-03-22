@@ -29,7 +29,7 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
   };
 
   return (
-    <header id="mt-header" className="style4">
+    <header id="mt-header" className="style4 shadow fixed">
       <div className="mt-bottom-bar">
         <div className="container-fluid">
           <div className="row">
@@ -57,18 +57,23 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
                     <Link
                       to={PageRoutes.Home}
                       className="icon-magnifier"
+                      title="Search"
                     ></Link>
                   </li>
                   <li className="drop">
-                    <Link to="" className="cart-opener">
+                    <Link to="" className="cart-opener" title="Cart">
                       <span className="icon-handbag"></span>
                       <span className="num">{totalProducts}</span>
                     </Link>
                   </li>
                   <li>
-                    <Link to={PageRoutes.Login} onClick={handleSignOutClick}>
-                      {" "}
-                      Sign out
+                    <Link
+                      to={PageRoutes.Login}
+                      onClick={handleSignOutClick}
+                      className="cart-opener"
+                      title="Log out"
+                    >
+                      <span className="icon-power"></span>
                     </Link>
                   </li>
                 </ul>

@@ -47,3 +47,18 @@
 .w-100 {
   width: 100%;
 }
+
+.shadow {
+  -webkit-box-shadow: 10px 10px 15px 0px rgba(184, 184, 184, 0.2);
+  -moz-box-shadow: 10px 10px 15px 0px rgba(184, 184, 184, 0.2);
+  box-shadow: 10px 10px 15px 0px rgba(184, 184, 184, 0.2);
+}
+
+.fixed {
+  position: fixed !important;
+  width: 100%;
+}
+
+.pt-70 {
+  padding-top: 70px;
+}
