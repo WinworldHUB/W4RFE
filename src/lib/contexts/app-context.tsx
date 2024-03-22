@@ -5,10 +5,6 @@ import {
 } from "../constants";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-interface AppContextProviderProps {
-  children: React.ReactNode;
-}
-
 interface UseAppStateProps {
   appState: AppState;
   updateAppState: ({
@@ -55,7 +51,7 @@ const useAppState = (): UseAppStateProps => {
 
 const AppContext = createContext<UseAppStateProps>(null);
 
-const AppContextProvider = ({ children }: AppContextProviderProps) => {
+const AppContextProvider = ({ children }: ContextProviderProps) => {
   return (
     <AppContext.Provider value={useAppState()}>{children}</AppContext.Provider>
   );

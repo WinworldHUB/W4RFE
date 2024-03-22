@@ -10,10 +10,11 @@ import WebSearch from "../lib/components/web-search";
 import Marquee from "react-fast-marquee";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
-import { AppContext } from "../lib/contexts/appcontext";
+import { AppContext } from "../lib/contexts/app-context";
 import { useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 import useOrder from "../lib/hooks/useOrder";
+import { CartContext } from "../lib/contexts/cart-context";
 
 const Home: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
@@ -25,6 +26,7 @@ const Home: FC<PageProps> = (pageProps) => {
   const { appState, updateAppState } = useContext(AppContext);
   const { order, setOrder } = useOrder(0);
   const totalPages = useMemo(() => products?.length / 4, [products]);
+  const { addProduct } = useContext(CartContext);
 
   useEffect(() => {
     setCurrentTabbedSliderPageIndex(0);
@@ -120,23 +122,13 @@ const Home: FC<PageProps> = (pageProps) => {
                         <div key={product.id}>
                           <ProductTile
                             product={product}
-                            onAddToCartClick={(productId) => {
-                              setOrder({
-                                ...order,
-                                products: [...order.products, product],
-                              });
-                            }}
+                            onAddToCartClick={() => addProduct(product)}
                             onViewClick={setSelectedProductId}
                           />
                           {index + 1 < products.length && (
                             <ProductTile
                               product={products[index + 1]}
-                              onAddToCartClick={(productId) => {
-                                setOrder({
-                                  ...order,
-                                  products: [...order.products, product],
-                                });
-                              }}
+                              onAddToCartClick={() => addProduct(product)}
                               onViewClick={setSelectedProductId}
                             />
                           )}

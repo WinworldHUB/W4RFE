@@ -4,14 +4,16 @@ import PageLayout from "../lib/components/page-layout";
 import { Link, useLocation } from "react-router-dom";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
-import { AppContext } from "../lib/contexts/appcontext";
+import { AppContext } from "../lib/contexts/app-context";
 import Slider from "../lib/components/slider";
 import { PageRoutes } from "../lib/constants";
+import { CartContext } from "../lib/contexts/cart-context";
 
 const ProductDetail: FC<PageProps> = (pageProps) => {
   const { data: product, getData: getProductById } = useApi<Product>();
   const { appState } = useContext(AppContext);
   const variants = JSON.parse(product?.variants ?? "[]") as ProductVariant[];
+  const { addProduct } = useContext(CartContext);
 
   useEffect(() => {
     getProductById(
@@ -75,7 +77,9 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                       </select>
                     </div>
                     <div className="row-val">
-                      <button type="submit">ADD TO CART</button>
+                      <button type="button" onClick={() => addProduct(product)}>
+                        ADD TO CART
+                      </button>
                     </div>
                   </fieldset>
                 </form>
@@ -84,6 +88,7 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
           </div>
         </div>
       </section>
+      <br />
     </PageLayout>
   );
 };

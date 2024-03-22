@@ -6,7 +6,7 @@ import Products from "./pages/products";
 import ProductDetail from "./pages/product-detail";
 import SignIn from "./pages/signin";
 import { useContext } from "react";
-import { AppContext } from "./lib/contexts/appcontext";
+import { AppContext } from "./lib/contexts/app-context";
 
 export const APP_MENU: MenuItem[] = [
   {

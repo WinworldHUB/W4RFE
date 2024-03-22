@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import useAuthentication from "../lib/hooks/useAuthentication";
-import { AppContext } from "../lib/contexts/appcontext";
+import { AppContext } from "../lib/contexts/app-context";
 import { Link } from "react-router-dom";
 
 const SignIn: FC<PageProps> = (pageProps) => {

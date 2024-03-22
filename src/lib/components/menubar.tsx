@@ -1,9 +1,10 @@
 import { FC, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { AppContext } from "../contexts/appcontext";
+import { AppContext } from "../contexts/app-context";
 import { OrderVM } from "../../vms/order";
 import { DEFAULT_APP_STATE, PageRoutes } from "../constants";
 import useAuthentication from "../hooks/useAuthentication";
+import { CartContext } from "../contexts/cart-context";
 
 interface MenuBarProps {
   menuItems: MenuItem[];
@@ -12,15 +13,10 @@ interface MenuBarProps {
 }
 
 const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
-  const { appState, updateAppState } = useContext(AppContext);
+  const { updateAppState } = useContext(AppContext);
   const { signOutUser } = useAuthentication();
 
-  useEffect(() => {
-    console.log(appState);
-  }, [appState]);
-
-  const order = (appState?.order ?? {}) as OrderVM;
-  const totalProducts = order.products === null ? 0 : order.products?.length;
+  const { products } = useContext(CartContext);
 
   const handleSignOutClick = () => {
     signOutUser();
@@ -63,7 +59,7 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
                   <li className="drop">
                     <Link to="" className="cart-opener" title="Cart">
                       <span className="icon-handbag"></span>
-                      <span className="num">{totalProducts}</span>
+                      <span className="num">{products.length}</span>
                     </Link>
                   </li>
                   <li>

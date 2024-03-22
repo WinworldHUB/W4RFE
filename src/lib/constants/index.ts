@@ -1,4 +1,4 @@
-import { PackagingType } from "../../awsApis";
+import { PackagingType, Product } from "../../awsApis";
 
 export const DEFAULT_APP_STATE: AppState = {
   isUserLoggedIn: false,
@@ -12,6 +12,7 @@ export const DEFAULT_APP_STATE: AppState = {
 };
 
 export const DEFAULT_LOCAL_STORAGE_KEY_FOR_APP_STATE = "W4R_LS_APP_STATE";
+export const DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE = "W4R_LS_CART_STATE";
 
 export enum PageRoutes {
   Home = "/",

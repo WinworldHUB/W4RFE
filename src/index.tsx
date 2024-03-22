@@ -1,14 +1,17 @@
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { AppContextProvider } from "./lib/contexts/appcontext";
+import { AppContextProvider } from "./lib/contexts/app-context";
+import { CartContextProvider } from "./lib/contexts/cart-context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <AppContextProvider>
-    <App />
+    <CartContextProvider>
+      <App />
+    </CartContextProvider>
   </AppContextProvider>
 );
 

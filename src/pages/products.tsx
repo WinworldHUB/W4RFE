@@ -7,7 +7,8 @@ import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import ProductTileLarge from "../lib/components/product-tile-large";
 import { getAllSizes } from "../lib/utils/product-utils";
-import { AppContext } from "../lib/contexts/appcontext";
+import { AppContext } from "../lib/contexts/app-context";
+import { CartContext } from "../lib/contexts/cart-context";
 
 const Products: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
@@ -17,6 +18,7 @@ const Products: FC<PageProps> = (pageProps) => {
   const [selectedProductId, setSelectedProductId] = useState<string>();
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
+  const { addProduct } = useContext(CartContext);
 
   useEffect(() => {
     if (selectedProductId) {
@@ -120,7 +122,7 @@ const Products: FC<PageProps> = (pageProps) => {
                 <li>
                   <ProductTileLarge
                     product={product}
-                    onAddToCartClick={() => {}}
+                    onAddToCartClick={() => addProduct(product)}
                     onViewClick={setSelectedProductId}
                   />
                 </li>

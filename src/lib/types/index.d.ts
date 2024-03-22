@@ -16,6 +16,20 @@ interface AppState {
   }: AppState) => void;
 }
 
+interface CartState {
+  products: Product[];
+  addProduct: (product: Product) => void;
+}
+
+interface CartStateProps {
+  cartState: CartState;
+  updateCartState: ({ products }: CartState) => void;
+}
+
+interface ContextProviderProps {
+  children: React.ReactNode;
+}
+
 interface PageProps {
   selectedMenuId: number;
   menuItems: MenuItem[];
