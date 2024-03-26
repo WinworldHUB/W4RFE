@@ -5,11 +5,11 @@ projects:
       - src/graphql/**/*.ts
     excludes:
       - ./amplify/**
-      - /src/awsApis.ts
+      - awsApis.ts
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: awsApis.ts
+        generatedFileName: ./src/lib/awsApis.ts
         docsFilePath: src/graphql
         region: eu-west-2
         apiId: qmdzqgioxvfznepgw726p6vsnm
