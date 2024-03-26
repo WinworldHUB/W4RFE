@@ -2,12 +2,52 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from "../awsApis";
+import * as APITypes from "../../awsApis";
 type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryInput: InputType;
   __generatedQueryOutput: OutputType;
 };
 
+export const getInvoice = /* GraphQL */ `query GetInvoice($id: ID!) {
+  getInvoice(id: $id) {
+    id
+    orderId
+    invoiceDate
+    paymentDate
+    memberId
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetInvoiceQueryVariables,
+  APITypes.GetInvoiceQuery
+>;
+export const listInvoices = /* GraphQL */ `query ListInvoices(
+  $filter: ModelInvoiceFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listInvoices(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      orderId
+      invoiceDate
+      paymentDate
+      memberId
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListInvoicesQueryVariables,
+  APITypes.ListInvoicesQuery
+>;
 export const getOrder = /* GraphQL */ `query GetOrder($id: ID!) {
   getOrder(id: $id) {
     id
@@ -20,6 +60,7 @@ export const getOrder = /* GraphQL */ `query GetOrder($id: ID!) {
     trackingStatus
     trackingNumber
     packagingType
+    memberId
     createdAt
     updatedAt
     __typename
@@ -43,6 +84,7 @@ export const listOrders = /* GraphQL */ `query ListOrders(
       trackingStatus
       trackingNumber
       packagingType
+      memberId
       createdAt
       updatedAt
       __typename
