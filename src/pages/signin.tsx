@@ -2,7 +2,9 @@ import { FC, useContext, useEffect, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import useAuthentication from "../lib/hooks/useAuthentication";
 import { AppContext } from "../lib/contexts/app-context";
-import { Link } from "react-router-dom";
+import useApi from "../lib/hooks/useApi";
+import { Member } from "../awsApis";
+import { MEMBERS_APIS } from "../lib/constants/api-constants";
 
 const SignIn: FC<PageProps> = (pageProps) => {
   const {
@@ -10,31 +12,36 @@ const SignIn: FC<PageProps> = (pageProps) => {
     isUserSignedIn,
     signInUser,
     signOutUser,
-    username,
     accessToken,
     refreshToken,
   } = useAuthentication();
 
   const { appState, updateAppState } = useContext(AppContext);
+  const { data: userDetails, getData: getUserDetails } = useApi<Member>();
+  const [credentials, setCredentials] = useState<Credentials>({
+    email: "",
+    password: "",
+  });
 
   useEffect(() => {
     updateAppState({
       ...appState,
       isUserLoggedIn: isUserSignedIn,
-      username: username,
+      username: userDetails?.name,
       accessToken: accessToken,
       refreshToken: refreshToken,
     });
 
-    if (isUserSignedIn && username) {
+    if (isUserSignedIn && accessToken) {
+      getUserDetails(
+        `${MEMBERS_APIS.GET_MEMBER_BY_EMAIL_API}/${credentials.email}`
+      );
+    }
+
+    if (isUserSignedIn && userDetails) {
       window.location.reload();
     }
-  }, [isUserSignedIn, username]);
-
-  const [credentials, setCredentials] = useState<Credentials>({
-    email: "",
-    password: "",
-  });
+  }, [isUserSignedIn, userDetails]);
 
   return (
     <PageLayout {...pageProps}>

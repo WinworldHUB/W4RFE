@@ -8,7 +8,6 @@ import {
   signOut,
 } from "aws-amplify/auth";
 import useApi from "./useApi";
-import { MEMBERS_APIS } from "../constants/api-constants";
 import { Member } from "../../awsApis";
 
 Amplify.configure(config);
@@ -18,7 +17,6 @@ interface UseAuthenticationState {
   accessToken: string;
   refreshToken: string;
   isUserSignedIn: boolean;
-  username: string;
   signInUser: (credentials: Credentials) => void;
   signOutUser: VoidFunction;
 }
@@ -28,8 +26,6 @@ const useAuthentication = (): UseAuthenticationState => {
   const [refreshToken, setRefreshToken] = useState<string>(null);
   const [error, setError] = useState<string>(null);
   const [isUserSignedIn, setIsSignInDone] = useState<boolean>(false);
-  const { getData: getMemberByEmail } = useApi<Member>();
-  const [username, setUsername] = useState<string>(null);
 
   const getUserData = (ignoreError: boolean) => {
     getCurrentUser()
@@ -67,20 +63,14 @@ const useAuthentication = (): UseAuthenticationState => {
   const signInUser = (credentials: Credentials) => {
     signIn({ username: credentials.email, password: credentials.password })
       .then((value) => {
-        getMemberByEmail(
-          `${MEMBERS_APIS.GET_MEMBER_BY_EMAIL_API}/${credentials.email}`
-        ).then((member) => {
-          setUsername(member.name);
+        setIsSignInDone(value.isSignedIn);
 
-          setIsSignInDone(value.isSignedIn);
-
-          if (value.isSignedIn) {
-            setError(null);
-          } else {
-            setError(value.nextStep?.signInStep);
-            setIsSignInDone(false);
-          }
-        });
+        if (value.isSignedIn) {
+          setError(null);
+        } else {
+          setError(value.nextStep?.signInStep);
+          setIsSignInDone(false);
+        }
       })
       .catch((reason) => {
         signOutUser();
@@ -106,7 +96,6 @@ const useAuthentication = (): UseAuthenticationState => {
     refreshToken,
     isUserSignedIn,
     error,
-    username,
     signInUser,
     signOutUser,
   };
