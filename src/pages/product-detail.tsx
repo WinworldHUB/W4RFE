@@ -1,13 +1,12 @@
-import { FC, useContext, useEffect, useState } from "react";
-import { Product } from "../awsApis";
+import { FC, useContext, useEffect } from "react";
 import PageLayout from "../lib/components/page-layout";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import { AppContext } from "../lib/contexts/app-context";
-import Slider from "../lib/components/slider";
 import { PageRoutes } from "../lib/constants";
 import { CartContext } from "../lib/contexts/cart-context";
+import { Product } from "../lib/awsApis";
 
 const ProductDetail: FC<PageProps> = (pageProps) => {
   const { data: product, getData: getProductById } = useApi<Product>();

@@ -87,3 +87,11 @@ type TimelineItem = {
   status: TimelineStatus;
   title: string;
 };
+
+interface DataTableProps<T> {
+  isEditable?: boolean;
+  data: T[];
+  onCreateClick?: VoidFunction;
+  onRowClicked?: Dispatch<SetStateAction<Order>>;
+  onDataImport?: (data: T[]) => void;
+}

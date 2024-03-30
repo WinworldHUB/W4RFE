@@ -1,10 +1,10 @@
 import { DateTime } from "luxon";
 import { useState } from "react";
 
-import { OrderStatus, PackagingType } from "../../awsApis";
 import { toAWSDateFormat } from "../utils/date-utils";
 import { generateOrderNumber } from "../utils/order-utils";
 import { OrderVM } from "../../vms/order";
+import { OrderStatus, PackagingType } from "../awsApis";
 
 interface OrderState {
   order: OrderVM;

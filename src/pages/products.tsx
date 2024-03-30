@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect, useMemo, useState } from "react";
-import { Product } from "../awsApis";
 import PageLayout from "../lib/components/page-layout";
 import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
@@ -9,6 +8,7 @@ import ProductTileLarge from "../lib/components/product-tile-large";
 import { getAllSizes } from "../lib/utils/product-utils";
 import { AppContext } from "../lib/contexts/app-context";
 import { CartContext } from "../lib/contexts/cart-context";
+import { Product } from "../lib/awsApis";
 
 const Products: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();

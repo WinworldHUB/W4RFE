@@ -7,8 +7,8 @@ import {
 } from "../constants";
 
 import { toFormattedDate } from "./date-utils";
-import { Order, Product } from "../../awsApis";
 import { OrderVM } from "../../vms/order";
+import { Order, Product } from "../awsApis";
 
 export const isOrderContains = (order: Order, value: string): boolean => {
   if (!order) return false;

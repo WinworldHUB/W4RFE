@@ -2,8 +2,19 @@
   width: 112px !important;
 }
 
+.mt-contact-banner {
+  background-image: url(/assets/images/img43.jpg);
+}
+
 .d-in-flex {
   display: inline-flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100% !important;
+}
+
+.bg-light {
+  background-color: #edede9 !important;
 }
 
 .marquee-container {
@@ -37,21 +48,34 @@
 }
 
 .w-25 {
-  width: 25%;
+  width: 25% !important;
 }
 
 .w-50 {
-  width: 50%;
+  width: 50% !important;
 }
 
 .w-75 {
-  width: 75%;
+  width: 75% !important;
+}
+
+.w-100p {
+  width: 100% !important;
+}
+
+.m-0 {
+  margin: 0;
 }
 
 .shadow {
   -webkit-box-shadow: 10px 10px 15px 0px rgba(184, 184, 184, 0.2);
   -moz-box-shadow: 10px 10px 15px 0px rgba(184, 184, 184, 0.2);
   box-shadow: 10px 10px 15px 0px rgba(184, 184, 184, 0.2);
+}
+
+.rounded {
+  border: 1px;
+  border-radius: 10px;
 }
 
 .fixed {
@@ -144,4 +168,85 @@
   top: -15px;
   left: calc(50% - 12px);
   transition: all 200ms ease-in;
+}
+
+.card-title {
+  font-size: 3rem;
+  padding: 20px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  border: 1px;
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: #efefef;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border: 1px;
+  border-radius: 10px;
+}
+
+.modal-body {
+  padding: 30px 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  background-color: #efefef;
+  padding: 10px 20px;
+  border: 1px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  /* float: right; */
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.text-end {
+  text-align: right;
+  align-items: right;
+  justify-content: right;
+}
+
+.text-center {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }

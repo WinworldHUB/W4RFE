@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Product } from "../../awsApis";
 import useLocalStorage from "./useLocalStorage";
 import { DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE } from "../constants";
+import { Product } from "../awsApis";
 
 const useCart = (): CartState => {
   const { setValue: saveCartState, getValue: getSavedCartState } =

@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import ProductHoverAction from "./product-hover-action";
-import { Product } from "../../awsApis";
 import { Link } from "react-router-dom";
 import { PageRoutes } from "../constants";
+import { Product } from "../awsApis";
 
 interface ProductTileProps {
   product: Product;

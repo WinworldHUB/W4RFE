@@ -3,10 +3,10 @@ import PageLayout from "../lib/components/page-layout";
 import useAuthentication from "../lib/hooks/useAuthentication";
 import { AppContext } from "../lib/contexts/app-context";
 import useApi from "../lib/hooks/useApi";
-import { Member } from "../awsApis";
 import { MEMBERS_APIS } from "../lib/constants/api-constants";
 import { Link } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
+import { Member } from "../lib/awsApis";
 
 const SignIn: FC<PageProps> = (pageProps) => {
   const {

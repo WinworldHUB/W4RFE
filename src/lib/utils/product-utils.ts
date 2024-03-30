@@ -1,5 +1,5 @@
-import { Product } from "../../awsApis";
 import { forEach, countBy, uniq, filter, map } from "lodash";
+import { Product } from "../awsApis";
 
 export const getAllSizes = (products: Product[]): SizeFilter[] => {
   const output: string[] = [];

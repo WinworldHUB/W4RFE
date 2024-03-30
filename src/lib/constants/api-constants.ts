@@ -1,12 +1,25 @@
-export const DEFAULT_GET_API_HEADER = {};
-export const DEFAULT_POST_API_HEADER = {
-  "Content-Type": "application/json",
+export const DEFAULT_GET_API_HEADER = (accessToken: string) => {
+  return {
+    Authorization: `Bearer ${accessToken}`,
+  };
+};
+export const DEFAULT_POST_API_HEADER = (accessToken: string) => {
+  return {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  };
 };
 export const API_BASE_URL = "https://apis.wholesale4resale.com";
 
 export const TEST_APIS = {
   GET_API: "https://reqres.in/api/users?page=2",
   POST_API: "https://reqres.in/api/users",
+};
+
+export const ORDERS_APIS = {
+  GET_ALL_ORDERS_API: "/orders",
+  GET_ORDER_BY_ID: "/orders/",
+  ADD_ORDER_API: "/orders",
 };
 
 export const PRODUCTS_APIS = {

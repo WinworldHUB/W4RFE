@@ -1,4 +1,4 @@
-import { PackagingType, Product } from "../../awsApis";
+import { PackagingType } from "../awsApis";
 
 export const DEFAULT_APP_STATE: AppState = {
   isUserLoggedIn: false,
@@ -14,12 +14,15 @@ export const DEFAULT_APP_STATE: AppState = {
 export const DEFAULT_LOCAL_STORAGE_KEY_FOR_APP_STATE = "W4R_LS_APP_STATE";
 export const DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE = "W4R_LS_CART_STATE";
 
+export const GBP_SYMBOL = "£";
+
 export enum PageRoutes {
   Home = "/",
   Login = "/",
   Products = "/products",
   ProductDetail = "/productDetail",
   Test = "/test",
+  Orders = "/orders",
 }
 
 export enum CreateOrderSlides {
@@ -79,16 +82,46 @@ export const DATA_TABLE_DEFAULT_STYLE = {
       backgroundColor: "var(--bs-primary)",
       color: "var(--bs-white)",
       fontWeight: "bold",
-      fontSize: "0.9rem",
+      fontSize: "1.5rem",
     },
   },
   cells: {
     style: {
       paddingLeft: "8px", // override the cell padding for data cells
       paddingRight: "8px",
+      fontSize: "1.5rem",
     },
   },
 };
+
+enum TimelineStatus {
+  Active = "active",
+  Completed = "completed",
+  Pending = "pending",
+}
+
+export const TIMELINE_STATUSES = [
+  {
+    status: TimelineStatus.Completed,
+    title: "Order placed",
+  },
+  {
+    status: TimelineStatus.Completed,
+    title: "Payment completed",
+  },
+  {
+    status: TimelineStatus.Active,
+    title: "Order shipped",
+  },
+  {
+    status: TimelineStatus.Pending,
+    title: "Arrived in UK",
+  },
+  {
+    status: TimelineStatus.Pending,
+    title: "Delivered",
+  },
+] as TimelineItem[];
 
 export const EMPTY_STRING = "";
 

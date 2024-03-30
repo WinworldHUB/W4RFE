@@ -1,9 +1,8 @@
-import { FC, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useContext, useEffect, useMemo, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import Slider from "../lib/components/slider";
 import BannerSlider from "../lib/components/home-page/banner-slider";
 import Tabs from "../lib/components/tabs";
-import { Product } from "../awsApis";
 import ProductTile from "../lib/components/product-tile";
 import RightSideMenu from "../lib/components/right-side-menu";
 import WebSearch from "../lib/components/web-search";
@@ -15,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 import useOrder from "../lib/hooks/useOrder";
 import { CartContext } from "../lib/contexts/cart-context";
+import { Product } from "../lib/awsApis";
 
 const Home: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
@@ -144,24 +144,6 @@ const Home: FC<PageProps> = (pageProps) => {
                     </button>
                     <Slider slideTo={currentTabbedSliderPageIndex}>
                       {productsGrid()}
-                      {/* {(products ?? []).map((product, index) => (
-                        <div key={product.id}>
-                          {index % 2 !== 0 && (
-                            <ProductTile
-                              product={product}
-                              onAddToCartClick={() => addProduct(product)}
-                              onViewClick={setSelectedProductId}
-                            />
-                          )}
-                          {index % 2 === 0 && (
-                            <ProductTile
-                              product={products[index + 1]}
-                              onAddToCartClick={() => addProduct(product)}
-                              onViewClick={setSelectedProductId}
-                            />
-                          )}
-                        </div>
-                      ))} */}
                     </Slider>
                     <button
                       type="button"
