@@ -1,10 +1,10 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../contexts/app-context";
-import { OrderVM } from "../../vms/order";
 import { DEFAULT_APP_STATE, PageRoutes } from "../constants";
 import useAuthentication from "../hooks/useAuthentication";
 import { CartContext } from "../contexts/cart-context";
+import { Badge } from "react-bootstrap";
 
 interface MenuBarProps {
   menuItems: MenuItem[];
@@ -14,7 +14,7 @@ interface MenuBarProps {
 
 const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
   const { updateAppState } = useContext(AppContext);
-  const { signOutUser } = useAuthentication();
+  const { signOutUser, isAdmin } = useAuthentication();
 
   const { products } = useContext(CartContext);
 
@@ -30,10 +30,15 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12">
-              <div className="mt-logo">
+              <div className="d-in-flex align-items-end w-200">
                 <Link to={PageRoutes.Home}>
-                  <img src="/assets/images/W4R_Website_Logo-04.jpg" alt="" />
+                  <img
+                    className="mt-logo-wish"
+                    src="/assets/images/W4R_Website_Logo-04.jpg"
+                    alt=""
+                  />
                 </Link>
+                {isAdmin && <p className="text-light">&nbsp;Admin</p>}
               </div>
 
               {menuItems.length > 0 && (

@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { FC, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import Slider from "../lib/components/slider";
 import BannerSlider from "../lib/components/home-page/banner-slider";
@@ -11,7 +11,7 @@ import Marquee from "react-fast-marquee";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import { AppContext } from "../lib/contexts/app-context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 import useOrder from "../lib/hooks/useOrder";
 import { CartContext } from "../lib/contexts/cart-context";
@@ -25,7 +25,7 @@ const Home: FC<PageProps> = (pageProps) => {
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
   const { order, setOrder } = useOrder(0);
-  const totalPages = useMemo(() => products?.length / 4, [products]);
+  const totalPages = useMemo(() => products?.length / 2, [products]);
   const { addProduct } = useContext(CartContext);
 
   useEffect(() => {
@@ -60,6 +60,31 @@ const Home: FC<PageProps> = (pageProps) => {
     updateAppState({ ...appState, order: order });
   }, [order]);
 
+  const productsGrid = (): JSX.Element[] => {
+    const output = [];
+
+    if (products?.length > 0) {
+      for (let index = 0; index < products?.length; index += 2) {
+        output.push(
+          <div key={index}>
+            <ProductTile
+              product={products[index]}
+              onAddToCartClick={() => addProduct(products[index])}
+              onViewClick={setSelectedProductId}
+            />
+            <ProductTile
+              product={products[index + 1]}
+              onAddToCartClick={() => addProduct(products[index + 1])}
+              onViewClick={setSelectedProductId}
+            />
+          </div>
+        );
+      }
+    }
+
+    return output;
+  };
+
   return (
     <PageLayout {...pageProps}>
       <RightSideMenu />
@@ -81,9 +106,9 @@ const Home: FC<PageProps> = (pageProps) => {
                   <div className="txt">
                     <p>&nbsp;</p>
                   </div>
-                  <a href="product-detail.html" className="shop">
+                  <Link to="" className="shop">
                     BECOME A MEMBER
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -118,14 +143,17 @@ const Home: FC<PageProps> = (pageProps) => {
                       Previous
                     </button>
                     <Slider slideTo={currentTabbedSliderPageIndex}>
-                      {(products ?? []).map((product, index) => (
+                      {productsGrid()}
+                      {/* {(products ?? []).map((product, index) => (
                         <div key={product.id}>
-                          <ProductTile
-                            product={product}
-                            onAddToCartClick={() => addProduct(product)}
-                            onViewClick={setSelectedProductId}
-                          />
-                          {index + 1 < products.length && (
+                          {index % 2 !== 0 && (
+                            <ProductTile
+                              product={product}
+                              onAddToCartClick={() => addProduct(product)}
+                              onViewClick={setSelectedProductId}
+                            />
+                          )}
+                          {index % 2 === 0 && (
                             <ProductTile
                               product={products[index + 1]}
                               onAddToCartClick={() => addProduct(product)}
@@ -133,7 +161,7 @@ const Home: FC<PageProps> = (pageProps) => {
                             />
                           )}
                         </div>
-                      ))}
+                      ))} */}
                     </Slider>
                     <button
                       type="button"

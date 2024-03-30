@@ -53,11 +53,14 @@ const ProductTile: FC<ProductTileProps> = ({
       </div>
       <div className="txt">
         <strong className="title">
-          <a href="product-detail.html">{product?.title}</a>
+          <Link to="" onClick={() => onViewClick(product?.id)}>
+            {product?.title}
+          </Link>
         </strong>
-        <span className="price">
-          <i className="fa fa-gbp"></i> <span>{product?.price ?? "TBD"}</span>
-        </span>
+        <p>
+          from <i className="fa fa-gbp"></i>{" "}
+          <strong className="price-amount">{product?.price ?? "TBD"}</strong>
+        </p>
       </div>
     </div>
   );

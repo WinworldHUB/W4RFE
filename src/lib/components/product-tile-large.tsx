@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import ProductHoverAction from "./product-hover-action";
 import { Product } from "../../awsApis";
 import { Link } from "react-router-dom";
+import { PageRoutes } from "../constants";
 
 interface ProductTileProps {
   product: Product;
@@ -44,7 +45,7 @@ const ProductTileLarge: FC<ProductTileProps> = ({
       </div>
       <div className="txt">
         <strong className="title">
-          <a href="product-detail.html">{product?.title}</a>
+          <Link to={PageRoutes.ProductDetail}>{product?.title}</Link>
         </strong>
         <span className="price">
           <i className="fa fa-gbp"></i> <span>{product?.price}</span>

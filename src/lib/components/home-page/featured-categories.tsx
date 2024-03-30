@@ -1,20 +1,22 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
+import { PageRoutes } from "../../constants";
 
 const FeaturedCategories: FC = () => {
   return (
     <div className="banner-frame">
       <div className="banner-1 wow fadeInLeft" data-wow-delay="0.4s">
-        <img alt="image description" src="/assets/images/banner/img01.jpg" />
+        <img alt="" src="/assets/images/banner/img01.jpg" />
         <div className="holder">
           <h2>
             MY SMALL WRITING <br />
             DESK
           </h2>
           <div className="txts">
-            <a className="btn-shop" href="product-detail.html">
+            <Link className="btn-shop" to={PageRoutes.ProductDetail}>
               <span>shop now</span>
               <i className="fa fa-angle-right"></i>
-            </a>
+            </Link>
             <div className="discount">
               <span>-20%</span>
             </div>
@@ -23,7 +25,7 @@ const FeaturedCategories: FC = () => {
       </div>
       <div className="banner-box first">
         <div className="banner-2 wow fadeInUp" data-wow-delay="0.4s">
-          <img alt="image description" src="/assets/images/banner/img02.jpg" />
+          <img src="/assets/images/banner/img02.jpg" alt="" />
           <div className="holder">
             <h2>
               MODULAR LOUNGE <br />
@@ -33,7 +35,7 @@ const FeaturedCategories: FC = () => {
           </div>
         </div>
         <div className="banner-3 right wow fadeInDown" data-wow-delay="0.4s">
-          <img alt="image description" src="/assets/images/banner/img03.jpg" />
+          <img alt="" src="/assets/images/banner/img03.jpg" />
           <div className="holder">
             <h2>
               Modular technical <br />
@@ -46,7 +48,7 @@ const FeaturedCategories: FC = () => {
         </div>
       </div>
       <div className="banner-4 hidden-sm wow fadeInRight" data-wow-delay="0.4s">
-        <img alt="image description" src="/assets/images/banner/img04.jpg" />
+        <img alt="" src="/assets/images/banner/img04.jpg" />
         <div className="holder">
           <h2>
             Direct light <br />

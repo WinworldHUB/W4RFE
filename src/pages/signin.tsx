@@ -5,6 +5,8 @@ import { AppContext } from "../lib/contexts/app-context";
 import useApi from "../lib/hooks/useApi";
 import { Member } from "../awsApis";
 import { MEMBERS_APIS } from "../lib/constants/api-constants";
+import { Link } from "react-router-dom";
+import { PageRoutes } from "../lib/constants";
 
 const SignIn: FC<PageProps> = (pageProps) => {
   const {
@@ -41,7 +43,7 @@ const SignIn: FC<PageProps> = (pageProps) => {
     if (isUserSignedIn && userDetails) {
       window.location.reload();
     }
-  }, [isUserSignedIn, userDetails]);
+  }, [isUserSignedIn, accessToken, userDetails]);
 
   return (
     <PageLayout {...pageProps}>
@@ -53,9 +55,9 @@ const SignIn: FC<PageProps> = (pageProps) => {
               <nav className="breadcrumbs">
                 <ul className="list-unstyled">
                   <li>
-                    <a href="index.html">
+                    <Link to={PageRoutes.Home}>
                       home <i className="fa fa-angle-right"></i>
-                    </a>
+                    </Link>
                   </li>
                   <li>login</li>
                 </ul>
