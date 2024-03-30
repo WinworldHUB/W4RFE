@@ -62,7 +62,11 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
                     ></Link>
                   </li>
                   <li className="drop">
-                    <Link to="" className="cart-opener" title="Cart">
+                    <Link
+                      to={PageRoutes.Cart}
+                      className="cart-opener"
+                      title="Cart"
+                    >
                       <span className="icon-handbag"></span>
                       <span className="num">{products.length}</span>
                     </Link>

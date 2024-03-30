@@ -7,6 +7,7 @@ import SignIn from "./pages/signin";
 import { useContext } from "react";
 import { AppContext } from "./lib/contexts/app-context";
 import Orders from "./pages/orders";
+import Cart from "./pages/cart";
 
 export const APP_MENU: MenuItem[] = [
   {
@@ -94,6 +95,24 @@ function App() {
           element={
             appState.isUserLoggedIn ? (
               <Orders
+                menuItems={APP_MENU}
+                selectedMenuId={APP_MENU[2].id}
+                username={appState.username}
+              />
+            ) : (
+              <SignIn
+                menuItems={[]}
+                selectedMenuId={APP_MENU[0].id}
+                username={appState.username}
+              />
+            )
+          }
+        />
+        <Route
+          path={PageRoutes.Cart}
+          element={
+            appState.isUserLoggedIn ? (
+              <Cart
                 menuItems={APP_MENU}
                 selectedMenuId={APP_MENU[2].id}
                 username={appState.username}

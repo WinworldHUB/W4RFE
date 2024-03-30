@@ -95,3 +95,8 @@ interface DataTableProps<T> {
   onRowClicked?: Dispatch<SetStateAction<Order>>;
   onDataImport?: (data: T[]) => void;
 }
+
+type PageTitleItem = {
+  id: string;
+  title: string;
+};

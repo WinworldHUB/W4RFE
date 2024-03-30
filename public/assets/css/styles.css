@@ -2,6 +2,11 @@
   width: 112px !important;
 }
 
+.thumbnail-50 {
+  width: 50px;
+  height: 50px;
+}
+
 .mt-contact-banner {
   background-image: url(/assets/images/img43.jpg);
 }
@@ -249,4 +254,8 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+
+.cell {
+  vertical-align: middle !important;
 }
