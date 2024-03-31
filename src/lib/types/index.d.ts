@@ -19,6 +19,8 @@ interface AppState {
 interface CartState {
   products: Product[];
   addProduct: (product: Product) => void;
+  removeProduct: (productIndex: number) => void;
+  updateProduct: (product: Product, productIndex: number) => void;
 }
 
 interface CartStateProps {

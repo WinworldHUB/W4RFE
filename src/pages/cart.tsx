@@ -3,7 +3,7 @@ import PageLayout from "../lib/components/page-layout";
 import { Link, useNavigate } from "react-router-dom";
 import { DEFAULT_PACKAGES, PageRoutes } from "../lib/constants";
 import Slider from "../lib/components/slider";
-import { Order, PackagingType } from "../lib/awsApis";
+import { Order, PackagingType, Product } from "../lib/awsApis";
 import useOrder from "../lib/hooks/useOrder";
 import useApi from "../lib/hooks/useApi";
 import { ORDERS_APIS } from "../lib/constants/api-constants";
@@ -33,7 +33,7 @@ const Cart: FC<PageProps> = (pageProps) => {
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const { data: orders, getData: getOrders } = useApi<Order[]>();
   const { order, setOrder } = useOrder(orders?.length);
-  const { products } = useContext(CartContext);
+  const { products, removeProduct, updateProduct } = useContext(CartContext);
   const navigateTo = useNavigate();
 
   if (products?.length === 0) {
@@ -48,6 +48,26 @@ const Cart: FC<PageProps> = (pageProps) => {
   useEffect(() => {
     console.log(order);
   }, [order]);
+
+  useEffect(() => {
+    if (order) {
+      order.products = products;
+    }
+  }, [products]);
+
+  const handleSizeUpdate = (productIndex: number, selectedSize: string) => {
+    const updatedProduct = products[productIndex] as Product;
+    updatedProduct.size = selectedSize;
+    updateProduct(updateProduct, productIndex);
+  };
+  const handleQauantityUpdate = (
+    productIndex: number,
+    selectedQuantity: number
+  ) => {
+    const updatedProduct = products[productIndex] as Product;
+    updatedProduct.quantity = selectedQuantity;
+    updateProduct(updateProduct, productIndex);
+  };
 
   return (
     <PageLayout {...pageProps}>
@@ -107,7 +127,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {(products ?? []).map((product) => {
+                      {(products ?? []).map((product, pIndex) => {
                         const productVariants = JSON.parse(
                           product.variants
                         ) as ProductVariant[];
@@ -125,6 +145,9 @@ const Cart: FC<PageProps> = (pageProps) => {
                               <select
                                 className="form-control"
                                 title="Product size"
+                                onChange={(e) =>
+                                  handleSizeUpdate(pIndex, e.target.value)
+                                }
                               >
                                 {(productVariants ?? []).map((variant) => (
                                   <option value={variant.size}>
@@ -137,6 +160,12 @@ const Cart: FC<PageProps> = (pageProps) => {
                               <select
                                 className="form-control"
                                 title="Product quantity"
+                                onChange={(e) =>
+                                  handleQauantityUpdate(
+                                    pIndex,
+                                    parseInt(e.target.value)
+                                  )
+                                }
                               >
                                 {getArrayFromTo(1, 12).map((quantity) => (
                                   <option key={quantity} value={quantity}>
@@ -150,6 +179,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                 to=""
                                 className="text-danger"
                                 title="Remove product"
+                                onClick={() => removeProduct(pIndex)}
                               >
                                 <i className="fa fa-times"></i>
                               </Link>

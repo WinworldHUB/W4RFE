@@ -18,7 +18,29 @@ const useCart = (): CartState => {
     ]);
   };
 
-  return { products, addProduct };
+  const removeProduct = (productIndex: number) => {
+    const updatedProductsList = products.filter(
+      (product, index) => index !== productIndex
+    );
+    setProducts(updatedProductsList);
+    saveCartState(
+      DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE,
+      updatedProductsList
+    );
+  };
+
+  const updateProduct = (updatedProduct: Product, productIndex: number) => {
+    const updatedProductsList = products.map((product, index) =>
+      index === productIndex ? updateProduct : product
+    ) as Product[];
+    setProducts(updatedProductsList);
+    saveCartState(
+      DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE,
+      updatedProductsList
+    );
+  };
+
+  return { products, addProduct, removeProduct, updateProduct };
 };
 
 export default useCart;
