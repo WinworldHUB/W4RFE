@@ -44,6 +44,11 @@ const Cart: FC<PageProps> = (pageProps) => {
     EMPTY_DELIVERY_DETAILS
   );
 
+  if (products?.length === 0) {
+    alert("Please add some products to cart to continue.");
+    navigateTo(PageRoutes.Home);
+  }
+
   useEffect(() => {
     if (appState?.member) {
       setDeliveryDetails({
@@ -56,13 +61,14 @@ const Cart: FC<PageProps> = (pageProps) => {
     }
   }, [appState?.member]);
 
-  if (products?.length === 0) {
-    alert("Please add some products to cart to continue.");
-    navigateTo(PageRoutes.Home);
-  }
-
   useEffect(() => {
     getOrders(ORDERS_APIS.GET_ALL_ORDERS_API);
+    setOrder({
+      ...order,
+      deliveryDetails: JSON.stringify(deliveryDetails),
+      packagingType: PackagingType[DEFAULT_PACKAGES[0].id],
+      packaging: DEFAULT_PACKAGES[0],
+    });
   }, []);
 
   useEffect(() => {
@@ -79,13 +85,24 @@ const Cart: FC<PageProps> = (pageProps) => {
     }
   }, [products, deliveryDetails]);
 
+  const totalOrderQuantity = useMemo<number>(
+    () =>
+      products
+        ? products.reduce((total, product) => total + product.quantity ?? 0, 0)
+        : 0,
+    [products]
+  );
+
   const isValid = useMemo(() => {
     switch (currentPageIndex) {
       case 0:
         return isDeliveryDetailsValid(JSON.stringify(deliveryDetails));
 
       case 1:
-        break;
+        return (
+          totalOrderQuantity >= order?.packaging?.minQuantity &&
+          totalOrderQuantity <= order?.packaging?.maxQuantity
+        );
 
       case 2:
         break;
@@ -318,6 +335,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                 <select
                                   className="form-control"
                                   title="Product size"
+                                  value={product?.size}
                                   onChange={(e) =>
                                     handleSizeUpdate(pIndex, e.target.value)
                                   }
@@ -333,6 +351,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                 <select
                                   className="form-control"
                                   title="Product quantity"
+                                  value={product?.quantity}
                                   onChange={(e) =>
                                     handleQauantityUpdate(
                                       pIndex,
