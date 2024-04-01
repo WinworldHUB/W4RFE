@@ -1,14 +1,12 @@
 import { PackagingType } from "../awsApis";
 
-export const DEFAULT_APP_STATE: AppState = {
+export const DEFAULT_APP_STATE: AppVars = {
   isUserLoggedIn: false,
   accessToken: "",
   refreshToken: "",
-  selectedProductId: "",
-  order: null,
   username: "",
-
-  setAppState: () => {},
+  selectedProductId: "",
+  member: null,
 };
 
 export const DEFAULT_LOCAL_STORAGE_KEY_FOR_APP_STATE = "W4R_LS_APP_STATE";

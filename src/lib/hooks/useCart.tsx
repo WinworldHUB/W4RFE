@@ -30,14 +30,17 @@ const useCart = (): CartState => {
   };
 
   const updateProduct = (updatedProduct: Product, productIndex: number) => {
-    const updatedProductsList = products.map((product, index) =>
-      index === productIndex ? updateProduct : product
-    ) as Product[];
-    setProducts(updatedProductsList);
-    saveCartState(
-      DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE,
-      updatedProductsList
-    );
+    if (updatedProduct) {
+      const updatedProductsList = products.map((product, index) =>
+        index === productIndex ? updatedProduct : product
+      ) as Product[];
+      console.log(updatedProduct, updatedProductsList);
+      setProducts(updatedProductsList);
+      saveCartState(
+        DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE,
+        updatedProductsList
+      );
+    }
   };
 
   return { products, addProduct, removeProduct, updateProduct };

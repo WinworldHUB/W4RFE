@@ -5,6 +5,7 @@ import { toAWSDateFormat } from "../utils/date-utils";
 import { generateOrderNumber } from "../utils/order-utils";
 import { OrderVM } from "../../vms/order";
 import { OrderStatus, PackagingType } from "../awsApis";
+import { DEFAULT_PACKAGES } from "../constants";
 
 interface OrderState {
   order: OrderVM;
@@ -21,7 +22,7 @@ const useOrder = (totalOrders: number): OrderState => {
     deliveryDetails: "",
     packagingType: PackagingType.BOX_PACK,
     member: null,
-    packaging: null,
+    packaging: DEFAULT_PACKAGES[0],
   };
 
   const [order, setOrder] = useState<OrderVM>(DEFAULT_ORDER);

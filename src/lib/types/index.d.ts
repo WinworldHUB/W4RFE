@@ -1,19 +1,16 @@
-interface AppState {
+type AppVars = {
   isUserLoggedIn?: boolean;
   accessToken?: string;
   refreshToken?: string;
-  selectedProductId?: string;
-  order: unknown;
   username: string;
+  selectedProductId: string;
+  member: unknown;
+};
 
-  setAppState: ({
-    isUserLoggedIn,
-    accessToken,
-    refreshToken,
-    selectedProductId,
-    order,
-    username,
-  }: AppState) => void;
+interface AppState {
+  appState: AppVars;
+
+  updateAppState: (appState: AppVars) => void;
 }
 
 interface CartState {

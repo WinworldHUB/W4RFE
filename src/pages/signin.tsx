@@ -28,13 +28,14 @@ const SignIn: FC<PageProps> = (pageProps) => {
   useEffect(() => {
     updateAppState({
       ...appState,
-      isUserLoggedIn: isUserSignedIn,
+      isUserLoggedIn: isUserSignedIn && userDetails ? true : false,
       username: userDetails?.name,
       accessToken: accessToken,
       refreshToken: refreshToken,
+      member: userDetails,
     });
 
-    if (isUserSignedIn && accessToken) {
+    if (isUserSignedIn && accessToken && !userDetails) {
       getUserDetails(
         `${MEMBERS_APIS.GET_MEMBER_BY_EMAIL_API}/${credentials.email}`
       );

@@ -62,19 +62,20 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                 </div>
                 <div className="text-holder">
                   <span className="price">
+                    From&nbsp;
                     <i className="fa fa-gbp"></i> {product?.price}
                   </span>
                 </div>
                 <form action="#" className="product-form">
                   <fieldset>
-                    <div className="row-val">
+                    {/* <div className="row-val">
                       <label htmlFor="qty">Size</label>
                       <select title="variants" className="w-100">
                         {(variants ?? []).map((variant) => (
                           <option>{variant.size}</option>
                         ))}
                       </select>
-                    </div>
+                    </div> */}
                     <div className="row-val">
                       <button type="button" onClick={() => addProduct(product)}>
                         ADD TO CART

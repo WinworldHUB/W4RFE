@@ -80,7 +80,7 @@
 
 .rounded {
   border: 1px;
-  border-radius: 10px;
+  border-radius: 10px !important;
 }
 
 .fixed {
@@ -258,4 +258,8 @@
 
 .cell {
   vertical-align: middle !important;
+}
+
+.mt-product-table {
+  /* overflow: auto; */
 }

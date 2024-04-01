@@ -12,7 +12,6 @@ import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import { AppContext } from "../lib/contexts/app-context";
 import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
-import useOrder from "../lib/hooks/useOrder";
 import { CartContext } from "../lib/contexts/cart-context";
 import { Product } from "../lib/awsApis";
 
@@ -24,7 +23,6 @@ const Home: FC<PageProps> = (pageProps) => {
   const [selectedProductId, setSelectedProductId] = useState<string>();
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
-  const { order, setOrder } = useOrder(0);
   const totalPages = useMemo(() => products?.length / 2, [products]);
   const { addProduct } = useContext(CartContext);
 
@@ -54,11 +52,6 @@ const Home: FC<PageProps> = (pageProps) => {
       setCurrentTabbedSliderPageIndex(currentTabbedSliderPageIndex - 1);
     }
   };
-
-  useEffect(() => {
-    console.log(appState);
-    updateAppState({ ...appState, order: order });
-  }, [order]);
 
   const productsGrid = (): JSX.Element[] => {
     const output = [];
