@@ -21,6 +21,19 @@ export const isOrderContains = (order: Order, value: string): boolean => {
   );
 };
 
+export const getOrderFromVM = (order: OrderVM) => {
+  return {
+    orderNumber: order.orderNumber,
+    orderDate: order.orderDate,
+    orderValue: order.orderValue,
+    packagingType: order.packagingType,
+    products: JSON.stringify(order.products),
+    status: order.status,
+    memberId: order.member?.id,
+    deliveryDetails: order.deliveryDetails,
+  } as Order;
+};
+
 export const trimOrder = (order: Order, isTrimId: boolean = false): unknown => {
   if (!isTrimId) {
     return {
@@ -34,6 +47,7 @@ export const trimOrder = (order: Order, isTrimId: boolean = false): unknown => {
       status: order.status,
       trackingNumber: order.trackingNumber,
       trackingStatus: order.trackingStatus,
+      memberId: order.memberId,
     };
   }
 
@@ -47,6 +61,7 @@ export const trimOrder = (order: Order, isTrimId: boolean = false): unknown => {
     status: order.status,
     trackingNumber: order.trackingNumber,
     trackingStatus: order.trackingStatus,
+    memberId: order.memberId,
   };
 };
 

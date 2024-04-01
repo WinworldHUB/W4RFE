@@ -1,4 +1,10 @@
-import { Product, OrderStatus, PackagingType, Member } from "../lib/awsApis";
+import {
+  Product,
+  OrderStatus,
+  PackagingType,
+  Member,
+  Order,
+} from "../lib/awsApis";
 import { DEFAULT_PACKAGES } from "../lib/constants";
 
 export class OrderVM {

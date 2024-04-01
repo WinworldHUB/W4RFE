@@ -18,6 +18,11 @@
   width: 100% !important;
 }
 
+.d-flex {
+  display: flex !important;
+  align-items: center;
+}
+
 .bg-light {
   background-color: #edede9 !important;
 }
@@ -260,6 +265,10 @@
   vertical-align: middle !important;
 }
 
-.mt-product-table {
-  /* overflow: auto; */
+.no-border-bottom {
+  border-bottom: none !important;
+}
+
+.remove-bg {
+  mix-blend-mode: multiply !important;
 }

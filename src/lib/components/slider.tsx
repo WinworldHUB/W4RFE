@@ -12,6 +12,8 @@ interface SliderProps {
   className?: string;
   isShowNavigation?: boolean;
   isShowPagination?: boolean;
+  isAutoPlay?: boolean;
+  isAllowManualSlide?: boolean;
   slidesPerView?: number;
 }
 
@@ -22,6 +24,8 @@ const Slider: FC<SliderProps> = ({
   className,
   isShowNavigation = false,
   isShowPagination = false,
+  isAutoPlay = true,
+  isAllowManualSlide = true,
   slidesPerView = 4,
 }) => {
   const swiperRef = useRef<SwiperClass>();
@@ -45,13 +49,17 @@ const Slider: FC<SliderProps> = ({
             }
           : false
       }
-      //noSwiping
-      // allowTouchMove={false}
+      noSwiping={!isAllowManualSlide}
+      allowTouchMove={isAllowManualSlide}
       autoHeight={autoHeight}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
+      autoplay={
+        isAutoPlay
+          ? {
+              delay: 2500,
+              disableOnInteraction: false,
+            }
+          : isAutoPlay
+      }
       navigation={isShowNavigation}
       onSwiper={(swiper) => {
         swiperRef.current = swiper;

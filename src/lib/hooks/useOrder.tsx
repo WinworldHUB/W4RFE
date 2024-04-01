@@ -4,12 +4,16 @@ import { useState } from "react";
 import { toAWSDateFormat } from "../utils/date-utils";
 import { generateOrderNumber } from "../utils/order-utils";
 import { OrderVM } from "../../vms/order";
-import { OrderStatus, PackagingType } from "../awsApis";
-import { DEFAULT_PACKAGES } from "../constants";
+import { Order, OrderStatus, PackagingType } from "../awsApis";
+import {
+  DEFAULT_LOCAL_STORAGE_KEY_FOR_ORDER_STATE,
+  DEFAULT_PACKAGES,
+} from "../constants";
+import useLocalStorage from "./useLocalStorage";
 
 interface OrderState {
   order: OrderVM;
-  setOrder: (order: OrderVM) => void;
+  updateOrder: (order: OrderVM) => void;
 }
 
 const useOrder = (totalOrders: number): OrderState => {
@@ -24,12 +28,20 @@ const useOrder = (totalOrders: number): OrderState => {
     member: null,
     packaging: DEFAULT_PACKAGES[0],
   };
+  const { getValue, setValue } = useLocalStorage<OrderVM>();
 
-  const [order, setOrder] = useState<OrderVM>(DEFAULT_ORDER);
+  const [order, setOrder] = useState<OrderVM>(
+    getValue(DEFAULT_LOCAL_STORAGE_KEY_FOR_ORDER_STATE) ?? DEFAULT_ORDER
+  );
+
+  const updateOrder = (updatedOrder: OrderVM) => {
+    setOrder(updatedOrder);
+    setValue(DEFAULT_LOCAL_STORAGE_KEY_FOR_ORDER_STATE, updatedOrder);
+  };
 
   return {
     order,
-    setOrder,
+    updateOrder,
   };
 };
 

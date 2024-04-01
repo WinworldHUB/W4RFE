@@ -8,19 +8,24 @@ import {
   PageRoutes,
 } from "../lib/constants";
 import Slider from "../lib/components/slider";
-import { Order, PackagingType, Product } from "../lib/awsApis";
+import { Member, Order, PackagingType, Product } from "../lib/awsApis";
 import useOrder from "../lib/hooks/useOrder";
 import useApi from "../lib/hooks/useApi";
 import { ORDERS_APIS } from "../lib/constants/api-constants";
 import { CartContext } from "../lib/contexts/cart-context";
 import { getArrayFromTo } from "../lib/utils/array-utils";
 import { AppContext } from "../lib/contexts/app-context";
-import { isDeliveryDetailsValid } from "../lib/utils/order-utils";
+import {
+  calculateOrderValue,
+  getOrderFromVM,
+  isDeliveryDetailsValid,
+  trimOrder,
+} from "../lib/utils/order-utils";
 
 const PAGE_TITLES = [
   {
     id: "01",
-    title: "Order Pre-requisites",
+    title: "Shipping details",
   },
   {
     id: "02",
@@ -30,14 +35,19 @@ const PAGE_TITLES = [
     id: "03",
     title: "Review",
   },
+  {
+    id: "04",
+    title: "Order placed",
+  },
 ] as PageTitleItem[];
 
 const Cart: FC<PageProps> = (pageProps) => {
   const { data: orders, getData: getOrders } = useApi<Order[]>();
-  const { order, setOrder } = useOrder(orders?.length);
+  const { order, updateOrder } = useOrder(orders?.length);
   const { products, removeProduct, updateProduct } = useContext(CartContext);
   const navigateTo = useNavigate();
   const { appState } = useContext(AppContext);
+  const [isTermsAgreed, setIsTermsAgreed] = useState<boolean>(false);
 
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [deliveryDetails, setDeliveryDetails] = useState<OrderDeliveryDetails>(
@@ -63,7 +73,7 @@ const Cart: FC<PageProps> = (pageProps) => {
 
   useEffect(() => {
     getOrders(ORDERS_APIS.GET_ALL_ORDERS_API);
-    setOrder({
+    updateOrder({
       ...order,
       deliveryDetails: JSON.stringify(deliveryDetails),
       packagingType: PackagingType[DEFAULT_PACKAGES[0].id],
@@ -72,15 +82,21 @@ const Cart: FC<PageProps> = (pageProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(order);
-  }, [order]);
+    if (appState?.member) {
+      updateOrder({
+        ...order,
+        member: { ...(appState.member as Member) },
+      });
+    }
+  }, [appState]);
 
   useEffect(() => {
     if (order) {
-      setOrder({
+      updateOrder({
         ...order,
         products: products,
         deliveryDetails: JSON.stringify(deliveryDetails),
+        orderValue: calculateOrderValue(products),
       });
     }
   }, [products, deliveryDetails]);
@@ -105,13 +121,16 @@ const Cart: FC<PageProps> = (pageProps) => {
         );
 
       case 2:
-        break;
+        return isTermsAgreed;
+
+      case 3:
+        console.log(trimOrder(getOrderFromVM(order), true));
+        return true;
 
       default:
         return false;
     }
-    return false;
-  }, [currentPageIndex, order]);
+  }, [currentPageIndex, order, isTermsAgreed]);
 
   const handleSizeUpdate = (productIndex: number, selectedSize: string) => {
     const updatedProduct = products[productIndex] as Product;
@@ -130,7 +149,7 @@ const Cart: FC<PageProps> = (pageProps) => {
   };
 
   const handlePackageUpdate = (selectedPackaging: Packaging) => {
-    setOrder({
+    updateOrder({
       ...order,
       packagingType: PackagingType[selectedPackaging.id],
       packaging: selectedPackaging,
@@ -195,6 +214,8 @@ const Cart: FC<PageProps> = (pageProps) => {
               slideTo={currentPageIndex}
               slidesPerView={1}
               autoHeight={true}
+              isAllowManualSlide={false}
+              isAutoPlay={false}
             >
               <div className="col-xs-12">
                 <form action="#" className="bill-detail w-100p">
@@ -341,7 +362,10 @@ const Cart: FC<PageProps> = (pageProps) => {
                                   }
                                 >
                                   {(productVariants ?? []).map((variant) => (
-                                    <option value={variant.size}>
+                                    <option
+                                      value={variant.size}
+                                      key={variant.size}
+                                    >
                                       {variant.size}
                                     </option>
                                   ))}
@@ -382,6 +406,85 @@ const Cart: FC<PageProps> = (pageProps) => {
                       </tbody>
                     </table>
                   </div>
+                </div>
+              </div>
+              <div className="col-xs-12">
+                <div className="holder">
+                  <h2>YOUR ORDER</h2>
+                  <ul className="list-unstyled block">
+                    <li>
+                      <div className="txt-holder">
+                        <strong className="title sub-title pull-left">
+                          PACKAGING TYPE
+                        </strong>
+                        <div className="txt pull-right">
+                          <span>
+                            {order.packaging.title} (Min qty.:{" "}
+                            {order.packaging.minQuantity} &nbsp;&nbsp; - &nbsp;
+                            &nbsp;Max qty.: {order.packaging.maxQuantity})
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="no-border-bottom">
+                      <br />
+                    </li>
+                    <li>
+                      <div className="txt-holder">
+                        <div className="text-wrap pull-left">
+                          <strong className="title">PRODUCTS</strong>
+                        </div>
+                        <div className="text-wrap txt text-right pull-right">
+                          <strong className="title">TOTALS</strong>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      {products.map((product) => (
+                        <div className="txt-holder" key={product.id}>
+                          <div className="text-wrap d-in-flex">
+                            <span className="d-flex">
+                              <img
+                                className="thumbnail-50 remove-bg"
+                                src={product.featuredImage}
+                                alt={product.title}
+                              />
+                              &nbsp;
+                              {product.title} x {product.quantity}
+                            </span>
+                            <div className="txt">
+                              <span>
+                                <i className="fa fa-gbp"></i>{" "}
+                                {product.price * product.quantity}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </li>
+                    <li className="no-border-bottom">
+                      <div className="txt-holder">
+                        <strong className="title sub-title pull-left">
+                          ORDER TOTAL
+                        </strong>
+                        <div className="txt pull-right">
+                          <span>
+                            <i className="fa fa-gbp"></i> {order.orderValue}
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div className="block-holder">
+                  <input
+                    type="checkbox"
+                    title="Terms and Conditions"
+                    checked={isTermsAgreed}
+                    onChange={(e) => setIsTermsAgreed(e.target.checked)}
+                  />{" "}
+                  I’ve read &amp; accept the{" "}
+                  <Link to="">terms &amp; conditions</Link>
                 </div>
               </div>
             </Slider>
