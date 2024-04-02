@@ -77,6 +77,10 @@ const Cart: FC<PageProps> = (pageProps) => {
       setIsOrderCreated(true);
       clearOrder();
       clearCart();
+
+      alert("Your order has been processed successfully.");
+      navigateTo(PageRoutes.Home);
+
       return true;
     }
 
