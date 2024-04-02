@@ -9,10 +9,10 @@ import { PageRoutes } from "../lib/constants";
 import { Member } from "../lib/awsApis";
 
 const SignUp: FC<PageProps> = (pageProps) => {
+  const { postData: postCredentials } = useApi();
   const {
     error: loginError,
     isUserSignedIn,
-    signUpUser,
     signOutUser,
     accessToken,
     refreshToken,
@@ -20,9 +20,9 @@ const SignUp: FC<PageProps> = (pageProps) => {
 
   const { appState, updateAppState } = useContext(AppContext);
   const { data: userDetails, getData: getUserDetails } = useApi<Member>();
-  const [credentials, setCredentials] = useState<Credentials>({
-    email: "",
-    password: "",
+  const [credentials, setCredentials] = useState<SignUpCredentials>({
+    username: "",
+    code: "",
   });
 
   useEffect(() => {
@@ -35,22 +35,15 @@ const SignUp: FC<PageProps> = (pageProps) => {
       member: userDetails,
     });
 
-    if (isUserSignedIn && accessToken && !userDetails) {
-      getUserDetails(
-        `${MEMBERS_APIS.GET_MEMBER_BY_EMAIL_API}/${credentials.email}`
-      );
-    }
-
     if (isUserSignedIn && userDetails) {
       window.location.reload();
     }
   }, [isUserSignedIn, accessToken, userDetails]);
 
-  const handleSignUp = (credentials:Credentials) => {
+  const handleSignUp = (credentials: SignUpCredentials) => {
     console.log("credentials", credentials);
-    
-    signUpUser(credentials);
-  }
+    postCredentials(MEMBERS_APIS.SIGN_UP_API, credentials);
+  };
 
   return (
     <PageLayout {...pageProps}>
@@ -88,25 +81,25 @@ const SignUp: FC<PageProps> = (pageProps) => {
                       <fieldset>
                         <input
                           type="text"
-                          placeholder="Email address"
+                          placeholder="Username"
                           className="input"
-                          value={credentials.email}
+                          value={credentials.username}
                           onChange={(e) =>
                             setCredentials({
                               ...credentials,
-                              email: e.target.value,
+                              username: e.target.value,
                             })
                           }
                         />
                         <input
                           type="password"
-                          placeholder="Password"
+                          placeholder="Code"
                           className="input"
-                          value={credentials.password}
+                          value={credentials.code}
                           onChange={(e) =>
                             setCredentials({
                               ...credentials,
-                              password: e.target.value,
+                              code: e.target.value,
                             })
                           }
                         />

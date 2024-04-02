@@ -7,7 +7,6 @@ import {
   getCurrentUser,
   signIn,
   signOut,
-  signUp,
 } from "aws-amplify/auth";
 import { useJwt } from "react-jwt";
 
@@ -20,7 +19,6 @@ interface UseAuthenticationState {
   isUserSignedIn: boolean;
   isAdmin: boolean;
   signInUser: (credentials: Credentials) => void;
-  signUpUser: (credentials: Credentials) => void;
   signOutUser: VoidFunction;
 }
 
@@ -89,38 +87,6 @@ const useAuthentication = (): UseAuthenticationState => {
       });
   };
 
-  const signUpUser = (credentials: Credentials) => {
-    const signUpDetails: SignUpInput = {
-      username: credentials.email,
-      password: credentials.password,
-      options: {
-        userAttributes: {
-          email: credentials.email,
-          name: credentials.email,
-        },
-      },
-    };
-    signUp(signUpDetails)
-      .then((value) => {
-        console.log(signUpDetails);
-        
-        console.log("value", value);
-        
-        setIsUserSignedIn(value.isSignUpComplete);
-
-        if (value.isSignUpComplete) {
-          setError(null);
-        } else {
-          setError(value.nextStep?.signUpStep);
-          setIsUserSignedIn(false);
-        }
-      })
-      .catch((reason) => {
-        signOutUser();
-        setError(reason.message);
-        setIsUserSignedIn(false);
-      });
-  };
 
 
   const signOutUser = () => {
@@ -143,7 +109,6 @@ const useAuthentication = (): UseAuthenticationState => {
     error,
     signInUser,
     signOutUser,
-    signUpUser,
   };
 };
 

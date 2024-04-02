@@ -34,6 +34,7 @@ export const MEMBERS_APIS = {
   GET_MEMBER_BY_EMAIL_API: "/members",
   ADD_MEMBER_API: "/members",
   IMPORT_MEMBERS_API: "/members/imports",
+  SIGN_UP_API: "/members/signup",
 };
 
 export const COGNITO_ERROR_CODE = [
