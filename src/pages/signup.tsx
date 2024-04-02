@@ -93,7 +93,7 @@ const SignUp: FC<PageProps> = (pageProps) => {
                         />
                         <input
                           type="password"
-                          placeholder="Code"
+                          placeholder="Recieved Code"
                           className="input"
                           value={credentials.code}
                           onChange={(e) =>
