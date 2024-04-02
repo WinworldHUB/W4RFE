@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AppContext } from "./lib/contexts/app-context";
 import Orders from "./pages/orders";
 import Cart from "./pages/cart";
+import SignUp from "./pages/signup";
 
 export const APP_MENU: MenuItem[] = [
   {
@@ -36,6 +37,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path={PageRoutes.SignUp}
+          element={<SignUp menuItems={[]} selectedMenuId={1} username=""/>}
+        />
         <Route
           path={PageRoutes.Login}
           element={
