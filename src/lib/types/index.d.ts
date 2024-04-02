@@ -18,6 +18,7 @@ interface CartState {
   addProduct: (product: Product) => void;
   removeProduct: (productIndex: number) => void;
   updateProduct: (product: Product, productIndex: number) => void;
+  clearState: VoidFunction;
 }
 
 interface CartStateProps {

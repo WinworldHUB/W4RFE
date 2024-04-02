@@ -23,6 +23,18 @@
   align-items: center;
 }
 
+.d-none {
+  display: none !important;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
 .bg-light {
   background-color: #edede9 !important;
 }

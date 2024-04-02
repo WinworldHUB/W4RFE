@@ -43,11 +43,18 @@ const PAGE_TITLES = [
 
 const Cart: FC<PageProps> = (pageProps) => {
   const { data: orders, getData: getOrders } = useApi<Order[]>();
-  const { order, updateOrder } = useOrder(orders?.length);
-  const { products, removeProduct, updateProduct } = useContext(CartContext);
+  const { postData: createOrder } = useApi<Order>();
+  const { order, updateOrder, clearOrder } = useOrder(orders?.length);
+  const {
+    products,
+    removeProduct,
+    updateProduct,
+    clearState: clearCart,
+  } = useContext(CartContext);
   const navigateTo = useNavigate();
   const { appState } = useContext(AppContext);
   const [isTermsAgreed, setIsTermsAgreed] = useState<boolean>(false);
+  const [isOrderCreated, setIsOrderCreated] = useState<boolean>(false);
 
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [deliveryDetails, setDeliveryDetails] = useState<OrderDeliveryDetails>(
@@ -58,6 +65,24 @@ const Cart: FC<PageProps> = (pageProps) => {
     alert("Please add some products to cart to continue.");
     navigateTo(PageRoutes.Home);
   }
+
+  const processOrderCreation = async (): Promise<boolean> => {
+    const createdOrder = await createOrder(
+      ORDERS_APIS.ADD_ORDER_API,
+      trimOrder(getOrderFromVM(order), true)
+    );
+
+    if (createdOrder) {
+      getOrders(ORDERS_APIS.GET_ALL_ORDERS_API);
+      setIsOrderCreated(true);
+      clearOrder();
+      clearCart();
+      return true;
+    }
+
+    setIsOrderCreated(false);
+    return false;
+  };
 
   useEffect(() => {
     if (appState?.member) {
@@ -78,17 +103,21 @@ const Cart: FC<PageProps> = (pageProps) => {
       deliveryDetails: JSON.stringify(deliveryDetails),
       packagingType: PackagingType[DEFAULT_PACKAGES[0].id],
       packaging: DEFAULT_PACKAGES[0],
+      member: appState.member as Member,
     });
   }, []);
 
   useEffect(() => {
-    if (appState?.member) {
+    if (
+      appState?.member &&
+      (order.member === undefined || order.member === null)
+    ) {
       updateOrder({
         ...order,
-        member: { ...(appState.member as Member) },
+        member: appState.member as Member,
       });
     }
-  }, [appState]);
+  }, [appState?.member, currentPageIndex]);
 
   useEffect(() => {
     if (order) {
@@ -97,6 +126,7 @@ const Cart: FC<PageProps> = (pageProps) => {
         products: products,
         deliveryDetails: JSON.stringify(deliveryDetails),
         orderValue: calculateOrderValue(products),
+        member: appState.member as Member,
       });
     }
   }, [products, deliveryDetails]);
@@ -124,8 +154,7 @@ const Cart: FC<PageProps> = (pageProps) => {
         return isTermsAgreed;
 
       case 3:
-        console.log(trimOrder(getOrderFromVM(order), true));
-        return true;
+        return processOrderCreation();
 
       default:
         return false;
@@ -487,25 +516,36 @@ const Cart: FC<PageProps> = (pageProps) => {
                   <Link to="">terms &amp; conditions</Link>
                 </div>
               </div>
+              <div className="col-xs-12">
+                <h2>Processing your order</h2>
+                <div className="mt-product-table d-flex justify-content-center">
+                  {isOrderCreated
+                    ? "Your order is processed successfully"
+                    : "Processing..."}
+                </div>
+              </div>
             </Slider>
-            <div className="col-xs-12 d-in-flex">
-              <button
-                className="update-btn"
-                disabled={currentPageIndex <= 0}
-                type="button"
-                onClick={handleBack}
-              >
-                Back
-              </button>
-              <button
-                className={`process-btn ${isValid ? "" : "bg-light"}`}
-                disabled={!isValid && currentPageIndex < PAGE_TITLES.length}
-                type="button"
-                onClick={handleNext}
-              >
-                Proceed
-              </button>
-            </div>
+            {currentPageIndex < PAGE_TITLES.length - 1 && (
+              <div className="col-xs-12 d-in-flex">
+                <button
+                  className={"update-btn"}
+                  disabled={currentPageIndex <= 0}
+                  type="button"
+                  onClick={handleBack}
+                >
+                  Back
+                </button>
+
+                <button
+                  className={`process-btn ${isValid ? "" : "bg-light"}`}
+                  disabled={!isValid && currentPageIndex < PAGE_TITLES.length}
+                  type="button"
+                  onClick={handleNext}
+                >
+                  Proceed
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>

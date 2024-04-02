@@ -4,8 +4,11 @@ import { DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE } from "../constants";
 import { Product } from "../awsApis";
 
 const useCart = (): CartState => {
-  const { setValue: saveCartState, getValue: getSavedCartState } =
-    useLocalStorage<Product[]>();
+  const {
+    setValue: saveCartState,
+    getValue: getSavedCartState,
+    clearValue: deleteSavedCartState,
+  } = useLocalStorage<Product[]>();
   const [products, setProducts] = useState<Product[]>(
     getSavedCartState(DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE) ?? []
   );
@@ -43,7 +46,12 @@ const useCart = (): CartState => {
     }
   };
 
-  return { products, addProduct, removeProduct, updateProduct };
+  const clearState = () => {
+    setProducts([]);
+    deleteSavedCartState(DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE);
+  };
+
+  return { products, addProduct, removeProduct, updateProduct, clearState };
 };
 
 export default useCart;

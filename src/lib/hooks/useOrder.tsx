@@ -14,6 +14,7 @@ import useLocalStorage from "./useLocalStorage";
 interface OrderState {
   order: OrderVM;
   updateOrder: (order: OrderVM) => void;
+  clearOrder: VoidFunction;
 }
 
 const useOrder = (totalOrders: number): OrderState => {
@@ -28,7 +29,7 @@ const useOrder = (totalOrders: number): OrderState => {
     member: null,
     packaging: DEFAULT_PACKAGES[0],
   };
-  const { getValue, setValue } = useLocalStorage<OrderVM>();
+  const { getValue, setValue, clearValue } = useLocalStorage<OrderVM>();
 
   const [order, setOrder] = useState<OrderVM>(
     getValue(DEFAULT_LOCAL_STORAGE_KEY_FOR_ORDER_STATE) ?? DEFAULT_ORDER
@@ -39,9 +40,15 @@ const useOrder = (totalOrders: number): OrderState => {
     setValue(DEFAULT_LOCAL_STORAGE_KEY_FOR_ORDER_STATE, updatedOrder);
   };
 
+  const clearOrder = () => {
+    setOrder(DEFAULT_ORDER);
+    clearValue(DEFAULT_LOCAL_STORAGE_KEY_FOR_ORDER_STATE);
+  };
+
   return {
     order,
     updateOrder,
+    clearOrder,
   };
 };
 
