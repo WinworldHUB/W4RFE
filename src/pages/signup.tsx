@@ -3,10 +3,11 @@ import PageLayout from "../lib/components/page-layout";
 import useAuthentication from "../lib/hooks/useAuthentication";
 import useApi from "../lib/hooks/useApi";
 import { MEMBERS_APIS } from "../lib/constants/api-constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 
 const SignUp: FC<PageProps> = (pageProps) => {
+  const navigate = useNavigate();
   const { postData: postCredentials } = useApi();
   const {
     error: loginError,
@@ -17,9 +18,17 @@ const SignUp: FC<PageProps> = (pageProps) => {
     confirmationCode: "",
   });
 
-  const handleSignUp = (credentials: SignUpCredentials) => {
-    console.log("credentials", credentials);
-    postCredentials(MEMBERS_APIS.SIGN_UP_API, credentials);
+  const handleSubmit = async (credentials: SignUpCredentials) => {
+    try {
+      console.log("credentials", credentials);
+      const data = await postCredentials(MEMBERS_APIS.SIGN_UP_API, credentials);
+      if (data) {
+        console.log("data", data);
+        navigate(PageRoutes.Login);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return (
@@ -91,7 +100,7 @@ const SignUp: FC<PageProps> = (pageProps) => {
                             type="button"
                             className="btn-type2"
                             onClick={() => {
-                              handleSignUp(credentials);
+                              handleSubmit(credentials);
                             }}
                           >
                             Submit
