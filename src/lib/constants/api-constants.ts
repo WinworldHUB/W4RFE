@@ -10,6 +10,7 @@ export const DEFAULT_POST_API_HEADER = (accessToken: string) => {
   };
 };
 export const API_BASE_URL = "https://apis.wholesale4resale.com";
+// export const API_BASE_URL = "http://localhost:3000";
 
 export const TEST_APIS = {
   GET_API: "https://reqres.in/api/users?page=2",
@@ -34,6 +35,7 @@ export const MEMBERS_APIS = {
   GET_MEMBER_BY_EMAIL_API: "/members",
   ADD_MEMBER_API: "/members",
   IMPORT_MEMBERS_API: "/members/imports",
+  SIGN_UP_API: "/members/confirm",
 };
 
 export const COGNITO_ERROR_CODE = [

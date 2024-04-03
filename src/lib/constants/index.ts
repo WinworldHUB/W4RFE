@@ -23,6 +23,7 @@ export enum PageRoutes {
   Test = "/test",
   Orders = "/orders",
   Cart = "/cart",
+  SignUp = "/signup",
 }
 
 export enum CreateOrderSlides {

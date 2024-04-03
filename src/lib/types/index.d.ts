@@ -77,6 +77,12 @@ interface Credentials {
   password: string;
 }
 
+
+interface SignUpCredentials {
+  username: string;
+  confirmationCode: string;
+}
+
 enum TimelineStatus {
   Active = "active",
   Completed = "completed",

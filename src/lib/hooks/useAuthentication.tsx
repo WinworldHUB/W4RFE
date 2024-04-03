@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import config from "../../amplifyconfiguration.json";
 import { Amplify } from "aws-amplify";
 import {
+  SignUpInput,
   fetchAuthSession,
   getCurrentUser,
   signIn,
@@ -85,6 +86,8 @@ const useAuthentication = (): UseAuthenticationState => {
         setIsUserSignedIn(false);
       });
   };
+
+
 
   const signOutUser = () => {
     signOut()
