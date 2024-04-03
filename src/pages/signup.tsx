@@ -1,43 +1,21 @@
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import useAuthentication from "../lib/hooks/useAuthentication";
-import { AppContext } from "../lib/contexts/app-context";
 import useApi from "../lib/hooks/useApi";
 import { MEMBERS_APIS } from "../lib/constants/api-constants";
 import { Link } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
-import { Member } from "../lib/awsApis";
 
 const SignUp: FC<PageProps> = (pageProps) => {
   const { postData: postCredentials } = useApi();
   const {
     error: loginError,
     isUserSignedIn,
-    accessToken,
-    refreshToken,
   } = useAuthentication();
-
-  const { appState, updateAppState } = useContext(AppContext);
-  const { data: userDetails} = useApi<Member>();
   const [credentials, setCredentials] = useState<SignUpCredentials>({
     username: "",
     confirmationCode: "",
   });
-
-  useEffect(() => {
-    updateAppState({
-      ...appState,
-      isUserLoggedIn: isUserSignedIn && userDetails ? true : false,
-      username: userDetails?.name,
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-      member: userDetails,
-    });
-
-    if (isUserSignedIn && userDetails) {
-      window.location.reload();
-    }
-  }, [isUserSignedIn, accessToken, userDetails]);
 
   const handleSignUp = (credentials: SignUpCredentials) => {
     console.log("credentials", credentials);
