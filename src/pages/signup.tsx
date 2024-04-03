@@ -13,13 +13,12 @@ const SignUp: FC<PageProps> = (pageProps) => {
   const {
     error: loginError,
     isUserSignedIn,
-    signOutUser,
     accessToken,
     refreshToken,
   } = useAuthentication();
 
   const { appState, updateAppState } = useContext(AppContext);
-  const { data: userDetails, getData: getUserDetails } = useApi<Member>();
+  const { data: userDetails} = useApi<Member>();
   const [credentials, setCredentials] = useState<SignUpCredentials>({
     username: "",
     confirmationCode: "",
@@ -124,42 +123,6 @@ const SignUp: FC<PageProps> = (pageProps) => {
                           <span className="text-danger">
                             {loginError ?? ""}
                           </span>
-                        </div>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-      {isUserSignedIn && (
-        <section className="mt-detail-sec toppadding-zero paddingbootom-md">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-sm-8 col-sm-push-2">
-                <div className="holder m-0">
-                  <div className="mt-side-widget">
-                    <header>
-                      <h2>SIGN OUT</h2>
-                      <p>
-                        You are currently signed in. To sign-out use the button
-                        below
-                      </p>
-                    </header>
-                    <form action="#">
-                      <fieldset>
-                        <div className="box text-center">
-                          <button
-                            type="button"
-                            className="btn-type1"
-                            onClick={() => {
-                              signOutUser();
-                            }}
-                          >
-                            Sign-out
-                          </button>
                         </div>
                       </fieldset>
                     </form>
