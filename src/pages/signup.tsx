@@ -22,7 +22,7 @@ const SignUp: FC<PageProps> = (pageProps) => {
   const { data: userDetails, getData: getUserDetails } = useApi<Member>();
   const [credentials, setCredentials] = useState<SignUpCredentials>({
     username: "",
-    code: "",
+    confirmationCode: "",
   });
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const SignUp: FC<PageProps> = (pageProps) => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 text-center">
-              <h1>SignUp</h1>
+              <h1>ConFirm Email</h1>
               <nav className="breadcrumbs">
                 <ul className="list-unstyled">
                   <li>
@@ -74,14 +74,14 @@ const SignUp: FC<PageProps> = (pageProps) => {
                 <div className="holder m-0">
                   <div className="mt-side-widget">
                     <header>
-                      <h2>SIGN UP</h2>
-                      <p>Welcome !! Sign Up Your Account</p>
+                      <h2> ConFirm Email</h2>
+                      <p>Welcome !! ConFirm Your Email</p>
                     </header>
                     <form action="#">
                       <fieldset>
                         <input
                           type="text"
-                          placeholder="Username"
+                          placeholder="User ID"
                           className="input"
                           value={credentials.username}
                           onChange={(e) =>
@@ -91,27 +91,33 @@ const SignUp: FC<PageProps> = (pageProps) => {
                             })
                           }
                         />
+                        <p className="help-text">
+                          Your User Id is not your Email. You can find your User
+                          Id in the email we sent to your registered email
+                          address
+                        </p>
+                        <br />
                         <input
                           type="password"
                           placeholder="Recieved Code"
                           className="input"
-                          value={credentials.code}
+                          value={credentials.confirmationCode}
                           onChange={(e) =>
                             setCredentials({
                               ...credentials,
-                              code: e.target.value,
+                              confirmationCode: e.target.value,
                             })
                           }
                         />
                         <div className="box text-center">
                           <button
                             type="button"
-                            className="btn-type1"
+                            className="btn-type2"
                             onClick={() => {
                               handleSignUp(credentials);
                             }}
                           >
-                            Sign Up
+                            Submit
                           </button>
                         </div>
                         <div className="text-center">

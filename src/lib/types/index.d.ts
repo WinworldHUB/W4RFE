@@ -80,7 +80,7 @@ interface Credentials {
 
 interface SignUpCredentials {
   username: string;
-  code: string;
+  confirmationCode: string;
 }
 
 enum TimelineStatus {
