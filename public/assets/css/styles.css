@@ -11,6 +11,11 @@
   background-image: url(/assets/images/img43.jpg);
 }
 
+.btn-wish {
+  background-color: "black";
+  color: "#fff";
+  border: "1px solid #fff";
+}
 .d-in-flex {
   display: inline-flex !important;
   align-items: center;
@@ -37,6 +42,22 @@
 
 .bg-light {
   background-color: #edede9 !important;
+  color: black !important;
+}
+
+.bg-dark {
+  background-color: black !important;
+  color: white !important;
+}
+
+.bg-light-on-hover:hover {
+  background-color: #edede9 !important;
+  color: black !important;
+}
+
+.bg-orange-on-hover:hover {
+  background-color: #ff8283 !important;
+  color: black !important;
 }
 
 .marquee-container {
@@ -283,4 +304,18 @@
 
 .remove-bg {
   mix-blend-mode: multiply !important;
+}
+
+.container-wish {
+  width: 95% !important;
+}
+
+.container-lg {
+  width: 80% !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.mt-productlisthold > li {
+  width: 25%;
 }

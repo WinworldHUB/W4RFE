@@ -167,9 +167,17 @@ const Cart: FC<PageProps> = (pageProps) => {
     }
   }, [currentPageIndex, order, isTermsAgreed]);
 
-  const handleSizeUpdate = (productIndex: number, selectedSize: string) => {
+  const handleSizeUpdate = (
+    productIndex: number,
+    selectedSizeIndex: number
+  ) => {
     const updatedProduct = products[productIndex] as Product;
-    updatedProduct.size = selectedSize;
+    const productVariants = JSON.parse(
+      updatedProduct.variants
+    ) as ProductVariant[];
+
+    updatedProduct.size = productVariants[selectedSizeIndex].size;
+    updatedProduct.price = productVariants[selectedSizeIndex].price;
     console.log(updatedProduct);
     updateProduct(updatedProduct, productIndex);
   };
@@ -201,7 +209,25 @@ const Cart: FC<PageProps> = (pageProps) => {
       setCurrentPageIndex(currentPageIndex - 1);
     }
   };
+  const packaging: Packaging | undefined = useMemo(
+    () =>
+      DEFAULT_PACKAGES.find(
+        (pack: Packaging) => pack.id === order.packagingType
+      ),
+    [order.packagingType]
+  );
 
+  // Calculate the shipping charges
+  const shippingCharges: number = useMemo(
+    () => (packaging ? packaging.cost * totalOrderQuantity : 0),
+    [packaging, totalOrderQuantity]
+  );
+
+  // Calculate the order total
+  const orderTotal: number = useMemo(
+    () => order.orderValue + shippingCharges,
+    [order.orderValue, shippingCharges]
+  );
   return (
     <PageLayout {...pageProps}>
       <div className="mt-process-sec">
@@ -236,6 +262,13 @@ const Cart: FC<PageProps> = (pageProps) => {
               <div className="col-xs-12">
                 <form action="#" className="bill-detail w-100p">
                   <h2>{PAGE_TITLES[currentPageIndex].title}</h2>
+                  <h5>
+                    Receive your bulk order directly from our suppliers via 2
+                    different shipping methods
+                  </h5>
+                  <p>
+                    <strong>Select Packaging type</strong>
+                  </p>
                   <fieldset>
                     <div className="form-group">
                       <select
@@ -262,9 +295,15 @@ const Cart: FC<PageProps> = (pageProps) => {
                       <div className="col-xs-3 col-md-2">
                         Package description:
                       </div>
-                      <div className="col-xs-9 col-md-10">
-                        {order?.packaging?.description}
-                      </div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: order?.packaging?.description.replace(
+                            /\n/g,
+                            "<br />"
+                          ),
+                        }}
+                        className="col-xs-9 col-md-10"
+                      ></div>
                       <div className="col-xs-3 col-md-2">Minimum quantity:</div>
                       <div className="col-xs-9 col-md-10">
                         {order?.packaging?.minQuantity}
@@ -272,6 +311,10 @@ const Cart: FC<PageProps> = (pageProps) => {
                       <div className="col-xs-3 col-md-2">Maximum quantity:</div>
                       <div className="col-xs-9 col-md-10">
                         {order?.packaging?.maxQuantity}
+                      </div>
+                      <div className="col-xs-3 col-md-2">Cost:</div>
+                      <div className="col-xs-9 col-md-10">
+                        £{order?.packaging?.cost}
                       </div>
                     </div>
                     <br />
@@ -374,7 +417,10 @@ const Cart: FC<PageProps> = (pageProps) => {
                                   title="Product size"
                                   value={product?.size}
                                   onChange={(e) =>
-                                    handleSizeUpdate(pIndex, e.target.value)
+                                    handleSizeUpdate(
+                                      pIndex,
+                                      e.target.selectedIndex
+                                    )
                                   }
                                 >
                                   {(productVariants ?? []).map((variant) => (
@@ -382,7 +428,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                       value={variant.size}
                                       key={variant.size}
                                     >
-                                      {variant.size}
+                                      {variant.size} (£{variant.price})
                                     </option>
                                   ))}
                                 </select>
@@ -406,7 +452,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                   ))}
                                 </select>
                               </td>
-                              <td className="cell">
+                              <td className="cell text-center">
                                 <Link
                                   to=""
                                   className="text-danger"
@@ -481,11 +527,36 @@ const Cart: FC<PageProps> = (pageProps) => {
                     <li className="no-border-bottom">
                       <div className="txt-holder">
                         <strong className="title sub-title pull-left">
-                          ORDER TOTAL
+                          SUB TOTAL
                         </strong>
                         <div className="txt pull-right">
                           <span>
                             <i className="fa fa-gbp"></i> {order.orderValue}
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="no-border-bottom">
+                      <div className="txt-holder">
+                        <strong className="title sub-title pull-left">
+                          SHIPPING CHARGES
+                        </strong>
+                        <div className="txt pull-right">
+                          <span>
+                            <i className="fa fa-gbp"></i>{" "}
+                            {order.packaging.cost * totalOrderQuantity}
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="no-border-bottom">
+                      <div className="txt-holder">
+                        <strong className="title sub-title pull-left">
+                          ORDER TOTAL
+                        </strong>
+                        <div className="txt pull-right">
+                          <span>
+                            <i className="fa fa-gbp"></i> {orderTotal}
                           </span>
                         </div>
                       </div>
@@ -515,7 +586,7 @@ const Cart: FC<PageProps> = (pageProps) => {
             {currentPageIndex < PAGE_TITLES.length - 1 && (
               <div className="col-xs-12 d-in-flex">
                 <button
-                  className={"update-btn"}
+                  className="btn btn-type3 btn-wish"
                   disabled={currentPageIndex <= 0}
                   type="button"
                   onClick={handleBack}
@@ -524,7 +595,9 @@ const Cart: FC<PageProps> = (pageProps) => {
                 </button>
 
                 <button
-                  className={`process-btn ${isValid ? "" : "bg-light"}`}
+                  className={`btn btn-type3 btn-wish ${
+                    isValid ? "" : "bg-light"
+                  }`}
                   disabled={!isValid && currentPageIndex < PAGE_TITLES.length}
                   type="button"
                   onClick={handleNext}

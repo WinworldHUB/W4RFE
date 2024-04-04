@@ -13,7 +13,6 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
   const { appState } = useContext(AppContext);
   const variants = JSON.parse(product?.variants ?? "[]") as ProductVariant[];
   const { addProduct } = useContext(CartContext);
-
   useEffect(() => {
     getProductById(
       `${PRODUCTS_APIS.GET_PRODUCT_BY_ID}${appState.selectedProductId ?? ""}`
@@ -61,23 +60,41 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                   ></p>
                 </div>
                 <div className="text-holder">
-                  <span className="price">
-                    From&nbsp;
-                    <i className="fa fa-gbp"></i> {product?.price}
-                  </span>
+                  <table className="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th className="text-center" style={{ width: "50%" }}>
+                          <h4>Size</h4>
+                        </th>
+                        <th className="text-center">
+                          <h4>Price</h4>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(variants ?? []).map((variant, index) => (
+                        <tr key={index}>
+                          <td className="text-center">
+                            <h5>{variant.size}</h5>
+                          </td>
+                          <td className="text-center">
+                            <h5>
+                              <i className="fa fa-gbp"></i> {variant.price}
+                            </h5>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
                 <form action="#" className="product-form">
                   <fieldset>
-                    {/* <div className="row-val">
-                      <label htmlFor="qty">Size</label>
-                      <select title="variants" className="w-100">
-                        {(variants ?? []).map((variant) => (
-                          <option>{variant.size}</option>
-                        ))}
-                      </select>
-                    </div> */}
                     <div className="row-val">
-                      <button type="button" onClick={() => addProduct(product)}>
+                      <button
+                        type="button"
+                        className="btn-type1 bg-dark bg-orange-on-hover"
+                        onClick={() => addProduct(product)}
+                      >
                         ADD TO CART
                       </button>
                     </div>

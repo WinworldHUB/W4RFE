@@ -23,7 +23,7 @@ const Home: FC<PageProps> = (pageProps) => {
   const [selectedProductId, setSelectedProductId] = useState<string>();
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
-  const totalPages = useMemo(() => products?.length / 2, [products]);
+  const totalPages = useMemo(() => products?.length / 4, [products]);
   const { addProduct } = useContext(CartContext);
 
   useEffect(() => {

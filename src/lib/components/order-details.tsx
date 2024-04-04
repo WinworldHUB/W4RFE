@@ -2,7 +2,7 @@ import { FC, useMemo } from "react";
 import { Order, Product } from "../awsApis";
 import ProductsPreviewTable from "./products-preview-table";
 import HorizontalTimeline from "./horizontal-timeline";
-import { TIMELINE_STATUSES } from "../constants";
+import { DEFAULT_PACKAGES, TIMELINE_STATUSES } from "../constants";
 
 interface OrderDetailsProps {
   order: Order;
@@ -21,6 +21,36 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
     () =>
       order ? (JSON.parse(order?.products) as Product[]) : ([] as Product[]),
     [order]
+  );
+
+  const totalOrderQuantity: number = useMemo(
+    () =>
+      products.reduce(
+        (total: number, product: Product) => total + (product.quantity ?? 0),
+        0
+      ),
+    [products]
+  );
+
+  // Find the packaging object based on the packaging type
+  const packaging: Packaging | undefined = useMemo(
+    () =>
+      DEFAULT_PACKAGES.find(
+        (pack: Packaging) => pack.id === order.packagingType
+      ),
+    [order.packagingType]
+  );
+
+  // Calculate the shipping charges
+  const shippingCharges: number = useMemo(
+    () => (packaging ? packaging.cost * totalOrderQuantity : 0),
+    [packaging, totalOrderQuantity]
+  );
+
+  // Calculate the order total
+  const orderTotal: number = useMemo(
+    () => order.orderValue + shippingCharges,
+    [order.orderValue, shippingCharges]
   );
 
   return (
@@ -70,7 +100,7 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
         <div className="col-xs-12">
           <ProductsPreviewTable
             products={products}
-            orderValue={order?.orderValue}
+            orderValue={orderTotal}
           />
         </div>
       </div>
