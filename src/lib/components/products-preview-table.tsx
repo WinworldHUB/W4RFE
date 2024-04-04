@@ -12,7 +12,7 @@ interface ProductsPreviewTableProps {
 
 const columns: TableColumn<Product>[] = [
   {
-    name: "Pic",
+    name: "",
     maxWidth: "70px",
     selector: (row) => row.featuredImage,
     cell: (row) => (

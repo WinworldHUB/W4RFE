@@ -99,8 +99,8 @@ const Home: FC<PageProps> = (pageProps) => {
                   <div className="txt">
                     <p>&nbsp;</p>
                   </div>
-                  <Link to="" className="shop">
-                    BECOME A MEMBER
+                  <Link to="/products" className="shop">
+                    View Products
                   </Link>
                 </div>
               </div>

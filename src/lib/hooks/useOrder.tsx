@@ -23,7 +23,7 @@ const useOrder = (totalOrders: number): OrderState => {
     orderValue: 0,
     status: OrderStatus.UNPAID,
     products: [],
-    orderNumber: generateOrderNumber(totalOrders),
+    orderNumber: generateOrderNumber(totalOrders ?? 0) ,
     deliveryDetails: "",
     packagingType: PackagingType.BOX_PACK,
     member: null,
