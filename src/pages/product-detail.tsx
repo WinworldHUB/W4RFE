@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import { Link } from "react-router-dom";
 import useApi from "../lib/hooks/useApi";
@@ -13,12 +13,19 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
   const { appState } = useContext(AppContext);
   const variants = JSON.parse(product?.variants ?? "[]") as ProductVariant[];
   const { addProduct } = useContext(CartContext);
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null);
 
   useEffect(() => {
     getProductById(
       `${PRODUCTS_APIS.GET_PRODUCT_BY_ID}${appState.selectedProductId ?? ""}`
     );
   }, [appState.selectedProductId]);
+
+  const handleVariantChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedSize = e.target.value;
+    const variant = variants.find(variant => variant.size === selectedSize);
+    setSelectedVariant(variant || null);
+  };
 
   return (
     <PageLayout {...pageProps}>
@@ -63,19 +70,19 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                 <div className="text-holder">
                   <span className="price">
                     From&nbsp;
-                    <i className="fa fa-gbp"></i> {product?.price}
+                    <i className="fa fa-gbp"></i> {selectedVariant?.price || product?.price}
                   </span>
                 </div>
                 <form action="#" className="product-form">
                   <fieldset>
-                    {/* <div className="row-val">
+                    <div className="row-val">
                       <label htmlFor="qty">Size</label>
-                      <select title="variants" className="w-100">
-                        {(variants ?? []).map((variant) => (
-                          <option>{variant.size}</option>
+                      <select title="variants" className="w-100" onChange={handleVariantChange}>
+                        {(variants ?? []).map((variant, index) => (
+                          <option key={index}>{variant.size}</option>
                         ))}
                       </select>
-                    </div> */}
+                    </div>
                     <div className="row-val">
                       <button type="button" onClick={() => addProduct(product)}>
                         ADD TO CART
