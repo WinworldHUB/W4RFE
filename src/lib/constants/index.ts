@@ -54,7 +54,7 @@ export const DEFAULT_PACKAGES: Packaging[] = [
     id: PackagingType.BOX_PACK,
     title: "Box packaging",
     description:
-      "With box packaging type you can order minimum 6 quantities and maximum 10 quantities in one order. For more quantities split the order into two or more",
+      "Sneakers will arrive to you remaining in their original boxes as sold\nThis shipping method is priced higher due to the space required when keeping products in this form\nIf you would like to purchase more than the maximum quantity per shipment then please split your orders\n",
     minQuantity: 6,
     maxQuantity: 10,
     available: true,
@@ -64,11 +64,11 @@ export const DEFAULT_PACKAGES: Packaging[] = [
     id: PackagingType.FLAT_PACK,
     title: "Flat-pack packaging",
     description:
-      "With flat-pack packaging type you can order minimum 6 quantities and maximum 12 quantities in one order. For more quantities split the order into two or more",
+      "Sneakers will arrive to you flat-packed meaning the original boxes will need to be built\nThis shipping method is priced lower due to being able to fit the most products into the shipment\nIf you would like to purchase more than the maximum quantity per shipment then please split your orders\n",
     minQuantity: 6,
     maxQuantity: 12,
     available: true,
-    cost:14,
+    cost: 14,
   },
 ];
 
