@@ -452,7 +452,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                   ))}
                                 </select>
                               </td>
-                              <td className="cell">
+                              <td className="cell text-center">
                                 <Link
                                   to=""
                                   className="text-danger"

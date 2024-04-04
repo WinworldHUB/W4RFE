@@ -42,6 +42,22 @@
 
 .bg-light {
   background-color: #edede9 !important;
+  color: black !important;
+}
+
+.bg-dark {
+  background-color: black !important;
+  color: white !important;
+}
+
+.bg-light-on-hover:hover {
+  background-color: #edede9 !important;
+  color: black !important;
+}
+
+.bg-orange-on-hover:hover {
+  background-color: #ff8283 !important;
+  color: black !important;
 }
 
 .marquee-container {
@@ -292,6 +308,12 @@
 
 .container-wish {
   width: 95% !important;
+}
+
+.container-lg {
+  width: 80% !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .mt-productlisthold > li {
