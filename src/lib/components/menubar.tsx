@@ -54,13 +54,6 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
                       <span className="bar"></span>
                     </a>
                   </li>
-                  <li>
-                    <Link
-                      to={PageRoutes.Home}
-                      className="icon-magnifier"
-                      title="Search"
-                    ></Link>
-                  </li>
                   <li className="drop">
                     <Link
                       to={PageRoutes.Cart}
