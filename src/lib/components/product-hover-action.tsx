@@ -12,20 +12,16 @@ const ProductHoverAction: FC<ProductHoverActionProps> = ({
 }) => {
   return (
     <ul className="links">
-      <li>
+      {/* <li>
         <Link to="" onClick={onAddToCartClick}>
           <i className="icon-handbag"></i>
           <span>Add to Cart</span>
         </Link>
-      </li>
-      {/* <li>
-        <a href="#">
-          <i className="icomoon icon-heart-empty"></i>
-        </a>
       </li> */}
       <li>
         <Link to="" className="lightbox" onClick={onViewClick}>
           <i className="icomoon icon-eye"></i>
+          <span>View details</span>
         </Link>
       </li>
     </ul>

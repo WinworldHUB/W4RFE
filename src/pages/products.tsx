@@ -58,7 +58,7 @@ const Products: FC<PageProps> = (pageProps) => {
 
   return (
     <PageLayout {...pageProps}>
-      <div className="container">
+      <div className="container-wish">
         <div className="row">
           <aside
             id="sidebar"

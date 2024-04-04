@@ -289,3 +289,11 @@
 .remove-bg {
   mix-blend-mode: multiply !important;
 }
+
+.container-wish {
+  width: 95% !important;
+}
+
+.mt-productlisthold > li {
+  width: 25%;
+}

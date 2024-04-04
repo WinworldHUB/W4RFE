@@ -35,6 +35,11 @@ const PageFooter: FC = () => {
               </p>
             </div>
           </div>
+          <div className="row">
+            <div className="col-xs-12 text-center">
+              Powered by <Link to="https://ennovision.co.uk">@Ennovision</Link>.{" "}
+            </div>
+          </div>
         </div>
       </div>
     </footer>
