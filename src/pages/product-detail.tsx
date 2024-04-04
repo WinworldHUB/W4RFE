@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect} from "react";
+import { FC, useContext, useEffect } from "react";
 import PageLayout from "../lib/components/page-layout";
 import { Link } from "react-router-dom";
 import useApi from "../lib/hooks/useApi";
@@ -18,7 +18,6 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
       `${PRODUCTS_APIS.GET_PRODUCT_BY_ID}${appState.selectedProductId ?? ""}`
     );
   }, [appState.selectedProductId]);
-
 
   return (
     <PageLayout {...pageProps}>
@@ -61,23 +60,27 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                   ></p>
                 </div>
                 <div className="text-holder">
-                  <table style={{ width: "100%" }}>
+                  <table className="table table-bordered">
                     <thead>
                       <tr>
-                        <th style={{ width: "50%" }}>Size</th>
-                        <th>Price</th>
+                        <th className="text-center" style={{ width: "50%" }}>
+                          <h4>Size</h4>
+                        </th>
+                        <th className="text-center">
+                          <h4>Price</h4>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {(variants ?? []).map((variant, index) => (
                         <tr key={index}>
-                          <td>
-                            <h4>{variant.size}</h4>
+                          <td className="text-center">
+                            <h5>{variant.size}</h5>
                           </td>
-                          <td>
-                            <h4>
+                          <td className="text-center">
+                            <h5>
                               <i className="fa fa-gbp"></i> {variant.price}
-                            </h4>
+                            </h5>
                           </td>
                         </tr>
                       ))}
