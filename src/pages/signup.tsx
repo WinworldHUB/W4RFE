@@ -33,25 +33,6 @@ const SignUp: FC<PageProps> = (pageProps) => {
 
   return (
     <PageLayout {...pageProps}>
-      <section className="mt-contact-banner sign-in-banner">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 text-center">
-              <h1>ConFirm Email</h1>
-              <nav className="breadcrumbs">
-                <ul className="list-unstyled">
-                  <li>
-                    <Link to={PageRoutes.Home}>
-                      home <i className="fa fa-angle-right"></i>
-                    </Link>
-                  </li>
-                  <li>login</li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </section>
       {!isUserSignedIn && (
         <section className="mt-detail-sec toppadding-zero paddingbootom-md">
           <div className="container">

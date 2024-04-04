@@ -78,8 +78,10 @@ const Cart: FC<PageProps> = (pageProps) => {
       clearOrder();
       clearCart();
 
-      alert("Your order has been processed successfully.");
-      navigateTo(PageRoutes.Home);
+      alert(
+        "Your order has been processed successfully.\nPlease see your email with instructions on how to complete your order"
+      );
+      navigateTo(PageRoutes.Orders);
 
       return true;
     }
@@ -202,25 +204,6 @@ const Cart: FC<PageProps> = (pageProps) => {
 
   return (
     <PageLayout {...pageProps}>
-      <section className="mt-contact-banner style4">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 text-center">
-              <h1>CART</h1>
-              <nav className="breadcrumbs">
-                <ul className="list-unstyled">
-                  <li>
-                    <Link to={PageRoutes.Home}>
-                      Home <i className="fa fa-angle-right"></i>
-                    </Link>
-                  </li>
-                  <li>Cart</li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </section>
       <div className="mt-process-sec">
         <div className="container">
           <div className="row">
