@@ -201,10 +201,24 @@ const Cart: FC<PageProps> = (pageProps) => {
       setCurrentPageIndex(currentPageIndex - 1);
     }
   };
-   // Calculate the order total
-   const orderTotal: number = useMemo(
-    () => order.orderValue + order.packaging.cost * totalOrderQuantity,
-    [order.orderValue, totalOrderQuantity, order.packaging.cost]
+  const packaging: Packaging | undefined = useMemo(
+    () =>
+      DEFAULT_PACKAGES.find(
+        (pack: Packaging) => pack.id === order.packagingType
+      ),
+    [order.packagingType]
+  );
+
+  // Calculate the shipping charges
+  const shippingCharges: number = useMemo(
+    () => (packaging ? packaging.cost * totalOrderQuantity : 0),
+    [packaging, totalOrderQuantity]
+  );
+
+  // Calculate the order total
+  const orderTotal: number = useMemo(
+    () => order.orderValue + shippingCharges,
+    [order.orderValue, shippingCharges]
   );
   return (
     <PageLayout {...pageProps}>
