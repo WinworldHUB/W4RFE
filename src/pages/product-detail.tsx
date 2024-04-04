@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect} from "react";
 import PageLayout from "../lib/components/page-layout";
 import { Link } from "react-router-dom";
 import useApi from "../lib/hooks/useApi";
@@ -13,19 +13,12 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
   const { appState } = useContext(AppContext);
   const variants = JSON.parse(product?.variants ?? "[]") as ProductVariant[];
   const { addProduct } = useContext(CartContext);
-  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null);
-
   useEffect(() => {
     getProductById(
       `${PRODUCTS_APIS.GET_PRODUCT_BY_ID}${appState.selectedProductId ?? ""}`
     );
   }, [appState.selectedProductId]);
 
-  const handleVariantChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedSize = e.target.value;
-    const variant = variants.find(variant => variant.size === selectedSize);
-    setSelectedVariant(variant || null);
-  };
 
   return (
     <PageLayout {...pageProps}>
@@ -68,21 +61,31 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                   ></p>
                 </div>
                 <div className="text-holder">
-                  <span className="price">
-                    From&nbsp;
-                    <i className="fa fa-gbp"></i> {selectedVariant?.price || product?.price}
-                  </span>
+                  <table style={{ width: "100%" }}>
+                    <thead>
+                      <tr>
+                        <th style={{ width: "50%" }}>Size</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(variants ?? []).map((variant, index) => (
+                        <tr key={index}>
+                          <td>
+                            <h4>{variant.size}</h4>
+                          </td>
+                          <td>
+                            <h4>
+                              <i className="fa fa-gbp"></i> {variant.price}
+                            </h4>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
                 <form action="#" className="product-form">
                   <fieldset>
-                    <div className="row-val">
-                      <label htmlFor="qty">Size</label>
-                      <select title="variants" className="w-100" onChange={handleVariantChange}>
-                        {(variants ?? []).map((variant, index) => (
-                          <option key={index}>{variant.size}</option>
-                        ))}
-                      </select>
-                    </div>
                     <div className="row-val">
                       <button type="button" onClick={() => addProduct(product)}>
                         ADD TO CART
