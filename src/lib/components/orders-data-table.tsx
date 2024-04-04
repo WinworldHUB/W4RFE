@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import DataTable, { TableColumn } from "react-data-table-component";
-import { Order, OrderStatus } from "../awsApis";
-import { DATA_TABLE_DEFAULT_STYLE } from "../constants";
+import { Order, OrderStatus, Product } from "../awsApis";
+import { DATA_TABLE_DEFAULT_STYLE, DEFAULT_PACKAGES } from "../constants";
 
 const columns: TableColumn<Order>[] = [
   {
@@ -12,7 +12,28 @@ const columns: TableColumn<Order>[] = [
   },
   {
     name: "Order Value",
-    selector: (row) => row.orderValue.toFixed(2),
+    selector: (row) => {
+      const products = row.products
+        ? (JSON.parse(row.products) as Product[])
+        : ([] as Product[]);
+
+      const totalOrderQuantity = products.reduce(
+        (total, product) => total + (product.quantity ?? 0),
+        0
+      );
+
+      const packaging = DEFAULT_PACKAGES.find(
+        (pack) => pack.id === row.packagingType
+      );
+      const shippingCharges = packaging
+        ? packaging.cost * totalOrderQuantity
+        : 0;
+
+      // Calculate the order total
+      const orderTotal = row.orderValue + shippingCharges;
+
+      return `£${orderTotal.toFixed(2)}`;
+    },
     sortable: true,
   },
   {

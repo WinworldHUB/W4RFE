@@ -56,6 +56,7 @@ type Packaging = {
   description: string;
   minQuantity: number;
   maxQuantity: number;
+  cost: number;
   available: boolean;
 };
 

@@ -273,6 +273,10 @@ const Cart: FC<PageProps> = (pageProps) => {
                       <div className="col-xs-9 col-md-10">
                         {order?.packaging?.maxQuantity}
                       </div>
+                      <div className="col-xs-3 col-md-2">Cost:</div>
+                      <div className="col-xs-9 col-md-10">
+                        £{order?.packaging?.cost}
+                      </div>
                     </div>
                     <br />
                     <div className="form-group">
@@ -481,11 +485,36 @@ const Cart: FC<PageProps> = (pageProps) => {
                     <li className="no-border-bottom">
                       <div className="txt-holder">
                         <strong className="title sub-title pull-left">
-                          ORDER TOTAL
+                          SUB TOTAL
                         </strong>
                         <div className="txt pull-right">
                           <span>
                             <i className="fa fa-gbp"></i> {order.orderValue}
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="no-border-bottom">
+                      <div className="txt-holder">
+                        <strong className="title sub-title pull-left">
+                          SHIPPING CHARGES
+                        </strong>
+                        <div className="txt pull-right">
+                          <span>
+                            <i className="fa fa-gbp"></i> {order.packaging.cost} * {totalOrderQuantity}
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="no-border-bottom">
+                      <div className="txt-holder">
+                        <strong className="title sub-title pull-left">
+                          ORDER TOTAL
+                        </strong>
+                        <div className="txt pull-right">
+                          <span>
+                            <i className="fa fa-gbp"></i>{" "}
+                            {order.packaging.cost + order.orderValue}
                           </span>
                         </div>
                       </div>

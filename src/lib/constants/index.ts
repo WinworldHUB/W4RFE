@@ -58,6 +58,7 @@ export const DEFAULT_PACKAGES: Packaging[] = [
     minQuantity: 6,
     maxQuantity: 10,
     available: true,
+    cost: 20,
   },
   {
     id: PackagingType.FLAT_PACK,
@@ -67,6 +68,7 @@ export const DEFAULT_PACKAGES: Packaging[] = [
     minQuantity: 6,
     maxQuantity: 12,
     available: true,
+    cost:14,
   },
 ];
 
