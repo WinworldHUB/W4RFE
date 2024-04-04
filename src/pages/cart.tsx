@@ -201,7 +201,11 @@ const Cart: FC<PageProps> = (pageProps) => {
       setCurrentPageIndex(currentPageIndex - 1);
     }
   };
-
+   // Calculate the order total
+   const orderTotal: number = useMemo(
+    () => order.orderValue + order.packaging.cost * totalOrderQuantity,
+    [order.orderValue, totalOrderQuantity, order.packaging.cost]
+  );
   return (
     <PageLayout {...pageProps}>
       <div className="mt-process-sec">
@@ -501,7 +505,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                         </strong>
                         <div className="txt pull-right">
                           <span>
-                            <i className="fa fa-gbp"></i> {order.packaging.cost} * {totalOrderQuantity}
+                            <i className="fa fa-gbp"></i> {order.packaging.cost * totalOrderQuantity}
                           </span>
                         </div>
                       </div>
@@ -514,7 +518,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                         <div className="txt pull-right">
                           <span>
                             <i className="fa fa-gbp"></i>{" "}
-                            {order.packaging.cost + order.orderValue}
+                            {orderTotal}
                           </span>
                         </div>
                       </div>
