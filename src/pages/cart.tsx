@@ -167,10 +167,14 @@ const Cart: FC<PageProps> = (pageProps) => {
     }
   }, [currentPageIndex, order, isTermsAgreed]);
 
-  const handleSizeUpdate = (productIndex: number, selectedSizeIndex: number) => {
+  const handleSizeUpdate = (
+    productIndex: number,
+    selectedSizeIndex: number
+  ) => {
     const updatedProduct = products[productIndex] as Product;
-    const productVariants = JSON.parse(updatedProduct.variants) as ProductVariant[];
-  
+    const productVariants = JSON.parse(
+      updatedProduct.variants
+    ) as ProductVariant[];
 
     updatedProduct.size = productVariants[selectedSizeIndex].size;
     updatedProduct.price = productVariants[selectedSizeIndex].price;
@@ -258,6 +262,13 @@ const Cart: FC<PageProps> = (pageProps) => {
               <div className="col-xs-12">
                 <form action="#" className="bill-detail w-100p">
                   <h2>{PAGE_TITLES[currentPageIndex].title}</h2>
+                  <h5>
+                    Receive your bulk order directly from our suppliers via 2
+                    different shipping methods
+                  </h5>
+                  <p>
+                    <strong>Select Packaging type</strong>
+                  </p>
                   <fieldset>
                     <div className="form-group">
                       <select
@@ -284,9 +295,15 @@ const Cart: FC<PageProps> = (pageProps) => {
                       <div className="col-xs-3 col-md-2">
                         Package description:
                       </div>
-                      <div className="col-xs-9 col-md-10">
-                        {order?.packaging?.description}
-                      </div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: order?.packaging?.description.replace(
+                            /\n/g,
+                            "<br />"
+                          ),
+                        }}
+                        className="col-xs-9 col-md-10"
+                      ></div>
                       <div className="col-xs-3 col-md-2">Minimum quantity:</div>
                       <div className="col-xs-9 col-md-10">
                         {order?.packaging?.minQuantity}
@@ -400,7 +417,10 @@ const Cart: FC<PageProps> = (pageProps) => {
                                   title="Product size"
                                   value={product?.size}
                                   onChange={(e) =>
-                                    handleSizeUpdate(pIndex, e.target.selectedIndex)
+                                    handleSizeUpdate(
+                                      pIndex,
+                                      e.target.selectedIndex
+                                    )
                                   }
                                 >
                                   {(productVariants ?? []).map((variant) => (
@@ -523,7 +543,8 @@ const Cart: FC<PageProps> = (pageProps) => {
                         </strong>
                         <div className="txt pull-right">
                           <span>
-                            <i className="fa fa-gbp"></i> {order.packaging.cost * totalOrderQuantity}
+                            <i className="fa fa-gbp"></i>{" "}
+                            {order.packaging.cost * totalOrderQuantity}
                           </span>
                         </div>
                       </div>
@@ -535,8 +556,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                         </strong>
                         <div className="txt pull-right">
                           <span>
-                            <i className="fa fa-gbp"></i>{" "}
-                            {orderTotal}
+                            <i className="fa fa-gbp"></i> {orderTotal}
                           </span>
                         </div>
                       </div>
@@ -566,7 +586,7 @@ const Cart: FC<PageProps> = (pageProps) => {
             {currentPageIndex < PAGE_TITLES.length - 1 && (
               <div className="col-xs-12 d-in-flex">
                 <button
-                  className={"update-btn"}
+                  className="btn btn-type3 btn-wish"
                   disabled={currentPageIndex <= 0}
                   type="button"
                   onClick={handleBack}
@@ -575,7 +595,9 @@ const Cart: FC<PageProps> = (pageProps) => {
                 </button>
 
                 <button
-                  className={`process-btn ${isValid ? "" : "bg-light"}`}
+                  className={`btn btn-type3 btn-wish ${
+                    isValid ? "" : "bg-light"
+                  }`}
                   disabled={!isValid && currentPageIndex < PAGE_TITLES.length}
                   type="button"
                   onClick={handleNext}
