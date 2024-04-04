@@ -90,7 +90,7 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                 <form action="#" className="product-form">
                   <fieldset>
                     <div className="row-val">
-                      <button type="button" onClick={() => addProduct(product)}>
+                      <button type="button" className="btn-type1" onClick={() => addProduct(product)}>
                         ADD TO CART
                       </button>
                     </div>

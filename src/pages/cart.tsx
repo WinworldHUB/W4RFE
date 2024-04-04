@@ -167,9 +167,13 @@ const Cart: FC<PageProps> = (pageProps) => {
     }
   }, [currentPageIndex, order, isTermsAgreed]);
 
-  const handleSizeUpdate = (productIndex: number, selectedSize: string) => {
+  const handleSizeUpdate = (productIndex: number, selectedSizeIndex: number) => {
     const updatedProduct = products[productIndex] as Product;
-    updatedProduct.size = selectedSize;
+    const productVariants = JSON.parse(updatedProduct.variants) as ProductVariant[];
+  
+
+    updatedProduct.size = productVariants[selectedSizeIndex].size;
+    updatedProduct.price = productVariants[selectedSizeIndex].price;
     console.log(updatedProduct);
     updateProduct(updatedProduct, productIndex);
   };
@@ -396,7 +400,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                   title="Product size"
                                   value={product?.size}
                                   onChange={(e) =>
-                                    handleSizeUpdate(pIndex, e.target.value)
+                                    handleSizeUpdate(pIndex, e.target.selectedIndex)
                                   }
                                 >
                                   {(productVariants ?? []).map((variant) => (
@@ -404,7 +408,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                                       value={variant.size}
                                       key={variant.size}
                                     >
-                                      {variant.size}
+                                      {variant.size} (£{variant.price})
                                     </option>
                                   ))}
                                 </select>

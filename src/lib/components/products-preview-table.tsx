@@ -41,7 +41,7 @@ const columns: TableColumn<Product>[] = [
   {
     maxWidth: "100px",
     name: "Price",
-    selector: (row) => `${GBP_SYMBOL} ${formatCurrency(row.price.toFixed(2))}`,
+    selector: (row) => row?.price ? `${GBP_SYMBOL} ${formatCurrency(row.price.toString())}` : 0,
   },
 ];
 
