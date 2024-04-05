@@ -3,7 +3,6 @@ import PageLayout from "../lib/components/page-layout";
 import Slider from "../lib/components/slider";
 import BannerSlider from "../lib/components/home-page/banner-slider";
 import Tabs from "../lib/components/tabs";
-import ProductTile from "../lib/components/product-tile";
 import RightSideMenu from "../lib/components/right-side-menu";
 import WebSearch from "../lib/components/web-search";
 import Marquee from "react-fast-marquee";
@@ -14,17 +13,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 import { CartContext } from "../lib/contexts/cart-context";
 import { Product } from "../lib/awsApis";
+import { useMediaQuery } from "react-responsive";
+import ProductSlides from "../lib/components/product-slides";
 
 const Home: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
+
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
   const [currentTabbedSliderPageIndex, setCurrentTabbedSliderPageIndex] =
     useState<number>(0);
   const [selectedProductId, setSelectedProductId] = useState<string>();
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
-  const totalPages = useMemo(() => products?.length / 4, [products]);
   const { addProduct } = useContext(CartContext);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const itemsPerPage = useMemo<number>(() => (isMobile ? 1 : 4), [isMobile]);
+  const totalPages = useMemo(() => products?.length / itemsPerPage, [products]);
 
   useEffect(() => {
     setCurrentTabbedSliderPageIndex(0);
@@ -53,30 +58,7 @@ const Home: FC<PageProps> = (pageProps) => {
     }
   };
 
-  const productsGrid = (): JSX.Element[] => {
-    const output = [];
-
-    if (products?.length > 0) {
-      for (let index = 0; index < products?.length; index += 2) {
-        output.push(
-          <div key={index}>
-            <ProductTile
-              product={products[index]}
-              onAddToCartClick={() => addProduct(products[index])}
-              onViewClick={setSelectedProductId}
-            />
-            <ProductTile
-              product={products[index + 1]}
-              onAddToCartClick={() => addProduct(products[index + 1])}
-              onViewClick={setSelectedProductId}
-            />
-          </div>
-        );
-      }
-    }
-
-    return output;
-  };
+  //const itemsPerPage = useMediaQuery({ query: "(max-width: 768px)" }) ? 1 : 4;
 
   return (
     <PageLayout {...pageProps}>
@@ -135,8 +117,15 @@ const Home: FC<PageProps> = (pageProps) => {
                     >
                       Previous
                     </button>
-                    <Slider slideTo={currentTabbedSliderPageIndex}>
-                      {productsGrid()}
+                    <Slider
+                      slideTo={currentTabbedSliderPageIndex}
+                      slidesPerView={itemsPerPage ?? 4}
+                    >
+                      {ProductSlides({
+                        products,
+                        onAddProduct: addProduct,
+                        onViewProduct: setSelectedProductId,
+                      })}
                     </Slider>
                     <button
                       type="button"
