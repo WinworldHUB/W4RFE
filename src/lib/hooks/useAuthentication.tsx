@@ -31,7 +31,7 @@ const useAuthentication = (): UseAuthenticationState => {
   const { decodedToken } = useJwt(accessToken);
 
   const isAdmin = useMemo<boolean>(
-    () => decodedToken?.["cognito:groups"][0] === "admin",
+    () => decodedToken?.["cognito:groups"]?.[0] === "admin",
     [decodedToken]
   );
 
@@ -86,8 +86,6 @@ const useAuthentication = (): UseAuthenticationState => {
         setIsUserSignedIn(false);
       });
   };
-
-
 
   const signOutUser = () => {
     signOut()

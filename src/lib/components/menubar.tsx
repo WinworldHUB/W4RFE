@@ -44,15 +44,15 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
               {menuItems.length > 0 && (
                 <ul className="mt-icon-list">
                   <li className="hidden-lg hidden-md">
-                    <a
-                      href="/"
+                    <Link
+                      to=""
                       className="bar-opener mobile-toggle"
                       title="mobile menu"
                     >
                       <span className="bar"></span>
                       <span className="bar small"></span>
                       <span className="bar"></span>
-                    </a>
+                    </Link>
                   </li>
                   <li className="drop">
                     <Link
