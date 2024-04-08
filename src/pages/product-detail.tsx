@@ -69,32 +69,6 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                       selectedVariantIndex={selectedVariantIndex}
                       onVariantSelected={setSelectedVariantIndex}
                     />
-                    {/* <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th className="text-center" style={{ width: "50%" }}>
-                          <h4>Size</h4>
-                        </th>
-                        <th className="text-center">
-                          <h4>Price</h4>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(variants ?? []).map((variant, index) => (
-                        <tr key={index}>
-                          <td className="text-center">
-                            <h5>{variant.size}</h5>
-                          </td>
-                          <td className="text-center">
-                            <h5>
-                              <i className="fa fa-gbp"></i> {variant.price}
-                            </h5>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table> */}
                   </div>
                   <form action="#" className="product-form">
                     <fieldset>

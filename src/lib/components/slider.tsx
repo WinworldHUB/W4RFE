@@ -15,6 +15,7 @@ interface SliderProps {
   isAutoPlay?: boolean;
   isAllowManualSlide?: boolean;
   slidesPerView?: number;
+  onPageChange?: (pageIndex: number) => void;
 }
 
 const Slider: FC<SliderProps> = ({
@@ -27,6 +28,7 @@ const Slider: FC<SliderProps> = ({
   isAutoPlay = true,
   isAllowManualSlide = true,
   slidesPerView = 4,
+  onPageChange,
 }) => {
   const swiperRef = useRef<SwiperClass>();
 
@@ -64,7 +66,7 @@ const Slider: FC<SliderProps> = ({
       onSwiper={(swiper) => {
         swiperRef.current = swiper;
       }}
-      //onSlideChange={() => console.log("slide change")}
+      onSlideChange={() => onPageChange?.(swiperRef.current?.activeIndex)}
       className={className}
     >
       {Children.map(children, (child, index) => (

@@ -11,6 +11,7 @@ import { Product } from "../lib/awsApis";
 import Slider from "../lib/components/slider";
 import ProductTile from "../lib/components/product-tile";
 import Tabs from "../lib/components/tabs";
+import { useMediaQuery } from "react-responsive";
 
 const Products: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
@@ -21,7 +22,11 @@ const Products: FC<PageProps> = (pageProps) => {
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
   const { addProduct } = useContext(CartContext);
-  const totalPages = useMemo(() => products?.length / 4, [products]);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const itemsPerPage = useMemo<number>(() => (isMobile ? 1 : 4), [isMobile]);
+  const totalPages = useMemo(() => products?.length / itemsPerPage, [products]);
+
   const [currentTabbedSliderPageIndex, setCurrentTabbedSliderPageIndex] =
     useState<number>(0);
   const nextPage = () => {
@@ -103,7 +108,7 @@ const Products: FC<PageProps> = (pageProps) => {
         <div className="row">
           <aside
             id="sidebar"
-            className="col-xs-12 col-sm-3 wow fadeInLeft"
+            className="col-xs-12 col-sm-3 wow fadeInLeft d-none"
             data-wow-delay="0.4s"
           >
             <section className="shop-widget filter-widget bg-grey">
@@ -143,7 +148,11 @@ const Products: FC<PageProps> = (pageProps) => {
                   >
                     Previous
                   </button>
-                  <Slider slideTo={currentTabbedSliderPageIndex}>
+                  <Slider
+                    slideTo={currentTabbedSliderPageIndex}
+                    slidesPerView={itemsPerPage ?? 4}
+                    onPageChange={setCurrentTabbedSliderPageIndex}
+                  >
                     {productsGrid()}
                   </Slider>
                   <button

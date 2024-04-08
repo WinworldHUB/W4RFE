@@ -120,6 +120,7 @@ const Home: FC<PageProps> = (pageProps) => {
                     <Slider
                       slideTo={currentTabbedSliderPageIndex}
                       slidesPerView={itemsPerPage ?? 4}
+                      onPageChange={setCurrentTabbedSliderPageIndex}
                     >
                       {ProductSlides({
                         products,
