@@ -76,7 +76,12 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                         <button
                           type="button"
                           className="btn-type1 bg-transparent-with-border bg-dark-on-hover"
-                          onClick={() => addProduct(product)}
+                          onClick={() =>
+                            addProduct({
+                              ...product,
+                              size: variants[selectedVariantIndex].size, // Set the size from the selected variant
+                            })
+                          }
                         >
                           ADD TO CART
                         </button>
