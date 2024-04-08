@@ -205,6 +205,8 @@ export default function ProductUpdateForm(props) {
     otherImages: [],
     size: "",
     available: false,
+    tag: "",
+    brand: "",
   };
   const [id, setId] = React.useState(initialValues.id);
   const [title, setTitle] = React.useState(initialValues.title);
@@ -223,6 +225,8 @@ export default function ProductUpdateForm(props) {
   );
   const [size, setSize] = React.useState(initialValues.size);
   const [available, setAvailable] = React.useState(initialValues.available);
+  const [tag, setTag] = React.useState(initialValues.tag);
+  const [brand, setBrand] = React.useState(initialValues.brand);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = productRecord
@@ -242,6 +246,8 @@ export default function ProductUpdateForm(props) {
     setCurrentOtherImagesValue("");
     setSize(cleanValues.size);
     setAvailable(cleanValues.available);
+    setTag(cleanValues.tag);
+    setBrand(cleanValues.brand);
     setErrors({});
   };
   const [productRecord, setProductRecord] = React.useState(productModelProp);
@@ -277,6 +283,8 @@ export default function ProductUpdateForm(props) {
     otherImages: [],
     size: [],
     available: [],
+    tag: [],
+    brand: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -317,6 +325,8 @@ export default function ProductUpdateForm(props) {
           otherImages: otherImages ?? null,
           size: size ?? null,
           available: available ?? null,
+          tag: tag ?? null,
+          brand: brand ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -390,6 +400,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.id ?? value;
@@ -426,6 +438,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -462,6 +476,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.body ?? value;
@@ -498,6 +514,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.variants ?? value;
@@ -538,6 +556,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.quantity ?? value;
@@ -574,6 +594,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.category ?? value;
@@ -614,6 +636,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.price ?? value;
@@ -650,6 +674,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.taxable ?? value;
@@ -686,6 +712,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.published ?? value;
@@ -722,6 +750,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.featuredImage ?? value;
@@ -754,6 +784,8 @@ export default function ProductUpdateForm(props) {
               otherImages: values,
               size,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             values = result?.otherImages ?? values;
@@ -817,6 +849,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size: value,
               available,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.size ?? value;
@@ -853,6 +887,8 @@ export default function ProductUpdateForm(props) {
               otherImages,
               size,
               available: value,
+              tag,
+              brand,
             };
             const result = onChange(modelFields);
             value = result?.available ?? value;
@@ -867,6 +903,82 @@ export default function ProductUpdateForm(props) {
         hasError={errors.available?.hasError}
         {...getOverrideProps(overrides, "available")}
       ></SwitchField>
+      <TextField
+        label="Tag"
+        isRequired={false}
+        isReadOnly={false}
+        value={tag}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              id,
+              title,
+              body,
+              variants,
+              quantity,
+              category,
+              price,
+              taxable,
+              published,
+              featuredImage,
+              otherImages,
+              size,
+              available,
+              tag: value,
+              brand,
+            };
+            const result = onChange(modelFields);
+            value = result?.tag ?? value;
+          }
+          if (errors.tag?.hasError) {
+            runValidationTasks("tag", value);
+          }
+          setTag(value);
+        }}
+        onBlur={() => runValidationTasks("tag", tag)}
+        errorMessage={errors.tag?.errorMessage}
+        hasError={errors.tag?.hasError}
+        {...getOverrideProps(overrides, "tag")}
+      ></TextField>
+      <TextField
+        label="Brand"
+        isRequired={false}
+        isReadOnly={false}
+        value={brand}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              id,
+              title,
+              body,
+              variants,
+              quantity,
+              category,
+              price,
+              taxable,
+              published,
+              featuredImage,
+              otherImages,
+              size,
+              available,
+              tag,
+              brand: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.brand ?? value;
+          }
+          if (errors.brand?.hasError) {
+            runValidationTasks("brand", value);
+          }
+          setBrand(value);
+        }}
+        onBlur={() => runValidationTasks("brand", brand)}
+        errorMessage={errors.brand?.errorMessage}
+        hasError={errors.brand?.hasError}
+        {...getOverrideProps(overrides, "brand")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

@@ -6,7 +6,7 @@
 
 import * as React from "react";
 import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { Product } from "../../awsApis.ts";
+import { Product } from "../lib/awsApis.ts";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -36,6 +36,8 @@ export declare type ProductUpdateFormInputValues = {
     otherImages?: string[];
     size?: string;
     available?: boolean;
+    tag?: string;
+    brand?: string;
 };
 export declare type ProductUpdateFormValidationValues = {
     id?: ValidationFunction<string>;
@@ -51,6 +53,8 @@ export declare type ProductUpdateFormValidationValues = {
     otherImages?: ValidationFunction<string>;
     size?: ValidationFunction<string>;
     available?: ValidationFunction<boolean>;
+    tag?: ValidationFunction<string>;
+    brand?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProductUpdateFormOverridesProps = {
@@ -68,6 +72,8 @@ export declare type ProductUpdateFormOverridesProps = {
     otherImages?: PrimitiveOverrideProps<TextFieldProps>;
     size?: PrimitiveOverrideProps<TextFieldProps>;
     available?: PrimitiveOverrideProps<SwitchFieldProps>;
+    tag?: PrimitiveOverrideProps<TextFieldProps>;
+    brand?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ProductUpdateFormProps = React.PropsWithChildren<{
     overrides?: ProductUpdateFormOverridesProps | undefined | null;

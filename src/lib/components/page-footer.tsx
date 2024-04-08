@@ -25,7 +25,7 @@ const PageFooter: FC = () => {
               </div>
             </div>
 
-            <div className="col-xs-12 col-sm-3 text-right">
+            <div className="col-xs-12 col-sm-3 text-center text-sm-right">
               <p>
                 ©{" "}
                 <Link to={PageRoutes.Home}>

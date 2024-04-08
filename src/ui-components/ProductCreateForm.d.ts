@@ -34,6 +34,8 @@ export declare type ProductCreateFormInputValues = {
     otherImages?: string[];
     size?: string;
     available?: boolean;
+    tag?: string;
+    brand?: string;
 };
 export declare type ProductCreateFormValidationValues = {
     title?: ValidationFunction<string>;
@@ -48,6 +50,8 @@ export declare type ProductCreateFormValidationValues = {
     otherImages?: ValidationFunction<string>;
     size?: ValidationFunction<string>;
     available?: ValidationFunction<boolean>;
+    tag?: ValidationFunction<string>;
+    brand?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProductCreateFormOverridesProps = {
@@ -64,6 +68,8 @@ export declare type ProductCreateFormOverridesProps = {
     otherImages?: PrimitiveOverrideProps<TextFieldProps>;
     size?: PrimitiveOverrideProps<TextFieldProps>;
     available?: PrimitiveOverrideProps<SwitchFieldProps>;
+    tag?: PrimitiveOverrideProps<TextFieldProps>;
+    brand?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ProductCreateFormProps = React.PropsWithChildren<{
     overrides?: ProductCreateFormOverridesProps | undefined | null;

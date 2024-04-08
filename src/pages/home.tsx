@@ -10,7 +10,7 @@ import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
 import { AppContext } from "../lib/contexts/app-context";
 import { Link, useNavigate } from "react-router-dom";
-import { PageRoutes } from "../lib/constants";
+import { BEST_SELLER, PageRoutes } from "../lib/constants";
 import { CartContext } from "../lib/contexts/cart-context";
 import { Product } from "../lib/awsApis";
 import { useMediaQuery } from "react-responsive";
@@ -30,6 +30,14 @@ const Home: FC<PageProps> = (pageProps) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const itemsPerPage = useMemo<number>(() => (isMobile ? 1 : 4), [isMobile]);
   const totalPages = useMemo(() => products?.length / itemsPerPage, [products]);
+
+  const bestSellers = useMemo(() => {
+    const output = (products ?? []).filter(
+      (product) => product?.tag?.toLowerCase() === BEST_SELLER
+    );
+
+    return output.length > 0 ? output : products;
+  }, [products]);
 
   useEffect(() => {
     setCurrentTabbedSliderPageIndex(0);
@@ -105,14 +113,14 @@ const Home: FC<PageProps> = (pageProps) => {
                 data-wow-delay="0.4s"
               >
                 <Tabs
-                  data={["BULK PRODUCTS"]}
+                  data={["BEST SELLERS"]}
                   activeTabIndex={selectedTabIndex}
                   onChange={setSelectedTabIndex}
                 >
                   <div className="tabs-slider slick-initialized slick-slider">
                     <button
                       type="button"
-                      className="slick-prev slick-arrow d-block"
+                      className="slick-prev slick-arrow d-block icon-arrow-left"
                       onClick={prevPage}
                     >
                       Previous
@@ -123,7 +131,7 @@ const Home: FC<PageProps> = (pageProps) => {
                       onPageChange={setCurrentTabbedSliderPageIndex}
                     >
                       {ProductSlides({
-                        products,
+                        products: bestSellers,
                         onAddProduct: addProduct,
                         onViewProduct: setSelectedProductId,
                       })}

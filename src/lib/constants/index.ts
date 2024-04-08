@@ -14,6 +14,8 @@ export const DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE = "W4R_LS_CART_STATE";
 export const DEFAULT_LOCAL_STORAGE_KEY_FOR_ORDER_STATE = "W4R_LS_ORDER_STATE";
 
 export const GBP_SYMBOL = "£";
+export const DEFAULT_BRAND = "wholesale4resale.com";
+export const BEST_SELLER = "best seller";
 
 export enum PageRoutes {
   Home = "/",
