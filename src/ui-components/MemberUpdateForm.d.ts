@@ -6,7 +6,7 @@
 
 import * as React from "react";
 import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { Member } from "../../awsApis.ts";
+import { Member } from "../lib/awsApis.ts";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -23,6 +23,7 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type MemberUpdateFormInputValues = {
+    id?: string;
     name?: string;
     email?: string;
     phone?: string;
@@ -39,6 +40,7 @@ export declare type MemberUpdateFormInputValues = {
     deliveryAddress2?: string;
 };
 export declare type MemberUpdateFormValidationValues = {
+    id?: ValidationFunction<string>;
     name?: ValidationFunction<string>;
     email?: ValidationFunction<string>;
     phone?: ValidationFunction<string>;
@@ -57,6 +59,7 @@ export declare type MemberUpdateFormValidationValues = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MemberUpdateFormOverridesProps = {
     MemberUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    id?: PrimitiveOverrideProps<TextFieldProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
     email?: PrimitiveOverrideProps<TextFieldProps>;
     phone?: PrimitiveOverrideProps<TextFieldProps>;

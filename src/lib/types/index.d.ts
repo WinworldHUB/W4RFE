@@ -60,8 +60,8 @@ type Packaging = {
   available: boolean;
 };
 
-type SizeFilter = {
-  size: string;
+type ProductFilter = {
+  filter: string;
   count: number;
   productIds: string[];
 };
@@ -77,7 +77,6 @@ interface Credentials {
   email: string;
   password: string;
 }
-
 
 interface SignUpCredentials {
   username: string;

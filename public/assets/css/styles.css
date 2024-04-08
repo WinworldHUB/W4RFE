@@ -1,10 +1,39 @@
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
 .mt-logo-wish {
   width: 112px !important;
+}
+
+.navbar {
+  height: 70px;
+}
+
+#basic-navbar-nav-wrapper {
+  background-color: white;
+}
+
+.cart-sub {
+  background-color: black !important;
+  position: absolute;
+  border-radius: 50px !important;
+  color: white;
+  font-size: x-small;
+  top: 10px;
+  left: 13px;
+  padding: 3px;
+  font-weight: lighter;
 }
 
 .thumbnail-50 {
   width: 50px;
   height: 50px;
+}
+
+.fs-sm {
+  font-size: x-small !important;
 }
 
 .mt-contact-banner {

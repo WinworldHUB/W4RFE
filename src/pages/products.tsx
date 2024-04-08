@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
-import { getAllSizes } from "../lib/utils/product-utils";
+import { getAllBrands, getAllSizes } from "../lib/utils/product-utils";
 import { AppContext } from "../lib/contexts/app-context";
 import { CartContext } from "../lib/contexts/cart-context";
 import { Product } from "../lib/awsApis";
@@ -12,12 +12,13 @@ import Slider from "../lib/components/slider";
 import ProductTile from "../lib/components/product-tile";
 import Tabs from "../lib/components/tabs";
 import { useMediaQuery } from "react-responsive";
+import ProductSlides from "../lib/components/product-slides";
 
 const Products: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
-  const [selectedSizeFilters, setSelectedSizeFilters] = useState<SizeFilter[]>(
-    []
-  );
+  const [selectedSizeFilters, setSelectedSizeFilters] = useState<
+    ProductFilter[]
+  >([]);
   const [selectedProductId, setSelectedProductId] = useState<string>();
   const navigatTo = useNavigate();
   const { appState, updateAppState } = useContext(AppContext);
@@ -52,7 +53,7 @@ const Products: FC<PageProps> = (pageProps) => {
     getProducts(PRODUCTS_APIS.GET_ALL_PRODUCTS_API);
   }, []);
 
-  const sizesFilter = getAllSizes(products ?? []);
+  const sizesFilter = getAllBrands(products ?? []);
 
   useEffect(() => {
     console.log(selectedSizeFilters);
@@ -67,39 +68,14 @@ const Products: FC<PageProps> = (pageProps) => {
     );
   }, [products, selectedSizeFilters]);
 
-  const handleFilterChange = (filter: SizeFilter, applied: boolean) => {
+  const handleFilterChange = (filter: ProductFilter, applied: boolean) => {
     if (applied) {
       setSelectedSizeFilters([...selectedSizeFilters, filter]);
     } else {
       setSelectedSizeFilters(
-        selectedSizeFilters.filter((f) => f.size !== filter.size)
+        selectedSizeFilters.filter((f) => f.filter !== filter.filter)
       );
     }
-  };
-
-  const productsGrid = (): JSX.Element[] => {
-    const output = [];
-
-    if (products?.length > 0) {
-      for (let index = 0; index < products?.length; index += 2) {
-        output.push(
-          <div key={index}>
-            <ProductTile
-              product={products[index]}
-              onAddToCartClick={() => addProduct(products[index])}
-              onViewClick={setSelectedProductId}
-            />
-            <ProductTile
-              product={products[index + 1]}
-              onAddToCartClick={() => addProduct(products[index + 1])}
-              onViewClick={setSelectedProductId}
-            />
-          </div>
-        );
-      }
-    }
-
-    return output;
   };
 
   return (
@@ -131,7 +107,7 @@ const Products: FC<PageProps> = (pageProps) => {
                         }
                       />
                       <span className="fake-input"></span>
-                      <span className="fake-label">{sizeFilter.size}</span>
+                      <span className="fake-label">{sizeFilter.filter}</span>
                     </label>
                     <span className="num">{sizeFilter.count}</span>
                   </li>
@@ -155,7 +131,12 @@ const Products: FC<PageProps> = (pageProps) => {
                     slidesPerView={itemsPerPage ?? 4}
                     onPageChange={setCurrentTabbedSliderPageIndex}
                   >
-                    {productsGrid()}
+                    {/* {productsGrid()} */}
+                    {ProductSlides({
+                      products: filteredProducts,
+                      onAddProduct: addProduct,
+                      onViewProduct: setSelectedProductId,
+                    })}
                   </Slider>
                   <button
                     type="button"
@@ -168,22 +149,6 @@ const Products: FC<PageProps> = (pageProps) => {
               </Tabs>
             </div>
           </div>
-          {/* <div
-            className="col-xs-12 col-sm-8 col-md-9 wow fadeInRight"
-            data-wow-delay="0.4s"
-          >
-            <ul className="mt-productlisthold list-inline">
-              {(filteredProducts ?? []).map((product) => (
-                <li>
-                  <ProductTileLarge
-                    product={product}
-                    onAddToCartClick={() => addProduct(product)}
-                    onViewClick={setSelectedProductId}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div> */}
         </div>
       </div>
     </PageLayout>

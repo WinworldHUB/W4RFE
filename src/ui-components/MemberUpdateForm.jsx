@@ -31,6 +31,7 @@ export default function MemberUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    id: "",
     name: "",
     email: "",
     phone: "",
@@ -46,6 +47,7 @@ export default function MemberUpdateForm(props) {
     deliveryAddress1: "",
     deliveryAddress2: "",
   };
+  const [id, setId] = React.useState(initialValues.id);
   const [name, setName] = React.useState(initialValues.name);
   const [email, setEmail] = React.useState(initialValues.email);
   const [phone, setPhone] = React.useState(initialValues.phone);
@@ -73,6 +75,7 @@ export default function MemberUpdateForm(props) {
     const cleanValues = memberRecord
       ? { ...initialValues, ...memberRecord }
       : initialValues;
+    setId(cleanValues.id);
     setName(cleanValues.name);
     setEmail(cleanValues.email);
     setPhone(cleanValues.phone);
@@ -106,6 +109,7 @@ export default function MemberUpdateForm(props) {
   }, [idProp, memberModelProp]);
   React.useEffect(resetStateValues, [memberRecord]);
   const validations = {
+    id: [{ type: "Required" }],
     name: [{ type: "Required" }],
     email: [{ type: "Required" }],
     phone: [],
@@ -147,6 +151,7 @@ export default function MemberUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          id,
           name,
           email,
           phone: phone ?? null,
@@ -213,6 +218,44 @@ export default function MemberUpdateForm(props) {
       {...rest}
     >
       <TextField
+        label="Id"
+        isRequired={true}
+        isReadOnly={true}
+        value={id}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              id: value,
+              name,
+              email,
+              phone,
+              active,
+              province,
+              city,
+              zip,
+              country,
+              address1,
+              address2,
+              deliveryPerson,
+              deliveryEmail,
+              deliveryAddress1,
+              deliveryAddress2,
+            };
+            const result = onChange(modelFields);
+            value = result?.id ?? value;
+          }
+          if (errors.id?.hasError) {
+            runValidationTasks("id", value);
+          }
+          setId(value);
+        }}
+        onBlur={() => runValidationTasks("id", id)}
+        errorMessage={errors.id?.errorMessage}
+        hasError={errors.id?.hasError}
+        {...getOverrideProps(overrides, "id")}
+      ></TextField>
+      <TextField
         label="Name"
         isRequired={true}
         isReadOnly={false}
@@ -221,6 +264,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name: value,
               email,
               phone,
@@ -258,6 +302,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email: value,
               phone,
@@ -295,6 +340,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone: value,
@@ -332,6 +378,7 @@ export default function MemberUpdateForm(props) {
           let value = e.target.checked;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -369,6 +416,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -406,6 +454,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -443,6 +492,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -480,6 +530,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -517,6 +568,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -554,6 +606,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -591,6 +644,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -628,6 +682,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -665,6 +720,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
@@ -702,6 +758,7 @@ export default function MemberUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              id,
               name,
               email,
               phone,
