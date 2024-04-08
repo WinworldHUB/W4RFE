@@ -35,9 +35,15 @@ export const getAllSizes = (products: Product[]): SizeFilter[] => {
 };
 
 export const getBestSellers = (products: Product[]): Product[] => {
+  if (!products) {
+    return [];
+  }
   return products.filter((product) => product.tag === "Best Seller");
 };
 
 export const getProductBrands = (products: Product[]): string[] => {
+  if (!products) {
+    return [];
+  }
   return products.map((product) => product.brand);
 };
