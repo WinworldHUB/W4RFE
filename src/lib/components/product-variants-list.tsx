@@ -21,7 +21,7 @@ const ProductVariantsList: FC<ProductVariantsListProps> = ({
             className={`m-1 btn-type1 ${
               selectedVariantIndex === index
                 ? "bg-dark"
-                : "bg-light bg-dark-on-hover"
+                : "bg-light bg-dark-on-hover text-muted"
             }`}
             onClick={() => onVariantSelected(index)}
           >
