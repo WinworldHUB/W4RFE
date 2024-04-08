@@ -40,6 +40,12 @@
   justify-content: space-between;
 }
 
+.bg-transparent-with-border {
+  border: 2px solid black !important;
+  background-color: transparent !important;
+  color: black !important;
+}
+
 .bg-light {
   background-color: #edede9 !important;
   color: black !important;
@@ -53,6 +59,11 @@
 .bg-light-on-hover:hover {
   background-color: #edede9 !important;
   color: black !important;
+}
+
+.bg-dark-on-hover:hover {
+  background-color: black !important;
+  color: white !important;
 }
 
 .bg-orange-on-hover:hover {
@@ -72,6 +83,14 @@
 
 .p-2 {
   padding: 10px !important;
+}
+
+.pt-1 {
+  padding-top: 5px !important;
+}
+
+.m-1 {
+  margin: 5px !important;
 }
 
 .w-200 {
