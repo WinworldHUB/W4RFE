@@ -33,3 +33,12 @@ export const getAllSizes = (products: Product[]): SizeFilter[] => {
 
   return sizeFilters;
 };
+
+export const getBestSellers = (products: Product[]): Product[] => {
+  return products.filter(product => product.tag === "Best Seller");
+};
+
+
+export const getProductBrands = (products: Product[]): string[] => {
+  return uniq(products.map(product => product.brand));
+};
