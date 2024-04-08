@@ -108,7 +108,9 @@ const Products: FC<PageProps> = (pageProps) => {
         <div className="row">
           <aside
             id="sidebar"
-            className="col-xs-12 col-sm-3 wow fadeInLeft d-none"
+            className={`col-xs-12 col-sm-3 wow fadeInLeft ${
+              isMobile && "d-none"
+            }`}
             data-wow-delay="0.4s"
           >
             <section className="shop-widget filter-widget bg-grey">
