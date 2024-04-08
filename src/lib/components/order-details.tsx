@@ -93,6 +93,12 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
                 <strong>{deliveryDetails.memberPhone ?? ""}</strong>
               </p>
             </div>
+            <div className="col-xs-2">Instagram:</div>
+            <div className="col-xs-10">
+              <p>
+                <strong>{deliveryDetails.instagramHandle ?? ""}</strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
