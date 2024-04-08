@@ -98,6 +98,7 @@ const Cart: FC<PageProps> = (pageProps) => {
         memberEmail: appState.member["email"] ?? EMPTY_STRING,
         memberPhone: appState.member["phone"] ?? EMPTY_STRING,
         deliverTo: appState.member["name"] ?? EMPTY_STRING,
+        instagramHandle: appState.member["instagramHandle"] ?? EMPTY_STRING,
       });
     }
   }, [appState?.member]);
@@ -358,6 +359,20 @@ const Cart: FC<PageProps> = (pageProps) => {
                           setDeliveryDetails({
                             ...deliveryDetails,
                             deliverTo: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Your Instagram handle"
+                        value={deliveryDetails.instagramHandle}
+                        onChange={(e) =>
+                          setDeliveryDetails({
+                            ...deliveryDetails,
+                            instagramHandle: e.target.value,
                           })
                         }
                       />

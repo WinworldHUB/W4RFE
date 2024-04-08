@@ -72,6 +72,7 @@ type OrderDeliveryDetails = {
   memberEmail: string;
   deliverTo: string;
   deliverAt: string;
+  instagramHandle: string;
 };
 interface Credentials {
   email: string;

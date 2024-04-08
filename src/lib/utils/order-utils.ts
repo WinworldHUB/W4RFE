@@ -65,13 +65,14 @@ export const trimOrder = (order: Order, isTrimId: boolean = false): unknown => {
   };
 };
 
-export const getDeliveryDetails = (order: OrderVM): OrderDeliveryDetails => {
+export const getDeliveryDetails = (order: OrderVM, instagramHandle:string): OrderDeliveryDetails => {
   return {
     memberName: order.member?.name ?? EMPTY_STRING,
     memberPhone: order.member?.phone ?? EMPTY_STRING,
     memberEmail: order.member?.email ?? EMPTY_STRING,
     deliverAt: order.member?.deliveryAddress1 ?? EMPTY_STRING,
     deliverTo: order.member?.deliveryPerson ?? order.member?.name,
+    instagramHandle: instagramHandle,
   };
 };
 

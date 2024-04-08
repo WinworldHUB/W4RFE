@@ -136,4 +136,5 @@ export const EMPTY_DELIVERY_DETAILS: OrderDeliveryDetails = {
   deliverTo: EMPTY_STRING,
   memberEmail: EMPTY_STRING,
   memberPhone: EMPTY_STRING,
+  instagramHandle: EMPTY_STRING,
 };
