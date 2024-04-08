@@ -25,7 +25,7 @@ const Tabs: FC<TabsProps> = ({ data, activeTabIndex, onChange, children }) => {
             <Link
               to=""
               onClick={() => onChange(index)}
-              className={index === activeTabIndex ? "active" : ""}
+              className={index === activeTabIndex ? "active fs-6" : "fs-6"}
             >
               {tab}
             </Link>

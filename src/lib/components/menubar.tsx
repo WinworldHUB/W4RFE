@@ -38,32 +38,37 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
             alt="Wholesale4Resale"
           />
         </Navbar.Brand>
-
+        {isAdmin && <p className="text-light">&nbsp;Admin</p>}
         <Navbar.Toggle aria-controls="basic-navbar-nav bar-opener">
           <i className="icon-menu"></i>
         </Navbar.Toggle>
-        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Nav className="">
-            {(menuItems ?? []).map((item) => (
-              <Nav.Link href={item.route}>{item.label}</Nav.Link>
-            ))}
-            <Nav.Link href={PageRoutes.Cart}>
-              <h5 className="position-relative">
-                <i className="icon-handbag"></i>
-                <sub className="badge cart-sub">{products.length}</sub>
-              </h5>
-            </Nav.Link>
-            <Nav.Link
-              eventKey={2}
-              href={PageRoutes.Login}
-              onClick={handleSignOutClick}
-            >
-              <h5>
-                <span className="icon-power"></span>
-              </h5>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
+        {menuItems.length > 0 && (
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className={`justify-content-end`}
+          >
+            <Nav className="">
+              {(menuItems ?? []).map((item) => (
+                <Nav.Link href={item.route}>{item.label}</Nav.Link>
+              ))}
+              <Nav.Link href={PageRoutes.Cart}>
+                <h5 className="position-relative">
+                  <i className="icon-handbag"></i>
+                  <sub className="badge cart-sub">{products.length}</sub>
+                </h5>
+              </Nav.Link>
+              <Nav.Link
+                eventKey={2}
+                href={PageRoutes.Login}
+                onClick={handleSignOutClick}
+              >
+                <h5>
+                  <span className="icon-power"></span>
+                </h5>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        )}
       </Container>
     </Navbar>
     // <header id="mt-header" className="style4 shadow fixed navbar-expand-sm">

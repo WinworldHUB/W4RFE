@@ -13,6 +13,7 @@ import ProductTile from "../lib/components/product-tile";
 import Tabs from "../lib/components/tabs";
 import { useMediaQuery } from "react-responsive";
 import ProductSlides from "../lib/components/product-slides";
+import { Container } from "react-bootstrap";
 
 const Products: FC<PageProps> = (pageProps) => {
   const { data: products, getData: getProducts } = useApi<Product[]>();
@@ -68,8 +69,14 @@ const Products: FC<PageProps> = (pageProps) => {
     );
   }, [products, selectedSizeFilters]);
 
-  const handleFilterChange = (filter: ProductFilter, applied: boolean) => {
-    if (applied) {
+  const handleFilterChange = (
+    filter: ProductFilter,
+    applied: boolean,
+    isShowAll: boolean = false
+  ) => {
+    if (isShowAll) {
+      setSelectedSizeFilters([]);
+    } else if (applied) {
       setSelectedSizeFilters([...selectedSizeFilters, filter]);
     } else {
       setSelectedSizeFilters(
@@ -82,6 +89,32 @@ const Products: FC<PageProps> = (pageProps) => {
     <PageLayout {...pageProps}>
       <div className="container-wish">
         <div className="row">
+          <div className="col-xs-12 d-sm-none d-xs-block pt-2 bg-light">
+            <Container>
+              <h2>FILTER</h2>
+              <select
+                className="form-control"
+                title="Filter by brand"
+                onChange={(e) =>
+                  handleFilterChange(
+                    sizesFilter?.[
+                      e.target.selectedIndex > 0
+                        ? e.target.selectedIndex - 1
+                        : e.target.selectedIndex
+                    ],
+                    true,
+                    e.target.selectedIndex === 0
+                  )
+                }
+              >
+                <option>All</option>
+                {(sizesFilter ?? []).map((sizeFilter, index) => (
+                  <option>{sizeFilter.filter}</option>
+                ))}
+              </select>
+              <hr className="border-0" />
+            </Container>
+          </div>
           <aside
             id="sidebar"
             className={`col-xs-12 col-sm-3 wow fadeInLeft ${

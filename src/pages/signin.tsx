@@ -49,103 +49,102 @@ const SignIn: FC<PageProps> = (pageProps) => {
   return (
     <PageLayout {...pageProps}>
       {!isUserSignedIn && (
-        <section className="mt-detail-sec toppadding-zero paddingbootom-md">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-sm-8 col-sm-push-2">
-                <div className="holder m-0">
-                  <div className="mt-side-widget">
-                    <header>
-                      <h2>SIGN IN</h2>
-                      <p>Welcome back! Sign in to Your Account</p>
-                    </header>
-                    <form action="#">
-                      <fieldset>
-                        <input
-                          type="text"
-                          placeholder="Email address"
-                          className="input"
-                          value={credentials.email}
-                          onChange={(e) =>
-                            setCredentials({
-                              ...credentials,
-                              email: e.target.value,
-                            })
-                          }
-                        />
-                        <input
-                          type="password"
-                          placeholder="Password"
-                          className="input"
-                          value={credentials.password}
-                          onChange={(e) =>
-                            setCredentials({
-                              ...credentials,
-                              password: e.target.value,
-                            })
-                          }
-                        />
-                        <div className="box text-center">
-                          <button
-                            type="button"
-                            className="btn-type1"
-                            onClick={() => {
-                              signInUser(credentials);
-                            }}
-                          >
-                            Login
-                          </button>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-danger">
-                            {loginError ?? ""}
-                          </span>
-                        </div>
-                      </fieldset>
-                    </form>
-                  </div>
+        <div className="container mt-3">
+          <div className="row">
+            <div className="col-sm-3 col-xs-1"></div>
+            <div className="col align-self-center bg-light">
+              <div className="holder m-0">
+                <div className="mt-side-widget">
+                  <header>
+                    <h2>SIGN IN</h2>
+                    <p>Welcome back! Sign in to Your Account</p>
+                  </header>
+                  <form action="#">
+                    <fieldset>
+                      <input
+                        type="text"
+                        placeholder="Email address"
+                        className="input"
+                        value={credentials.email}
+                        onChange={(e) =>
+                          setCredentials({
+                            ...credentials,
+                            email: e.target.value,
+                          })
+                        }
+                      />
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        className="input"
+                        value={credentials.password}
+                        onChange={(e) =>
+                          setCredentials({
+                            ...credentials,
+                            password: e.target.value,
+                          })
+                        }
+                      />
+                      <div className="box text-center">
+                        <button
+                          type="button"
+                          className="btn-type1"
+                          onClick={() => {
+                            signInUser(credentials);
+                          }}
+                        >
+                          Login
+                        </button>
+                      </div>
+                      <div className="text-center">
+                        <span className="text-danger">{loginError ?? ""}</span>
+                      </div>
+                    </fieldset>
+                  </form>
                 </div>
               </div>
             </div>
+            <div className="col-sm-3 col-xs-1"></div>
           </div>
-        </section>
+        </div>
       )}
       {isUserSignedIn && (
-        <section className="mt-detail-sec toppadding-zero paddingbootom-md">
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-sm-8 col-sm-push-2">
-                <div className="holder m-0">
-                  <div className="mt-side-widget">
-                    <header>
-                      <h2>SIGN OUT</h2>
-                      <p>
-                        You are currently signed in. To sign-out use the button
-                        below
-                      </p>
-                    </header>
-                    <form action="#">
-                      <fieldset>
-                        <div className="box text-center">
-                          <button
-                            type="button"
-                            className="btn-type1"
-                            onClick={() => {
-                              signOutUser();
-                            }}
-                          >
-                            Sign-out
-                          </button>
-                        </div>
-                      </fieldset>
-                    </form>
-                  </div>
+        <div className="container mt-3">
+          <div className="row">
+            <div className="col-sm-3 col-xs-1"></div>
+            <div className="col align-self-center bg-light">
+              <div className="holder m-0">
+                <div className="mt-side-widget">
+                  <header>
+                    <h2>SIGN OUT</h2>
+                    <p>
+                      You are currently signed in. To sign-out use the button
+                      below
+                    </p>
+                  </header>
+                  <form action="#">
+                    <fieldset>
+                      <div className="box text-center">
+                        <button
+                          type="button"
+                          className="btn-type1"
+                          onClick={() => {
+                            signOutUser();
+                          }}
+                        >
+                          Sign-out
+                        </button>
+                      </div>
+                    </fieldset>
+                  </form>
                 </div>
               </div>
             </div>
+            <div className="col-sm-3 col-xs-1"></div>
           </div>
-        </section>
+        </div>
       )}
+      <hr className="border-0" />
     </PageLayout>
   );
 };
