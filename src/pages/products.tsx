@@ -1,10 +1,14 @@
 import { FC, useContext, useEffect, useMemo, useState } from "react";
 import PageLayout from "../lib/components/page-layout";
 import { useNavigate } from "react-router-dom";
-import { PageRoutes } from "../lib/constants";
+import { BEST_SELLER, PageRoutes } from "../lib/constants";
 import useApi from "../lib/hooks/useApi";
 import { PRODUCTS_APIS } from "../lib/constants/api-constants";
-import { getAllBrands, getAllSizes } from "../lib/utils/product-utils";
+import {
+  getAllBrands,
+  getAllSizes,
+  getBestSellersFilter,
+} from "../lib/utils/product-utils";
 import { AppContext } from "../lib/contexts/app-context";
 import { CartContext } from "../lib/contexts/cart-context";
 import { Product } from "../lib/awsApis";
@@ -27,7 +31,10 @@ const Products: FC<PageProps> = (pageProps) => {
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const itemsPerPage = useMemo<number>(() => (isMobile ? 1 : 4), [isMobile]);
-  const totalPages = useMemo(() => products?.length / itemsPerPage, [products]);
+  const totalPages = useMemo(
+    () => products?.length / (itemsPerPage > 1 ? 2 : itemsPerPage),
+    [products]
+  );
 
   const [currentTabbedSliderPageIndex, setCurrentTabbedSliderPageIndex] =
     useState<number>(0);
@@ -55,10 +62,6 @@ const Products: FC<PageProps> = (pageProps) => {
   }, []);
 
   const sizesFilter = getAllBrands(products ?? []);
-
-  useEffect(() => {
-    console.log(selectedSizeFilters);
-  }, [selectedSizeFilters]);
 
   const filteredProducts = useMemo(() => {
     if (selectedSizeFilters.length === 0) {
@@ -89,7 +92,7 @@ const Products: FC<PageProps> = (pageProps) => {
     <PageLayout {...pageProps}>
       <div className="container-wish">
         <div className="row">
-          <div className="col-xs-12 d-sm-none d-xs-block pt-2 bg-light">
+          <div className="col-xs-12 d-block d-sm-none pt-2 bg-light">
             <Container>
               <h2>FILTER</h2>
               <select
@@ -97,17 +100,12 @@ const Products: FC<PageProps> = (pageProps) => {
                 title="Filter by brand"
                 onChange={(e) =>
                   handleFilterChange(
-                    sizesFilter?.[
-                      e.target.selectedIndex > 0
-                        ? e.target.selectedIndex - 1
-                        : e.target.selectedIndex
-                    ],
+                    sizesFilter?.[e.target.selectedIndex],
                     true,
                     e.target.selectedIndex === 0
                   )
                 }
               >
-                <option>All</option>
                 {(sizesFilter ?? []).map((sizeFilter, index) => (
                   <option>{sizeFilter.filter}</option>
                 ))}
@@ -124,27 +122,31 @@ const Products: FC<PageProps> = (pageProps) => {
           >
             <section className="shop-widget filter-widget bg-grey">
               <h2>FILTER</h2>
-              <span className="sub-title">Filter by available size</span>
               <ul className="list-unstyled nice-form">
-                {(sizesFilter ?? []).map((sizeFilter, index) => (
-                  <li key={`sizeFilter-${index}`}>
-                    <label
-                      htmlFor={`sizeFilter-${index}`}
-                      key={`sizeFilter-${index}`}
-                    >
-                      <input
-                        id={`sizeFilter-${index}`}
-                        type="checkbox"
-                        onChange={(e) =>
-                          handleFilterChange(sizeFilter, e.target.checked)
-                        }
-                      />
-                      <span className="fake-input"></span>
-                      <span className="fake-label">{sizeFilter.filter}</span>
-                    </label>
-                    <span className="num">{sizeFilter.count}</span>
-                  </li>
-                ))}
+                {(sizesFilter ?? []).map(
+                  (sizeFilter, index) =>
+                    sizeFilter.count > 0 && (
+                      <li key={`sizeFilter-${index}`}>
+                        <label
+                          htmlFor={`sizeFilter-${index}`}
+                          key={`sizeFilter-${index}`}
+                        >
+                          <input
+                            id={`sizeFilter-${index}`}
+                            type="checkbox"
+                            onChange={(e) =>
+                              handleFilterChange(sizeFilter, e.target.checked)
+                            }
+                          />
+                          <span className="fake-input"></span>
+                          <span className="fake-label">
+                            {sizeFilter.filter}
+                          </span>
+                        </label>
+                        <span className="num">{sizeFilter.count}</span>
+                      </li>
+                    )
+                )}
               </ul>
             </section>
           </aside>
@@ -162,7 +164,10 @@ const Products: FC<PageProps> = (pageProps) => {
                   <Slider
                     slideTo={currentTabbedSliderPageIndex}
                     slidesPerView={itemsPerPage ?? 4}
-                    onPageChange={setCurrentTabbedSliderPageIndex}
+                    onPageChange={(pageIndex) => {
+                      console.log(pageIndex);
+                      setCurrentTabbedSliderPageIndex(pageIndex);
+                    }}
                   >
                     {/* {productsGrid()} */}
                     {ProductSlides({

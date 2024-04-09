@@ -3,16 +3,13 @@ import PageLayout from "../lib/components/page-layout";
 import useAuthentication from "../lib/hooks/useAuthentication";
 import useApi from "../lib/hooks/useApi";
 import { MEMBERS_APIS } from "../lib/constants/api-constants";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PageRoutes } from "../lib/constants";
 
 const SignUp: FC<PageProps> = (pageProps) => {
   const navigate = useNavigate();
   const { postData: postCredentials } = useApi();
-  const {
-    error: loginError,
-    isUserSignedIn,
-  } = useAuthentication();
+  const { error: loginError, isUserSignedIn } = useAuthentication();
   const [credentials, setCredentials] = useState<SignUpCredentials>({
     username: "",
     confirmationCode: "",
@@ -20,10 +17,8 @@ const SignUp: FC<PageProps> = (pageProps) => {
 
   const handleSubmit = async (credentials: SignUpCredentials) => {
     try {
-      console.log("credentials", credentials);
       const data = await postCredentials(MEMBERS_APIS.SIGN_UP_API, credentials);
       if (data) {
-        console.log("data", data);
         navigate(PageRoutes.Login);
       }
     } catch (error) {

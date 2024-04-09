@@ -1,6 +1,6 @@
 import { forEach, countBy, uniq, filter, map } from "lodash";
 import { Product } from "../awsApis";
-import { DEFAULT_BRAND } from "../constants";
+import { BEST_SELLER, DEFAULT_BRAND } from "../constants";
 
 export const getAllSizes = (products: Product[]): ProductFilter[] => {
   const output: string[] = [];
@@ -45,7 +45,10 @@ export const getAllBrands = (products: Product[]): ProductFilter[] => {
       { filter: DEFAULT_BRAND, count: 0, productIds: [] },
     ] as ProductFilter[];
 
-  const brandFilters: ProductFilter[] = [];
+  const brandFilters: ProductFilter[] = [
+    getAllFilter(products),
+    getBestSellersFilter(products),
+  ];
   forEach(output, (brand: string) => {
     brandFilters.push({
       filter: brand,
@@ -63,12 +66,24 @@ export const getAllBrands = (products: Product[]): ProductFilter[] => {
     } as ProductFilter);
   });
 
-  console.log(
-    filter(
-      products,
-      (product: Product) => (product.brand ?? DEFAULT_BRAND) === DEFAULT_BRAND
-    )
-  );
-
   return brandFilters;
+};
+
+export const getBestSellersFilter = (products: Product[]): ProductFilter => {
+  const bestSellers = (products ?? []).filter(
+    (product) => product.tag.toLowerCase() === BEST_SELLER
+  );
+  return {
+    count: bestSellers.length,
+    filter: "Best Sellers",
+    productIds: map(bestSellers, "id"),
+  };
+};
+
+export const getAllFilter = (products: Product[]): ProductFilter => {
+  return {
+    count: products?.length,
+    filter: "All",
+    productIds: map(products ?? [], "id"),
+  };
 };

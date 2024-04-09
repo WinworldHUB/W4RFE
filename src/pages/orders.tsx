@@ -32,7 +32,6 @@ const Orders: FC<PageProps> = (pageProps) => {
             <OrdersDataTable
               data={orders}
               onRowClicked={(order: Order) => {
-                console.log(order);
                 setIsShowModal(true);
                 setSelectedOrder(order);
               }}
@@ -62,12 +61,6 @@ const Orders: FC<PageProps> = (pageProps) => {
           </Button>
         </ModalFooter>
       </Modal>
-      {/* {isShowModal && (
-        
-        // <ModalDialog onClose={() => setIsShowModal(false)}>
-        //   {selectedOrder && <OrderDetails order={selectedOrder} />}
-        // </ModalDialog>
-      )} */}
     </PageLayout>
   );
 };

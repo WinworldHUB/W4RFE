@@ -22,13 +22,14 @@ const ProductSlides = ({
       output.push(
         <div key={index}>
           {getArrayFromTo(index, index + (productsPerSlide - 1)).map(
-            (pIndex) => (
-              <ProductTile
-                product={products[pIndex]}
-                onAddToCartClick={() => onAddProduct(products[pIndex])}
-                onViewClick={onViewProduct}
-              />
-            )
+            (pIndex) =>
+              products[pIndex] && (
+                <ProductTile
+                  product={products[pIndex]}
+                  onAddToCartClick={() => onAddProduct(products[pIndex])}
+                  onViewClick={onViewProduct}
+                />
+              )
           )}
         </div>
       );

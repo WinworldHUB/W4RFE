@@ -37,7 +37,6 @@ const useCart = (): CartState => {
       const updatedProductsList = products.map((product, index) =>
         index === productIndex ? updatedProduct : product
       ) as Product[];
-      console.log(updatedProduct, updatedProductsList);
       setProducts(updatedProductsList);
       saveCartState(
         DEFAULT_LOCAL_STORAGE_KEY_FOR_CART_STATE,

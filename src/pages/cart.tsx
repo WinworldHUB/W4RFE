@@ -21,6 +21,9 @@ import {
   isDeliveryDetailsValid,
   trimOrder,
 } from "../lib/utils/order-utils";
+import { Alert, Card, CardHeader } from "react-bootstrap";
+import { useMediaQuery } from "react-responsive";
+import ProductMobileTile from "../lib/components/product-mobile-tile";
 
 const PAGE_TITLES = [
   {
@@ -55,6 +58,8 @@ const Cart: FC<PageProps> = (pageProps) => {
   const { appState } = useContext(AppContext);
   const [isTermsAgreed, setIsTermsAgreed] = useState<boolean>(false);
   const [isOrderCreated, setIsOrderCreated] = useState<boolean>(false);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [deliveryDetails, setDeliveryDetails] = useState<OrderDeliveryDetails>(
@@ -263,10 +268,10 @@ const Cart: FC<PageProps> = (pageProps) => {
               <div className="col-xs-12">
                 <form action="#" className="bill-detail w-100p">
                   <h2>{PAGE_TITLES[currentPageIndex].title}</h2>
-                  <h5>
+                  <Alert>
                     Receive your bulk order directly from our suppliers via 2
                     different shipping methods
-                  </h5>
+                  </Alert>
                   <p>
                     <strong>Select Packaging type</strong>
                   </p>
@@ -396,93 +401,88 @@ const Cart: FC<PageProps> = (pageProps) => {
               </div>
               <div className="col-xs-12">
                 <h2>{PAGE_TITLES[currentPageIndex].title}</h2>
-                <div className="mt-product-table">
-                  <div className="container">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>&nbsp;</th>
-                          <th>Product</th>
-                          <th>Size</th>
-                          <th>Quantity</th>
-                          <th>Remove</th>
+                <table className="table d-sm-block d-none">
+                  <thead>
+                    <tr>
+                      <th>&nbsp;</th>
+                      <th>Product</th>
+                      <th>Size</th>
+                      <th>Quantity</th>
+                      <th>Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(products ?? []).map((product, pIndex) => {
+                      const productVariants =
+                        typeof product?.variants === "string"
+                          ? (JSON.parse(product.variants) as ProductVariant[])
+                          : (product?.variants as ProductVariant[]);
+                      return (
+                        <tr key={product?.id}>
+                          <td className="">
+                            <img
+                              className="thumbnail-50"
+                              src={product?.featuredImage}
+                              alt={product?.title}
+                            />
+                          </td>
+                          <td className="" width={"50%"}>
+                            {product?.title}
+                          </td>
+                          <td className="" width={"20%"}>
+                            <select
+                              className="form-control"
+                              title="Product size"
+                              value={product?.size}
+                              onChange={(e) =>
+                                handleSizeUpdate(pIndex, e.target.selectedIndex)
+                              }
+                            >
+                              {(productVariants ?? []).map((variant) => (
+                                <option value={variant.size} key={variant.size}>
+                                  {variant.size} (£{variant.price})
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                          <td className="" width={"20%"}>
+                            <select
+                              className="form-control"
+                              title="Product quantity"
+                              value={product?.quantity}
+                              onChange={(e) =>
+                                handleQauantityUpdate(
+                                  pIndex,
+                                  parseInt(e.target.value)
+                                )
+                              }
+                            >
+                              {getArrayFromTo(1, 12).map((quantity) => (
+                                <option key={quantity} value={quantity}>
+                                  {quantity}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                          <td className="text-center">
+                            <Link
+                              to=""
+                              className="text-danger"
+                              title="Remove product"
+                              onClick={() => removeProduct(pIndex)}
+                            >
+                              <i className="fa fa-times"></i>
+                            </Link>
+                          </td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {(products ?? []).map((product, pIndex) => {
-                          const productVariants =
-                            typeof product?.variants === "string"
-                              ? (JSON.parse(
-                                  product.variants
-                                ) as ProductVariant[])
-                              : (product?.variants as ProductVariant[]);
-                          return (
-                            <tr key={product?.id}>
-                              <td className="cell">
-                                <img
-                                  className="thumbnail-50"
-                                  src={product?.featuredImage}
-                                  alt={product?.title}
-                                />
-                              </td>
-                              <td className="cell w-50">{product?.title}</td>
-                              <td className="cell">
-                                <select
-                                  className="form-control"
-                                  title="Product size"
-                                  value={product?.size}
-                                  onChange={(e) =>
-                                    handleSizeUpdate(
-                                      pIndex,
-                                      e.target.selectedIndex
-                                    )
-                                  }
-                                >
-                                  {(productVariants ?? []).map((variant) => (
-                                    <option
-                                      value={variant.size}
-                                      key={variant.size}
-                                    >
-                                      {variant.size} (£{variant.price})
-                                    </option>
-                                  ))}
-                                </select>
-                              </td>
-                              <td className="cell">
-                                <select
-                                  className="form-control"
-                                  title="Product quantity"
-                                  value={product?.quantity}
-                                  onChange={(e) =>
-                                    handleQauantityUpdate(
-                                      pIndex,
-                                      parseInt(e.target.value)
-                                    )
-                                  }
-                                >
-                                  {getArrayFromTo(1, 12).map((quantity) => (
-                                    <option key={quantity} value={quantity}>
-                                      {quantity}
-                                    </option>
-                                  ))}
-                                </select>
-                              </td>
-                              <td className="cell text-center">
-                                <Link
-                                  to=""
-                                  className="text-danger"
-                                  title="Remove product"
-                                  onClick={() => removeProduct(pIndex)}
-                                >
-                                  <i className="fa fa-times"></i>
-                                </Link>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <div className="d-block d-sm-none">
+                  {(products ?? []).map((product) => (
+                    <ProductMobileTile product={product} />
+                  ))}
                 </div>
               </div>
               <div className="col-xs-12">

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import Slider from "../slider";
 
 interface BestSellersProps {
@@ -8,10 +8,6 @@ interface BestSellersProps {
 
 const BestSellers: FC<BestSellersProps> = ({ title, subTitle }) => {
   const [pageIndex, setPageIndex] = useState<number>(0);
-
-  useEffect(() => {
-    console.log(pageIndex);
-  }, [pageIndex]);
 
   return (
     <div
