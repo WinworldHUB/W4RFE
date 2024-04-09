@@ -26,22 +26,28 @@ const columns: TableColumn<Product>[] = [
   {
     name: "Title",
     selector: (row) => row.title,
+    maxWidth: "50%",
+    wrap: true,
   },
   {
-    maxWidth: "70px",
+    maxWidth: "10%",
     name: "Size",
+    center: true,
     selector: (row) => row.size,
   },
   {
-    maxWidth: "70px",
+    maxWidth: "15%",
     name: "Quantity",
+    center: true,
     selector: (row) => row.quantity,
   },
 
   {
-    maxWidth: "100px",
+    maxWidth: "20%",
     name: "Price",
-    selector: (row) => row?.price ? `${GBP_SYMBOL} ${formatCurrency(row.price.toString())}` : 0,
+    right: true,
+    selector: (row) =>
+      row?.price ? `${GBP_SYMBOL} ${formatCurrency(row.price.toString())}` : 0,
   },
 ];
 

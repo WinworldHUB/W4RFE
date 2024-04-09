@@ -56,30 +56,30 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-xs-6">
+        <div className="col-sm-6">
           <div className="row p-2">
-            <div className="col-xs-3">Order #:</div>
-            <div className="col-xs-9">
+            <div className="col-sm-3">Order #:</div>
+            <div className="col-sm-9">
               <strong>{order?.orderNumber}</strong>
             </div>
           </div>
           <div className="row p-2">
-            <div className="col-xs-3">Order date:</div>
-            <div className="col-xs-9">
+            <div className="col-sm-3">Order date:</div>
+            <div className="col-sm-9">
               <strong>{order?.orderDate}</strong>
             </div>
           </div>
           <div className="row p-2">
-            <div className="col-xs-3">Order status:</div>
-            <div className="col-xs-9">
+            <div className="col-sm-3">Order status:</div>
+            <div className="col-sm-9">
               <strong>{order?.status}</strong>
             </div>
           </div>
         </div>
-        <div className="col-xs-6 bg-light rounded">
+        <div className="col-sm-6 bg-light rounded">
           <div className="row p-2">
-            <div className="col-xs-2">Deliver to:</div>
-            <div className="col-xs-10">
+            <div className="col-sm-2">Deliver to:</div>
+            <div className="col-sm-10">
               <p>
                 <strong>{deliveryDetails.deliverTo ?? ""}</strong>
               </p>
@@ -93,8 +93,8 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
                 <strong>{deliveryDetails.memberPhone ?? ""}</strong>
               </p>
             </div>
-            <div className="col-xs-2">Instagram:</div>
-            <div className="col-xs-10">
+            <div className="col-sm-2">Instagram:</div>
+            <div className="col-sm-10">
               <p>
                 <strong>{deliveryDetails.instagramHandle ?? ""}</strong>
               </p>
@@ -103,20 +103,17 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-xs-12">
-          <ProductsPreviewTable
-            products={products}
-            orderValue={orderTotal}
-          />
+        <div className="col-sm-12">
+          <ProductsPreviewTable products={products} orderValue={orderTotal} />
         </div>
       </div>
       <div className="row p-2">
-        <div className="col-xs-12">
+        <div className="col-sm-12">
           <h3>Delivery Status</h3>
         </div>
       </div>
       <div className="row p-2">
-        <div className="col-xs-12 d-in-flex text-center">
+        <div className="col-sm-12 d-in-flex text-center">
           <HorizontalTimeline items={TIMELINE_STATUSES} />
         </div>
       </div>

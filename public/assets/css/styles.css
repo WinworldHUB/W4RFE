@@ -330,6 +330,10 @@ overflow: auto; /* Enable scroll if needed
   cursor: pointer;
 }
 
+.cursor-hand {
+  cursor: pointer;
+}
+
 .text-end {
   text-align: right;
   align-items: right;

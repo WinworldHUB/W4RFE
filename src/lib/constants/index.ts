@@ -87,14 +87,14 @@ export const DATA_TABLE_DEFAULT_STYLE = {
       backgroundColor: "var(--bs-primary)",
       color: "var(--bs-white)",
       fontWeight: "bold",
-      fontSize: "1.5rem",
+      fontSize: "1.1rem",
     },
   },
   cells: {
     style: {
       paddingLeft: "8px", // override the cell padding for data cells
       paddingRight: "8px",
-      fontSize: "1.5rem",
+      fontSize: "1.1rem",
     },
   },
 };

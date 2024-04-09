@@ -1,14 +1,19 @@
 import { FC, useEffect, useState } from "react";
 
 import PageLayout from "../lib/components/page-layout";
-import { Link } from "react-router-dom";
-import { PageRoutes } from "../lib/constants";
 import useApi from "../lib/hooks/useApi";
 import { ORDERS_APIS } from "../lib/constants/api-constants";
 import { Order } from "../lib/awsApis";
 import OrdersDataTable from "../lib/components/orders-data-table";
-import ModalDialog from "../lib/components/modal-dialog";
 import OrderDetails from "../lib/components/order-details";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+} from "react-bootstrap";
 
 const Orders: FC<PageProps> = (pageProps) => {
   const { data: orders, getData: getOrders } = useApi<Order[]>();
@@ -21,12 +26,12 @@ const Orders: FC<PageProps> = (pageProps) => {
 
   return (
     <PageLayout {...pageProps}>
-      <div className="container">
+      <div className="container pt-3">
         <div className="row">
           <div className="col-xs-12">
             <OrdersDataTable
               data={orders}
-              onRowClicked={(order) => {
+              onRowClicked={(order: Order) => {
                 console.log(order);
                 setIsShowModal(true);
                 setSelectedOrder(order);
@@ -35,11 +40,34 @@ const Orders: FC<PageProps> = (pageProps) => {
           </div>
         </div>
       </div>
-      {isShowModal && (
-        <ModalDialog onClose={() => setIsShowModal(false)}>
-          {selectedOrder && <OrderDetails order={selectedOrder} />}
-        </ModalDialog>
-      )}
+      <Modal
+        show={isShowModal}
+        size="xl"
+        centered
+        onHide={() => setIsShowModal(false)}
+      >
+        <ModalHeader className="d-flex justify-content-between">
+          <ModalTitle>Order#: {selectedOrder?.orderNumber}</ModalTitle>
+          <span
+            className="fs-5 icon-close cursor-hand"
+            onClick={() => setIsShowModal(false)}
+          ></span>
+        </ModalHeader>
+        <ModalBody>
+          <OrderDetails order={selectedOrder} />
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="secondary" onClick={() => setIsShowModal(false)}>
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
+      {/* {isShowModal && (
+        
+        // <ModalDialog onClose={() => setIsShowModal(false)}>
+        //   {selectedOrder && <OrderDetails order={selectedOrder} />}
+        // </ModalDialog>
+      )} */}
     </PageLayout>
   );
 };
