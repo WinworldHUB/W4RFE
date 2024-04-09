@@ -997,7 +997,7 @@ a:hover {
 #mt-header.style17 .mt-top-bar .tel {
   color: #a1a1a1;
   margin: 0 46px 0 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 #mt-header.style17 .mt-top-bar .tel:hover {
@@ -1379,7 +1379,7 @@ a:hover {
   float: right;
   list-style: none;
   letter-spacing: 1px;
-  font: 700 11px/18px "Open Sans", sans-serif;
+  font: 700 11px/18px "Roboto Condensed", sans-serif;
 }
 
 .mt-top-bar .mt-top-list2 li {
@@ -1545,7 +1545,7 @@ a:hover {
   position: absolute;
   border-radius: 50%;
   border: 2px solid #fff;
-  font: 11px/15px "Open Sans", sans-serif;
+  font: 11px/15px "Roboto Condensed", sans-serif;
 }
 
 .mt-bottom-bar .bar-opener {
@@ -1598,7 +1598,7 @@ a:hover {
   position: relative;
   letter-spacing: 1px;
   padding: 2px 0 0 42px;
-  font: 11px/15px "Open Sans", sans-serif;
+  font: 11px/15px "Roboto Condensed", sans-serif;
 }
 
 .mt-bottom-bar .mt-sh-cart .icon-handbag {
@@ -1714,7 +1714,7 @@ a:hover {
   outline: none;
   color: #919191;
   background: transparent;
-  font: 12px/20px "Open Sans", sans-serif;
+  font: 12px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-bottom-bar .mt-search-box .fa {
@@ -1738,7 +1738,7 @@ a:hover {
   float: right;
   margin: 12px 0 0;
   text-transform: uppercase;
-  font: 14px/20px "Open Sans", sans-serif;
+  font: 14px/20px "Roboto Condensed", sans-serif;
 }
 
 #nav > ul {
@@ -1877,7 +1877,7 @@ a:hover {
   padding: 0 0 4px;
   position: relative;
   pointer-events: none;
-  font: 16px/20px "Open Sans", sans-serif;
+  font: 16px/20px "Roboto Condensed", sans-serif;
 }
 
 #nav .mt-dropmenu .title a {
@@ -1908,7 +1908,7 @@ a:hover {
   overflow: hidden;
   list-style: none;
   text-transform: lowercase;
-  font: 300 14px/20px "Open Sans", sans-serif;
+  font: 300 14px/20px "Roboto Condensed", sans-serif;
 }
 
 #nav .mt-dropmenu ul li {
@@ -1978,7 +1978,7 @@ a:hover {
   padding: 28px 0 0;
   visibility: hidden;
   position: absolute;
-  font: 300 12px/35px "Open Sans", sans-serif;
+  font: 300 12px/35px "Roboto Condensed", sans-serif;
 }
 
 #nav .s-drop ul {
@@ -2143,7 +2143,7 @@ a:hover {
   background: #f0f0f0;
   text-transform: uppercase;
   padding: 30px 50px 24px 34px;
-  font: 18px/20px "Open Sans", sans-serif;
+  font: 18px/20px "Roboto Condensed", sans-serif;
 }
 
 .side-col-active .mt-side-menu .mt-mdropover {
@@ -2175,7 +2175,7 @@ a:hover {
   color: #7d7d7d;
   overflow: hidden;
   padding: 43px 32px 37px 34px;
-  font: 300 14px/20px "Open Sans", sans-serif;
+  font: 300 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-widget.borderbottom {
@@ -2186,7 +2186,7 @@ a:hover {
   display: block;
   margin: 0 0 10px;
   text-transform: uppercase;
-  font: 18px/20px "Open Sans", sans-serif;
+  font: 18px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-widget p {
@@ -2301,7 +2301,7 @@ a:hover {
   padding: 9px 22px;
   background: #f0f0f0;
   border-radius: 30px;
-  font: 300 14px/20px "Open Sans", sans-serif;
+  font: 300 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-widget .fa-search {
@@ -2363,7 +2363,7 @@ a:hover {
 .mt-side-widget .mt-h-title {
   display: block;
   color: #757575;
-  font: 600 14px/20px "Open Sans", sans-serif;
+  font: 600 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-widget .mt-h-title a {
@@ -2381,7 +2381,7 @@ a:hover {
 
 .mt-side-widget .price {
   color: #010101;
-  font: 600 15px/20px "Open Sans", sans-serif;
+  font: 600 15px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-widget .price a {
@@ -2403,7 +2403,7 @@ a:hover {
   margin: 0 0 20px;
   padding: 16px 21px 0 10px;
   border-top: 1px solid #eee;
-  font: 600 14px/26px "Open Sans", sans-serif;
+  font: 600 14px/26px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-widget .mt-total {
@@ -2413,7 +2413,7 @@ a:hover {
 .mt-side-widget .mt-total-txt {
   float: right;
   color: #010101;
-  font: 600 15px/20px "Open Sans", sans-serif;
+  font: 600 15px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-widget .cart-btn-row {
@@ -2428,7 +2428,7 @@ a:hover {
 
 .mt-side-widget .btn-type3 {
   padding: 5px 22px;
-  font: 14px/20px "Open Sans", sans-serif;
+  font: 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .or-divider {
@@ -2437,7 +2437,7 @@ a:hover {
   position: relative;
   text-align: center;
   text-transform: uppercase;
-  font: 700 14px/20px "Open Sans", sans-serif;
+  font: 700 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .or-divider .txt {
@@ -2466,7 +2466,7 @@ a:hover {
 .mt-side-nav {
   overflow: hidden;
   text-transform: uppercase;
-  font: 18px/20px "Open Sans", sans-serif;
+  font: 18px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-side-nav .drop {
@@ -2517,7 +2517,7 @@ a:hover {
 .mt-side-nav.small {
   text-transform: lowercase;
   text-transform: capitalize;
-  font: 16px/20px "Open Sans", sans-serif;
+  font: 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-search-popup {
@@ -2602,7 +2602,7 @@ a:hover {
   color: #9d9d9d;
   background: none;
   padding: 15px 73px 15px 23px;
-  font: 300 25px/30px "Open Sans", sans-serif;
+  font: 300 25px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-search-popup input ::-webkit-input-placeholder {
@@ -2673,7 +2673,7 @@ a:hover {
   border-radius: 18px;
   vertical-align: top;
   display: inline-block;
-  font: 300 14px/20px "Open Sans", sans-serif;
+  font: 300 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .btn-type1:hover {
@@ -2690,7 +2690,7 @@ a:hover {
   background: transparent;
   border: 1px solid #000;
   text-transform: uppercase;
-  font: 14px/20px "Open Sans", sans-serif;
+  font: 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .btn-type2:focus,
@@ -2710,7 +2710,7 @@ a:hover {
   display: inline-block;
   border: 1px solid #000;
   text-transform: uppercase;
-  font: 300 14px/20px "Open Sans", sans-serif;
+  font: 300 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .btn-type3:focus,
@@ -2730,7 +2730,7 @@ a:hover {
   background: transparent;
   border: 1px solid #d1d1d1;
   text-transform: uppercase;
-  font: 700 12px/20px "Open Sans", sans-serif;
+  font: 700 12px/20px "Roboto Condensed", sans-serif;
 }
 
 .btn-type4:focus,
@@ -2744,7 +2744,7 @@ a:hover {
 71. Mt Footer / #mt-footer
 -------------------------------------------------------------------*/
 #mt-footer.montserrat {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 #mt-footer.montserrat .f-widget-heading {
@@ -2860,7 +2860,7 @@ a:hover {
 #mt-footer.style6 .footer-area p {
   color: #8f8f8f;
   letter-spacing: 1px;
-  font: 11px/20px "Open Sans", sans-serif;
+  font: 11px/20px "Roboto Condensed", sans-serif;
 }
 
 #mt-footer.style6 .bank-card-2.align-center {
@@ -3394,7 +3394,7 @@ a:hover {
   outline: none;
   font-weight: 200;
   padding: 7px 10px 7px 22px;
-  font: 700 11px/16px "Open Sans", sans-serif;
+  font: 700 11px/16px "Roboto Condensed", sans-serif;
 }
 
 #mt-footer .f-widget-newsletter .newsletter-form button {
@@ -3402,7 +3402,7 @@ a:hover {
   background: none;
   border: none;
   outline: none;
-  font: 700 11px/16px "Open Sans", sans-serif;
+  font: 700 11px/16px "Roboto Condensed", sans-serif;
   width: 6%;
   padding: 6px 0 0 0;
 }
@@ -3606,7 +3606,7 @@ a:hover {
   margin: 0 0 1px;
   color: #353535;
   text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .f-promo-box .f-widget-item .txt {
@@ -3617,7 +3617,7 @@ a:hover {
   font-weight: 700;
   padding: 11px 0 0;
   text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .f-promo-box .f-widget-item .widget-icon {
@@ -3681,7 +3681,7 @@ a:hover {
   text-transform: uppercase;
   font-size: 65px;
   line-height: 68px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .mt-main-slider h2 {
@@ -3690,7 +3690,7 @@ a:hover {
   font-weight: 700;
   font-size: 51px;
   line-height: 54px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .mt-main-slider .text {
@@ -3728,7 +3728,7 @@ a:hover {
   text-transform: uppercase;
   font-size: 16px;
   line-height: 18px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   -moz-transition: all 0.4s linear;
   -webkit-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
@@ -3833,19 +3833,19 @@ a:hover {
 .mt-mainslider2 .caption.add h2 {
   letter-spacing: 9px;
   margin: 0 -10px 8px 0;
-  font: 200 58px/60px "Open Sans", sans-serif;
+  font: 200 58px/60px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 .caption.add2 h1 {
   font-size: 58px;
   line-height: 60px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 .caption.add2 h2 {
   letter-spacing: -1px;
   margin: 4px 0 28px -2px;
-  font: 200 58px/60px "Open Sans", sans-serif;
+  font: 200 58px/60px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 .c1 {
@@ -3880,7 +3880,7 @@ a:hover {
 .mt-mainslider2 .price {
   color: #535353;
   display: block;
-  font: 28px/30px "Open Sans", sans-serif;
+  font: 28px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 .price sub {
@@ -3898,7 +3898,7 @@ a:hover {
   margin: 0 0 12px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  font: 600 14px/16px "Open Sans", sans-serif;
+  font: 600 14px/16px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 .sub-title {
@@ -3907,25 +3907,25 @@ a:hover {
   margin: 0 0 10px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  font: 600 14px/16px "Open Sans", sans-serif;
+  font: 600 14px/16px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 h1 {
   color: #3b3b3b;
   margin: 0 0 -10px;
-  font: 700 65px/70px "Open Sans", sans-serif;
+  font: 700 65px/70px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 h2 {
   margin: 0;
   color: #7a7a7a;
-  font: 700 51px/60px "Open Sans", sans-serif;
+  font: 700 51px/60px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 p {
   margin: 0;
   color: #818182;
-  font: italic 300 16px/20px "Open Sans", sans-serif;
+  font: italic 300 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider2 .slick-dots {
@@ -3965,7 +3965,7 @@ a:hover {
   overflow: hidden;
   max-width: 1460px;
   margin: 0 auto -4px;
-  font: 14px/20px "Open Sans", sans-serif;
+  font: 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider3 .img {
@@ -4002,7 +4002,7 @@ a:hover {
 
 .mt-mainslider3 .txt-wrap.right h1 {
   margin: -10px 2px -9px 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider3 .txt-wrap.right h2 {
@@ -4027,27 +4027,27 @@ a:hover {
   margin: 0 0 10px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  font: 600 14px/16px "Open Sans", sans-serif;
+  font: 600 14px/16px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider3 h1 {
   color: #535353;
   margin: 0 0 5px -5px;
   letter-spacing: -1.6px;
-  font: 700 58px/60px "Open Sans", sans-serif;
+  font: 700 58px/60px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider3 h2 {
   color: #535353;
   margin: 0 0 29px -5px;
   letter-spacing: -1px;
-  font: 200 58px/60px "Open Sans", sans-serif;
+  font: 200 58px/60px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider3 .price {
   color: #535353;
   display: block;
-  font: 28px/30px "Open Sans", sans-serif;
+  font: 28px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider3 .price sub {
@@ -4114,7 +4114,7 @@ a:hover {
 .mt-mainslider4 .price {
   display: block;
   color: #535353;
-  font: 27px/30px "Open Sans", sans-serif;
+  font: 27px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider4 .price sub {
@@ -4143,14 +4143,14 @@ a:hover {
   margin: 0 0 5px -4px;
   letter-spacing: -1.5px;
   text-transform: uppercase;
-  font: 700 58px/59px "Open Sans", sans-serif;
+  font: 700 58px/59px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider4 .txt h2 {
   margin: 0 0 31px -3px;
   letter-spacing: -1.3px;
   text-transform: uppercase;
-  font: 100 58px/59px "Open Sans", sans-serif;
+  font: 100 58px/59px "Roboto Condensed", sans-serif;
 }
 
 .mt-mainslider4 .txt p {
@@ -4491,7 +4491,7 @@ a:hover {
   margin: 0 0 36px;
   font-weight: 600;
   letter-spacing: 2.2px;
-  font: 600 48px/50px "Open Sans", sans-serif;
+  font: 600 48px/50px "Roboto Condensed", sans-serif;
 }
 
 .slider-3 .shop {
@@ -4501,7 +4501,7 @@ a:hover {
   border: 2px solid #fff;
   padding: 11px 26px 10px;
   text-transform: uppercase;
-  font: 16px/20px "Open Sans", sans-serif;
+  font: 16px/20px "Roboto Condensed", sans-serif;
   display: inline-block;
   vertical-align: middle;
   -moz-transition: all 0.4s linear;
@@ -4789,7 +4789,7 @@ a:hover {
   text-decoration: none;
   letter-spacing: -0.8px;
   text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   -moz-transition: all 0.4s linear;
   -webkit-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
@@ -4849,7 +4849,7 @@ a:hover {
   background: #eed24c;
   font-size: 37px;
   line-height: 40px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .banner-frame .discount span {
@@ -4864,7 +4864,7 @@ a:hover {
   letter-spacing: -1.5px;
   font-size: 17px;
   line-height: 23px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .banner-frame .shop {
@@ -4873,7 +4873,7 @@ a:hover {
   color: #878787;
   position: absolute;
   text-decoration: none;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   -moz-transition: all 0.4s linear;
   -webkit-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
@@ -4901,7 +4901,7 @@ a:hover {
 
 .banner-frame h3 {
   margin: 0 0 10px;
-  font: 700 21px/28px "Open Sans", sans-serif;
+  font: 700 21px/28px "Roboto Condensed", sans-serif;
 }
 
 .banner-frame.nospace {
@@ -5069,12 +5069,12 @@ a:hover {
 
 .banner-5 .texts h3 {
   margin: 0 0 8px;
-  font: 300 55px/60px "Open Sans", sans-serif;
+  font: 300 55px/60px "Roboto Condensed", sans-serif;
 }
 
 .banner-5 .texts h3 strong {
   display: block;
-  font: 700 57px/62px "Open Sans", sans-serif;
+  font: 700 57px/62px "Roboto Condensed", sans-serif;
 }
 
 .banner-5 .texts p {
@@ -5083,7 +5083,7 @@ a:hover {
 
 .banner-5 .texts .price-add {
   display: block;
-  font: 30px/35px "Open Sans", sans-serif;
+  font: 30px/35px "Roboto Condensed", sans-serif;
 }
 
 /*------------------------------------------------------------------
@@ -5314,7 +5314,7 @@ a:hover {
   padding: 4px 0 0;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font: 700 24px/26px "Open Sans", sans-serif;
+  font: 700 24px/26px "Roboto Condensed", sans-serif;
 }
 
 .banner-9 .btn-shop,
@@ -5405,7 +5405,7 @@ a:hover {
 }
 
 .banner-13 h2 strong {
-  font: 700 24px/25px "Open Sans", sans-serif;
+  font: 700 24px/25px "Roboto Condensed", sans-serif;
 }
 
 .banner-13 .btn-shop {
@@ -5473,7 +5473,7 @@ a:hover {
   color: #5f3b34;
   margin: 0 0 11px;
   letter-spacing: 1.6px;
-  font: 700 18px/28px "Open Sans", sans-serif;
+  font: 700 18px/28px "Roboto Condensed", sans-serif;
 }
 
 .banner-18 .price-off {
@@ -5481,7 +5481,7 @@ a:hover {
   padding: 0 3px;
   position: relative;
   margin: 20px 0 1px;
-  font: 18px/20px "Open Sans", sans-serif;
+  font: 18px/20px "Roboto Condensed", sans-serif;
   display: inline-block;
   vertical-align: middle;
 }
@@ -5499,7 +5499,7 @@ a:hover {
 .banner-18 .price {
   padding: 0;
   color: #603b34;
-  font: 23px/26px "Open Sans", sans-serif;
+  font: 23px/26px "Roboto Condensed", sans-serif;
 }
 
 .banner-18 .btn-shop {
@@ -5531,7 +5531,7 @@ a:hover {
 -------------------------------------------------------------------*/
 .banner-19 {
   width: 792px;
-  font: 14px/21px "Open Sans", "Arial", "Helvetica", sans-serif;
+  font: 14px/21px "Roboto Condensed", "Arial", "Helvetica", sans-serif;
 }
 
 .banner-19 .holder {
@@ -5548,12 +5548,12 @@ a:hover {
   padding: 0 4px 11px;
   letter-spacing: 4.1px;
   text-transform: uppercase;
-  font: 600 14px/16px "Open Sans", "Arial", "Helvetica", sans-serif;
+  font: 600 14px/16px "Roboto Condensed", "Arial", "Helvetica", sans-serif;
 }
 
 .banner-19 h3 {
   margin: 0 0 8px;
-  font: 100 58px/60px "Open Sans", "Arial", "Helvetica", sans-serif;
+  font: 100 58px/60px "Roboto Condensed", "Arial", "Helvetica", sans-serif;
 }
 
 .banner-19 h3 strong {
@@ -5573,7 +5573,7 @@ a:hover {
   text-decoration: none;
   letter-spacing: -0.4px;
   text-transform: uppercase;
-  font: 13px/16px "Open Sans", sans-serif;
+  font: 13px/16px "Roboto Condensed", sans-serif;
   -moz-transition: all 0.4s linear;
   -webkit-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
@@ -5677,14 +5677,14 @@ a:hover {
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
-  font: 600 14px/16px "Open Sans", "Arial", "Helvetica", sans-serif;
+  font: 600 14px/16px "Roboto Condensed", "Arial", "Helvetica", sans-serif;
 }
 
 .banner-21 h2 {
   margin: 0 0 30px;
   text-transform: none;
   letter-spacing: -1px;
-  font: 100 37px/40px "Open Sans", "Arial", "Helvetica", sans-serif;
+  font: 100 37px/40px "Roboto Condensed", "Arial", "Helvetica", sans-serif;
 }
 
 .banner-21 h2 strong {
@@ -5821,7 +5821,7 @@ a:hover {
   padding: 3px 6px;
   margin-bottom: 1px;
   background: #b2cc29;
-  font: 700 14px/16px "Open Sans", sans-serif;
+  font: 700 14px/16px "Roboto Condensed", sans-serif;
 }
 
 .mt-product1 .caption .new {
@@ -5829,14 +5829,14 @@ a:hover {
   padding: 3px 6px;
   background: #000;
   text-transform: uppercase;
-  font: 700 13px/16px "Open Sans", sans-serif;
+  font: 700 13px/16px "Roboto Condensed", sans-serif;
 }
 
 .mt-product1 .caption .best-price {
   color: #fff;
   padding: 3px 6px;
   background: #fed062;
-  font: 700 14px/16px "Open Sans", sans-serif;
+  font: 700 14px/16px "Roboto Condensed", sans-serif;
 }
 
 .mt-product1 .txt {
@@ -5848,7 +5848,7 @@ a:hover {
   margin: 0 0 5px;
   color: #757575;
   text-transform: capitalize;
-  font: 600 14px/20px "Open Sans", sans-serif;
+  font: 600 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product1 .title a {
@@ -5866,7 +5866,7 @@ a:hover {
 .mt-product1 .price {
   display: block;
   color: #010101;
-  font: 600 17px/20px "Open Sans", sans-serif;
+  font: 600 17px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product1 .price .fa {
@@ -5877,7 +5877,7 @@ a:hover {
 .mt-product1 del {
   display: block;
   color: #b3b3b3;
-  font: 600 17px/20px "Open Sans", sans-serif;
+  font: 600 17px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product1 del .fa {
@@ -6111,7 +6111,7 @@ a:hover {
 .mt-product2 .title {
   display: block;
   color: #747474;
-  font: 600 14px/20px "Open Sans", sans-serif;
+  font: 600 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product2 .price {
@@ -6127,7 +6127,7 @@ a:hover {
 }
 
 .mt-product2 .price span {
-  font: 600 17px/20px "Open Sans", sans-serif;
+  font: 600 17px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product2 .caption {
@@ -6143,7 +6143,7 @@ a:hover {
   padding: 5px 8px;
   margin-bottom: 1px;
   background: #b2cc29;
-  font: 700 17px/20px "Open Sans", sans-serif;
+  font: 700 17px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product2 .caption .new {
@@ -6151,14 +6151,14 @@ a:hover {
   padding: 5px 8px;
   background: #000;
   text-transform: uppercase;
-  font: 700 17px/20px "Open Sans", sans-serif;
+  font: 700 17px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product2 .caption .best-price {
   color: #fff;
   padding: 5px 8px;
   background: #fed062;
-  font: 700 17px/20px "Open Sans", sans-serif;
+  font: 700 17px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product2 .mt-stars {
@@ -6190,7 +6190,7 @@ a:hover {
 .mt-product2 del {
   display: block;
   color: #b3b3b3;
-  font: 600 17px/20px "Open Sans", sans-serif;
+  font: 600 17px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product2 del .fa {
@@ -6307,13 +6307,13 @@ a:hover {
   color: #535353;
   margin: 0 0 12px;
   text-transform: uppercase;
-  font: 18px/20px "Open Sans", sans-serif;
+  font: 18px/20px "Roboto Condensed", sans-serif;
 }
 
 .product-3 .price {
   color: #a6a6a6;
   display: block;
-  font: 700 20px/20px "Open Sans", sans-serif;
+  font: 700 20px/20px "Roboto Condensed", sans-serif;
 }
 
 .product-3 .price .fa {
@@ -6513,7 +6513,7 @@ a:hover {
   display: block;
   color: #959596;
   margin: 0 0 5px;
-  font: 14px/16px "Open Sans", sans-serif;
+  font: 14px/16px "Roboto Condensed", sans-serif;
 }
 
 .mt-product4 .text .frame strong a {
@@ -6533,14 +6533,14 @@ a:hover {
   color: #252528;
   margin: 0 13px 0 0;
   position: relative;
-  font: 14px/18px "Open Sans", sans-serif;
+  font: 14px/18px "Roboto Condensed", sans-serif;
   display: inline-block;
   vertical-align: middle;
 }
 
 .mt-product4 .text .price {
   color: #252528;
-  font: 18px/18px "Open Sans", sans-serif;
+  font: 18px/18px "Roboto Condensed", sans-serif;
   display: inline-block;
   vertical-align: middle;
 }
@@ -6691,7 +6691,7 @@ a:hover {
   overflow: hidden;
   list-style: none;
   text-transform: uppercase;
-  font: 700 18px/20px "Open Sans", sans-serif;
+  font: 700 18px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-producttabs .producttabs li {
@@ -6790,7 +6790,7 @@ a:hover {
   color: #3a3a3a;
   margin: 0 0 7px;
   text-transform: uppercase;
-  font: 700 26px/30px "Open Sans", sans-serif;
+  font: 700 26px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-producttabs .mt-productrow {
@@ -7060,7 +7060,7 @@ a:hover {
 .mt-smallproducts .heading {
   color: #3a3a3a;
   margin: 0 0 21px;
-  font: 700 20px/25px "Open Sans", sans-serif;
+  font: 700 20px/25px "Roboto Condensed", sans-serif;
 }
 
 /*------------------------------------------------------------------
@@ -7177,7 +7177,7 @@ a:hover {
   font-weight: 400;
   overflow: hidden;
   padding: 53px 0 0;
-  font: 16px/20px "Open Sans", sans-serif;
+  font: 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-product-detial .comment-list li {
@@ -7339,7 +7339,7 @@ a:hover {
   font-size: 14px;
   line-height: 16px;
   float: left;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   padding: 0 6px 0 0;
   color: #b6b6b6;
@@ -7348,7 +7348,7 @@ a:hover {
 .mt-product-detial .list {
   font-size: 13px;
   line-height: 16px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   padding: 2px 0 34px;
   overflow: hidden;
@@ -7396,7 +7396,7 @@ a:hover {
   display: block;
   font-size: 30px;
   line-height: 32px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   letter-spacing: -1px;
   color: #000;
@@ -7424,7 +7424,7 @@ a:hover {
   line-height: 16px;
   float: left;
   text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   margin: 0 32px 0 0;
   padding: 11px 0 0;
@@ -7435,7 +7435,7 @@ a:hover {
 .mt-product-detial .product-form input {
   font-size: 18px;
   line-height: 20px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   padding: 0 0 0 20px;
   border-radius: 25px;
@@ -7455,7 +7455,7 @@ a:hover {
   display: block;
   font-size: 14px;
   line-height: 20px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   border: none;
   outline: none;
@@ -7532,7 +7532,7 @@ a:hover {
   font-size: 18px;
   line-height: 20px;
   text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   margin: 0 0 25px;
   color: #000;
@@ -7615,7 +7615,7 @@ a:hover {
 }
 
 .mt-detail-sec .bill-detail .update-btn {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 18px;
   line-height: 20px;
   font-weight: 700;
@@ -7948,7 +7948,7 @@ a:hover {
   line-height: 20px;
   text-transform: uppercase;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   border: none;
   outline: none;
   border-radius: 0;
@@ -7980,7 +7980,7 @@ a:hover {
   color: #aaaaaa;
   overflow: hidden;
   padding: 74px 0 85px;
-  font: 300 16px/21px "Open Sans", sans-serif;
+  font: 300 16px/21px "Roboto Condensed", sans-serif;
 }
 
 .product-detail-tab .mt-tabs {
@@ -7988,7 +7988,7 @@ a:hover {
   margin: 0 0 50px;
   list-style: none;
   border-bottom: 1px solid #c8c8c8;
-  font: 700 16px/20px "Open Sans", sans-serif;
+  font: 700 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .product-detail-tab .mt-tabs li {
@@ -8027,7 +8027,7 @@ a:hover {
   overflow: hidden;
   padding: 0 0 26px;
   border-bottom: 1px solid #f0f0f0;
-  font: 300 16px/21px "Open Sans", sans-serif;
+  font: 300 16px/21px "Roboto Condensed", sans-serif;
 }
 
 .product-comment .mt-hold {
@@ -8060,13 +8060,13 @@ a:hover {
   margin: 0 24px 0 0;
   display: inline-block;
   vertical-align: middle;
-  font: 700 16px/20px "Open Sans", sans-serif;
+  font: 700 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .product-comment time {
   display: inline-block;
   vertical-align: middle;
-  font: italic 300 14px/20px "Open Sans", sans-serif;
+  font: italic 300 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .product-comment p {
@@ -8089,14 +8089,14 @@ a:hover {
 .product-comment h2 {
   color: #949494;
   margin: 0 0 41px;
-  font: 600 16px/20px "Open Sans", sans-serif;
+  font: 600 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .product-comment label {
   float: left;
   color: #aaa;
   width: 80px;
-  font: 700 16px/20px "Open Sans", sans-serif;
+  font: 700 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .product-comment .form-control {
@@ -8158,7 +8158,7 @@ a:hover {
 .related-products h2 {
   color: #3a3a3a;
   margin: 0 0 13px;
-  font: 700 26px/30px "Open Sans", sans-serif;
+  font: 700 26px/30px "Roboto Condensed", sans-serif;
 }
 
 .related-products img {
@@ -8232,7 +8232,7 @@ a:hover {
   padding: 12px 20px;
   border-radius: 20px;
   border: 1px solid #d8d8d8;
-  font: 14px/1 "Open Sans", sans-serif;
+  font: 14px/1 "Roboto Condensed", sans-serif;
 }
 
 .mt-shoplist-header .btn-box .drop-link:hover {
@@ -8330,7 +8330,7 @@ a:hover {
 -------------------------------------------------------------------*/
 .mt-pagination {
   padding: 42px 0 100px;
-  font: 700 16px/20px "Open Sans", sans-serif;
+  font: 700 16px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-pagination ul {
@@ -8441,7 +8441,7 @@ a:hover {
 .product-post .rating-list {
   font-size: 14px;
   line-height: 16px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   color: #b6b6b6;
   overflow: hidden;
@@ -8474,7 +8474,7 @@ a:hover {
   line-height: 16px;
   color: #b6b6b6;
   background: #f4f4f4;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   width: 173px;
   border-radius: 25px;
@@ -8498,7 +8498,7 @@ a:hover {
 .product-post .nav {
   font-size: 11px;
   line-height: 13px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   color: #b6b6b6;
   display: block;
@@ -9388,7 +9388,7 @@ a:hover {
   line-height: 30px;
   text-transform: uppercase;
   color: #939393;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   margin: 0 50px 0 0;
   display: inline-block;
@@ -9588,7 +9588,7 @@ a:hover {
   font-size: 16px;
   line-height: 18px;
   font-weight: bold;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .blog-post .comment-nav li {
@@ -9620,7 +9620,7 @@ a:hover {
   font-size: 30px;
   line-height: 33px;
   font-weight: bold;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0 0 17px;
   text-transform: uppercase;
   color: #494949;
@@ -9831,7 +9831,7 @@ a:hover {
   font-size: 23px;
   line-height: 25px;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   overflow: hidden;
   padding: 60px 0 10px 7px;
   text-transform: uppercase;
@@ -9883,7 +9883,7 @@ a:hover {
 .widget h3 {
   font-size: 18px;
   line-height: 20px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   margin: 0 0 23px;
@@ -10142,7 +10142,7 @@ a:hover {
 .mt-comments-section h2 {
   font-size: 24px;
   line-height: 26px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   margin: 0 0 23px;
@@ -10362,7 +10362,7 @@ a:hover {
   font-size: 16px;
   line-height: 18px;
   font-weight: bold;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .post-blog .comment-nav li {
@@ -10394,7 +10394,7 @@ a:hover {
   font-size: 24px;
   line-height: 26px;
   font-weight: bold;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0;
   position: absolute;
   left: 45px;
@@ -10483,7 +10483,7 @@ a:hover {
   line-height: 21px;
   font-weight: 700;
   letter-spacing: 1px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   color: #757575;
 }
 
@@ -10624,7 +10624,7 @@ a:hover {
 }
 
 .mt-error-sec .montserrat {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .mt-error-sec .error-code {
@@ -10688,7 +10688,7 @@ a:hover {
   font-size: 24px;
   line-height: 26px;
   font-weight: 300;
-  font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
+  font-family: "Roboto Condensed", "Arial", "Helvetica", sans-serif;
   overflow: hidden;
   margin: 0 0 75px;
 }
@@ -10726,7 +10726,7 @@ a:hover {
   width: 216px;
   font-weight: 700;
   border: 2px solid #545454;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .mt-error-sec .btn-list .error-form ::-webkit-input-placeholder {
@@ -10791,7 +10791,7 @@ a:hover {
 
 .mt-error-sec .btn-back {
   width: 174px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 18px;
@@ -10883,7 +10883,7 @@ a:hover {
   color: #f6f6f6;
   text-transform: uppercase;
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   position: relative;
 }
@@ -10903,7 +10903,7 @@ a:hover {
   line-height: 33px;
   text-transform: uppercase;
   margin: 0 0 18px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   color: #000;
 }
@@ -10949,7 +10949,7 @@ a:hover {
   text-transform: uppercase;
   font-size: 14px;
   line-height: 20px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   border: none;
   outline: none;
@@ -11089,7 +11089,7 @@ a:hover {
   text-transform: uppercase;
   display: block;
   margin: 0 0 18px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 1px;
 }
 
@@ -11319,7 +11319,7 @@ a:hover {
   font-size: 44px;
   line-height: 46px;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0 0 15px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -11400,7 +11400,7 @@ a:hover {
   line-height: 33px;
   font-weight: bold;
   margin: 0 0 50px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
   color: #494949;
 }
@@ -11422,7 +11422,7 @@ a:hover {
   display: block;
   font-size: 13px;
   line-height: 18px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0 0 15px;
   font-weight: 700;
   color: #575757;
@@ -11440,7 +11440,7 @@ a:hover {
   line-height: 33px;
   font-weight: bold;
   margin: 0 0 36px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
   color: #494949;
 }
@@ -11537,7 +11537,7 @@ a:hover {
 .mt-team-sec h4 {
   font-size: 20px;
   line-height: 22px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: bold;
   margin: 0;
   text-transform: uppercase;
@@ -11577,7 +11577,7 @@ a:hover {
   line-height: 33px;
   font-weight: bold;
   margin: 0 0 36px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
   color: #494949;
 }
@@ -11822,7 +11822,7 @@ a:hover {
   font-size: 14px;
   line-height: 16px;
   font-weight: 600;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   display: block;
   letter-spacing: 4px;
   word-spacing: 1px;
@@ -11834,7 +11834,7 @@ a:hover {
   font-size: 26px;
   line-height: 28px;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0 0 3px;
   letter-spacing: -1px;
   text-transform: uppercase;
@@ -11848,14 +11848,14 @@ a:hover {
   color: #a0a0a0;
   margin: 0 0 12px;
   letter-spacing: 4px;
-  font: 700 14px/20px "Open Sans", sans-serif;
+  font: 700 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-heading .heading {
   color: #3a3a3a;
   margin: 0 0 2px;
   letter-spacing: 0;
-  font: 700 26px/30px "Open Sans", sans-serif;
+  font: 700 26px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-heading p {
@@ -11871,14 +11871,14 @@ a:hover {
   letter-spacing: 4px;
   padding: 0 0 0 12px;
   border-left: 9px solid #eeeeee;
-  font: 700 14px/20px "Open Sans", sans-serif;
+  font: 700 14px/20px "Roboto Condensed", sans-serif;
 }
 
 .mt-heading2 .head {
   color: #3a3a3a;
   margin: 0 0 2px;
   letter-spacing: 0;
-  font: 700 26px/30px "Open Sans", sans-serif;
+  font: 700 26px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-heading2 p {
@@ -11896,14 +11896,14 @@ a:hover {
   color: #3a3a3a;
   margin: 0 0 7px;
   text-transform: uppercase;
-  font: 700 26px/30px "Open Sans", sans-serif;
+  font: 700 26px/30px "Roboto Condensed", sans-serif;
 }
 
 .mt-patners .heading span {
   color: #a0a0a0;
   padding: 0 0 0 2px;
   letter-spacing: 3px;
-  font: 600 14px/20px "Open Sans", sans-serif;
+  font: 600 14px/20px "Roboto Condensed", sans-serif;
   display: inline-block;
   vertical-align: bottom;
 }
@@ -12134,7 +12134,7 @@ a:hover {
   line-height: 24px;
   text-transform: uppercase;
   color: #494949;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 700;
   margin: 0 0 32px;
 }
@@ -12153,7 +12153,7 @@ a:hover {
   color: #8c8c8c;
   padding: 0 0 2px;
   text-transform: uppercase;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .shop-widget .category-list li {
@@ -12666,7 +12666,7 @@ a:hover {
 3. Wrapper / #wrapper
 -------------------------------------------------------------------*/
 #wrapper {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 img {
