@@ -49,22 +49,25 @@ export const getAllBrands = (products: Product[]): ProductFilter[] => {
     getAllFilter(products),
     getBestSellersFilter(products),
   ];
-  forEach(output, (brand: string) => {
-    brandFilters.push({
-      filter: brand,
-      count: countBy(
-        products,
-        (product: Product) => (product.brand ?? DEFAULT_BRAND) === brand
-      ).true,
-      productIds: map(
-        filter(
+  forEach(
+    output.sort((a, b) => a.localeCompare(b)),
+    (brand: string) => {
+      brandFilters.push({
+        filter: brand,
+        count: countBy(
           products,
           (product: Product) => (product.brand ?? DEFAULT_BRAND) === brand
+        ).true,
+        productIds: map(
+          filter(
+            products,
+            (product: Product) => (product.brand ?? DEFAULT_BRAND) === brand
+          ),
+          "id"
         ),
-        "id"
-      ),
-    } as ProductFilter);
-  });
+      } as ProductFilter);
+    }
+  );
 
   return brandFilters;
 };
