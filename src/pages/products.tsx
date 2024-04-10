@@ -31,15 +31,14 @@ const Products: FC<PageProps> = (pageProps) => {
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const itemsPerPage = useMemo<number>(() => (isMobile ? 2 : 4), [isMobile]);
-  const totalPages = useMemo(
-    () => products?.length / (itemsPerPage > 1 ? 2 : itemsPerPage),
-    [products]
-  );
+
+  const [totalPages, setTotalPages] = useState<number>(0);
 
   const [currentTabbedSliderPageIndex, setCurrentTabbedSliderPageIndex] =
     useState<number>(0);
   const nextPage = () => {
-    if (currentTabbedSliderPageIndex < totalPages - 1) {
+    console.log(currentTabbedSliderPageIndex, totalPages);
+    if (currentTabbedSliderPageIndex < totalPages - itemsPerPage) {
       setCurrentTabbedSliderPageIndex(currentTabbedSliderPageIndex + 1);
     }
   };
@@ -166,10 +165,8 @@ const Products: FC<PageProps> = (pageProps) => {
                   <Slider
                     slideTo={currentTabbedSliderPageIndex}
                     slidesPerView={itemsPerPage ?? 4}
-                    onPageChange={(pageIndex) => {
-                      console.log(pageIndex);
-                      setCurrentTabbedSliderPageIndex(pageIndex);
-                    }}
+                    onPageChange={setCurrentTabbedSliderPageIndex}
+                    onLoad={setTotalPages}
                   >
                     {/* {productsGrid()} */}
                     {ProductSlides({

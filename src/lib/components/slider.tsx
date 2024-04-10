@@ -1,4 +1,4 @@
-import React, { Children, FC, useEffect, useRef } from "react";
+import React, { Children, FC, useCallback, useEffect, useRef } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
@@ -39,6 +39,12 @@ const Slider: FC<SliderProps> = ({
       swiperRef.current.slideTo(slideTo);
     }
   }, [slideTo]);
+
+  useEffect(() => {
+    if (swiperRef.current?.slides?.length > 0) {
+      onLoad(swiperRef.current?.slides?.length);
+    }
+  }, [swiperRef.current?.slides?.length]);
 
   return (
     <Swiper
