@@ -83,7 +83,7 @@ const Home: FC<PageProps> = (pageProps) => {
           <div className="container">
             <div className="row">
               <div className="col-xs-12">
-                <div className="text right">
+                <div className="text-sm-end text-xs-center">
                   <strong className="title">&nbsp;</strong>
                   <h1>&nbsp;</h1>
                   <h2>&nbsp;</h2>

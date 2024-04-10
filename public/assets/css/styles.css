@@ -3,6 +3,10 @@ a {
   color: inherit !important;
 }
 
+br {
+  display: block !important;
+}
+
 .mt-logo-wish {
   width: 112px !important;
 }

@@ -25,7 +25,7 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
   return (
     <PageLayout {...pageProps}>
       {product ? (
-        <section className="mt-product-detial" data-wow-delay="0.4s">
+        <section className="mt-product-detial ps-2" data-wow-delay="0.4s">
           <div className="container">
             <div className="row">
               <div className="col-xs-12">
@@ -89,15 +89,19 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                     </fieldset>
                   </form>
                   <hr />
-                  <div className="txt-wrap">
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: product?.body.replaceAll("\n", "<br />"),
-                      }}
-                    ></p>
-                  </div>
+                  <h3>Product details</h3>
+                  <div
+                    className=""
+                    dangerouslySetInnerHTML={{
+                      __html: product?.body
+                        .trimStart()
+                        .replaceAll("\n", "<br /><br />"),
+                    }}
+                  ></div>
+                  <br />
+                  <hr />
                   <h3>Shipping details</h3>
-                  <div className="txt-wrap">
+                  <div className="">
                     <p>
                       All Bulk products have a 14-16 day lead time for you to
                       receive them.

@@ -1,4 +1,11 @@
-import React, { Children, FC, useCallback, useEffect, useRef } from "react";
+import React, {
+  Children,
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";

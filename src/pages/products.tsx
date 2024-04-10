@@ -74,12 +74,17 @@ const Products: FC<PageProps> = (pageProps) => {
   const handleFilterChange = (
     filter: ProductFilter,
     applied: boolean,
-    isShowAll: boolean = false
+    isShowAll: boolean = false,
+    isApplySingle: boolean = false
   ) => {
+    setCurrentTabbedSliderPageIndex(0);
+
     if (isShowAll) {
       setSelectedSizeFilters([]);
     } else if (applied) {
-      setSelectedSizeFilters([...selectedSizeFilters, filter]);
+      setSelectedSizeFilters(
+        isApplySingle ? [filter] : [...selectedSizeFilters, filter]
+      );
     } else {
       setSelectedSizeFilters(
         selectedSizeFilters.filter((f) => f.filter !== filter.filter)
@@ -101,7 +106,8 @@ const Products: FC<PageProps> = (pageProps) => {
                   handleFilterChange(
                     sizesFilter?.[e.target.selectedIndex],
                     true,
-                    e.target.selectedIndex === 0
+                    e.target.selectedIndex === 0,
+                    true
                   )
                 }
               >
