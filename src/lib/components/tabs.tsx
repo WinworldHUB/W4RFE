@@ -22,13 +22,15 @@ const Tabs: FC<TabsProps> = ({ data, activeTabIndex, onChange, children }) => {
       <ul className="producttabs">
         {data.map((tab, index) => (
           <li key={`${tab}-${index}`}>
-            <Link
-              to=""
-              onClick={() => onChange(index)}
-              className={index === activeTabIndex ? "active fs-6" : "fs-6"}
-            >
-              {tab}
-            </Link>
+            <h2>
+              <Link
+                to=""
+                onClick={() => onChange(index)}
+                className={index === activeTabIndex ? "active" : ""}
+              >
+                {tab}
+              </Link>
+            </h2>
           </li>
         ))}
       </ul>

@@ -137,7 +137,7 @@ a {
 }
 
 .w4r-thumbnail {
-  width: 230px !important;
+  width: 100% !important;
 }
 
 /* .w-25 {
@@ -371,4 +371,23 @@ overflow: auto; /* Enable scroll if needed
 
 .mt-productlisthold > li {
   width: 25%;
+}
+
+@media only screen and (max-width: 780px) {
+  .mt-producttabs {
+    padding: 63px 0px 42px 18px;
+    position: relative;
+  }
+}
+
+.filter-widget {
+  margin-left: 10px;
+}
+
+.adjust-top {
+  top: -24px !important;
+}
+
+.adjust-top-mobile {
+  top: -30px !important;
 }

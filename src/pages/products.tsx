@@ -30,7 +30,7 @@ const Products: FC<PageProps> = (pageProps) => {
   const { addProduct } = useContext(CartContext);
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-  const itemsPerPage = useMemo<number>(() => (isMobile ? 1 : 4), [isMobile]);
+  const itemsPerPage = useMemo<number>(() => (isMobile ? 2 : 4), [isMobile]);
   const totalPages = useMemo(
     () => products?.length / (itemsPerPage > 1 ? 2 : itemsPerPage),
     [products]
@@ -156,7 +156,9 @@ const Products: FC<PageProps> = (pageProps) => {
                 <div className="tabs-slider slick-initialized slick-slider">
                   <button
                     type="button"
-                    className="slick-prev slick-arrow d-block"
+                    className={`slick-prev slick-arrow d-block ${
+                      isMobile && "adjust-top-mobile"
+                    }`}
                     onClick={prevPage}
                   >
                     Previous
@@ -178,7 +180,9 @@ const Products: FC<PageProps> = (pageProps) => {
                   </Slider>
                   <button
                     type="button"
-                    className="slick-next slick-arrow d-block"
+                    className={`slick-next slick-arrow d-block ${
+                      isMobile && "adjust-top-mobile"
+                    }`}
                     onClick={nextPage}
                   >
                     Next

@@ -16,6 +16,7 @@ interface SliderProps {
   isAllowManualSlide?: boolean;
   slidesPerView?: number;
   onPageChange?: (pageIndex: number) => void;
+  onLoad?: (totalPages: number) => void;
 }
 
 const Slider: FC<SliderProps> = ({
@@ -29,6 +30,7 @@ const Slider: FC<SliderProps> = ({
   isAllowManualSlide = true,
   slidesPerView = 4,
   onPageChange,
+  onLoad,
 }) => {
   const swiperRef = useRef<SwiperClass>();
 

@@ -10,10 +10,7 @@ interface OrderDetailsProps {
 
 const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
   const deliveryDetails = useMemo(
-    () =>
-      order
-        ? (JSON.parse(order?.deliveryDetails) as OrderDeliveryDetails)
-        : ({} as OrderDeliveryDetails),
+    () => JSON.parse(order?.deliveryDetails) as OrderDeliveryDetails,
     [order]
   );
 
