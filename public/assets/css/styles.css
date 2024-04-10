@@ -24,7 +24,8 @@ a {
   top: 10px;
   left: 13px;
   padding: 3px;
-  font-weight: lighter;
+  font-weight: 300;
+  min-width: 17px;
 }
 
 .thumbnail-50 {
