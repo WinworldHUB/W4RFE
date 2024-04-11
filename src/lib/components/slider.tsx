@@ -53,11 +53,14 @@ const Slider: FC<SliderProps> = ({
     }
   }, [swiperRef.current?.slides?.length]);
 
+  const numberOfSlidesPerView =
+    Children.count(children) <= 2 ? 1 : slidesPerView;
+
   return (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
-      slidesPerView={slidesPerView}
+      slidesPerView={numberOfSlidesPerView}
       pagination={
         isShowPagination
           ? {

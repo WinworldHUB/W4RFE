@@ -57,7 +57,9 @@ const MenuBar: FC<MenuBarProps> = ({ menuItems, selectedMenuId, username }) => {
           >
             <Nav className="">
               {(menuItems ?? []).map((item) => (
-                <Nav.Link href={item.route}>{item.label}</Nav.Link>
+                <Nav.Link href={item.route} key={item.id}>
+                  {item.label}
+                </Nav.Link>
               ))}
               <Nav.Link href={PageRoutes.Cart} className="d-sm-block d-none">
                 <h5 className="position-relative">

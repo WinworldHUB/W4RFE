@@ -37,7 +37,6 @@ const Products: FC<PageProps> = (pageProps) => {
   const [currentTabbedSliderPageIndex, setCurrentTabbedSliderPageIndex] =
     useState<number>(0);
   const nextPage = () => {
-    console.log(currentTabbedSliderPageIndex, totalPages);
     if (currentTabbedSliderPageIndex < totalPages - itemsPerPage) {
       setCurrentTabbedSliderPageIndex(currentTabbedSliderPageIndex + 1);
     }
@@ -112,7 +111,9 @@ const Products: FC<PageProps> = (pageProps) => {
                 }
               >
                 {(sizesFilter ?? []).map((sizeFilter, index) => (
-                  <option>{sizeFilter.filter}</option>
+                  <option key={`${sizeFilter.productIds}-${index}`}>
+                    {sizeFilter.filter}
+                  </option>
                 ))}
               </select>
               <hr className="border-0" />

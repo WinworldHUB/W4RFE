@@ -20,7 +20,7 @@ const ProductSlides = ({
   if (products?.length > 0) {
     for (let index = 0; index < products?.length; index += productsPerSlide) {
       output.push(
-        <div key={index}>
+        <div key={`${products[index].id}-${index}`}>
           {getArrayFromTo(index, index + (productsPerSlide - 1)).map(
             (pIndex) =>
               products[pIndex] && (
