@@ -49,7 +49,7 @@ const Slider: FC<SliderProps> = ({
 
   useEffect(() => {
     if (swiperRef.current?.slides?.length > 0) {
-      onLoad(swiperRef.current?.slides?.length);
+      onLoad?.(swiperRef.current?.slides?.length);
     }
   }, [swiperRef.current?.slides?.length]);
 

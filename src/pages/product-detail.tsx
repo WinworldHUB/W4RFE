@@ -9,6 +9,8 @@ import { CartContext } from "../lib/contexts/cart-context";
 import { Product } from "../lib/awsApis";
 import ProductVariantsList from "../lib/components/product-variants-list";
 import Loader from "../lib/components/loader";
+import { Bounce, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductDetail: FC<PageProps> = (pageProps) => {
   const { data: product, getData: getProductById } = useApi<Product>();
@@ -76,12 +78,23 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                         <button
                           type="button"
                           className="btn-type1 bg-transparent-with-border bg-dark-on-hover"
-                          onClick={() =>
+                          onClick={() => {
                             addProduct({
                               ...product,
                               size: variants[selectedVariantIndex].size, // Set the size from the selected variant
-                            })
-                          }
+                            });
+                            toast("Product added to cart", {
+                              position: "bottom-center",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                              transition: Bounce,
+                            });
+                          }}
                         >
                           ADD TO CART
                         </button>

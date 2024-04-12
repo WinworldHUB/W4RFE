@@ -65,7 +65,10 @@ export const trimOrder = (order: Order, isTrimId: boolean = false): unknown => {
   };
 };
 
-export const getDeliveryDetails = (order: OrderVM, instagramHandle:string): OrderDeliveryDetails => {
+export const getDeliveryDetails = (
+  order: OrderVM,
+  instagramHandle: string
+): OrderDeliveryDetails => {
   return {
     memberName: order.member?.name ?? EMPTY_STRING,
     memberPhone: order.member?.phone ?? EMPTY_STRING,
