@@ -32,6 +32,7 @@ const Orders: FC<PageProps> = (pageProps) => {
             <OrdersDataTable
               data={orders}
               onRowClicked={(order: Order) => {
+                console.log("Row clicked");
                 setIsShowModal(true);
                 setSelectedOrder(order);
               }}

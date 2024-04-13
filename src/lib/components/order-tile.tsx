@@ -37,7 +37,12 @@ const OrderTile: FC<OrderTileProps> = ({ order, onItemClick }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-primary" onClick={() => onItemClick}>
+        <CardTitle
+          className="text-primary"
+          onClick={() => {
+            onItemClick();
+          }}
+        >
           Order#: {order?.orderNumber}
         </CardTitle>
       </CardHeader>

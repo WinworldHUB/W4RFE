@@ -107,11 +107,13 @@ const ProductMobileTile: FC<ProductMobileTileProps> = ({
               </tbody>
             </Table>
           </Col>
-          <Col xs="12" className="text-end text-danger">
-            <Link to="" onClick={onRemoveClicked}>
-              remove
-            </Link>
-          </Col>
+          {!isReadonly && (
+            <Col xs="12" className="text-end text-danger">
+              <Link to="" onClick={onRemoveClicked}>
+                remove
+              </Link>
+            </Col>
+          )}
         </Row>
       </CardBody>
     </Card>
