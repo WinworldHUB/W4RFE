@@ -97,7 +97,7 @@ export const isDeliveryDetailsValid = (deliveryDetails: string): boolean => {
 export const calculateOrderValue = (products: Product[], shippingCharges: number): number => {
   const subtotal = products.reduce(
     (total, product) => total + product.price * product.quantity,
-    shippingCharges
+    0
   );
   const total = subtotal + shippingCharges;
   return Number(total.toFixed(2));
