@@ -4,6 +4,7 @@ import ProductsPreviewTable from "./products-preview-table";
 import HorizontalTimeline from "./horizontal-timeline";
 import { DEFAULT_PACKAGES, TIMELINE_STATUSES } from "../constants";
 import { Col } from "react-bootstrap";
+import ProductMobileTile from "./product-mobile-tile";
 
 interface OrderDetailsProps {
   order: Order;
@@ -29,7 +30,6 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
       ),
     [products]
   );
-
 
   return (
     <div className="container-fluid">
@@ -87,8 +87,22 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-12">
-          <ProductsPreviewTable products={products} orderValue={order?.orderValue} />
+        <div className="col-sm-12 d-none d-sm-block">
+          <ProductsPreviewTable
+            products={products}
+            orderValue={order?.orderValue}
+          />
+        </div>
+        <div className="col-xs-12 d-sm-none d-xs-block">
+          {(products ?? []).map((product) => (
+            <ProductMobileTile
+              product={product}
+              onQuantityChange={() => {}}
+              onRemoveClicked={() => {}}
+              onSizeChange={() => {}}
+              isReadonly={true}
+            />
+          ))}
         </div>
       </div>
       <div className="row p-2">
@@ -97,8 +111,15 @@ const OrderDetails: FC<OrderDetailsProps> = ({ order }) => {
         </div>
       </div>
       <div className="row p-2">
-        <Col xs="12" className="d-flex justify-content-sm-center table-responsive">
-          <HorizontalTimeline items={TIMELINE_STATUSES} orderStatus={order?.status} deliveryStatus={order?.trackingStatus} />
+        <Col
+          xs="12"
+          className="d-flex justify-content-sm-center table-responsive"
+        >
+          <HorizontalTimeline
+            items={TIMELINE_STATUSES}
+            orderStatus={order?.status}
+            deliveryStatus={order?.trackingStatus}
+          />
         </Col>
       </div>
     </div>
