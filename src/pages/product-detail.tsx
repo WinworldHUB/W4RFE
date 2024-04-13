@@ -81,6 +81,7 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                           onClick={() => {
                             addProduct({
                               ...product,
+                              quantity: 1, // Set the default quantity to 1
                               size: variants[selectedVariantIndex].size, // Set the size from the selected variant
                             });
                             toast("Product added to cart", {

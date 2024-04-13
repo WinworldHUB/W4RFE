@@ -94,11 +94,11 @@ export const isDeliveryDetailsValid = (deliveryDetails: string): boolean => {
   );
 };
 
-export const calculateOrderValue = (products: Product[]): number =>
-  products.reduce(
+export const calculateOrderValue = (products: Product[], shippingCharges: number): number => products.reduce(
     (total, product) => total + product.price * product.quantity,
     0
-  );
+  ) + shippingCharges;
+
 
 export const generateOrderNumber = (totalOrders: number) =>
   `${toFormattedDate(DateTime.now(), APP_AWS_DATE_FORMAT)}-${totalOrders + 1}`;

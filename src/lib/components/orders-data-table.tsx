@@ -15,26 +15,7 @@ const columns: TableColumn<Order>[] = [
   {
     name: "Order Value",
     selector: (row) => {
-      const products = row.products
-        ? (JSON.parse(row.products) as Product[])
-        : ([] as Product[]);
-
-      const totalOrderQuantity = products.reduce(
-        (total, product) => total + (product.quantity ?? 0),
-        0
-      );
-
-      const packaging = DEFAULT_PACKAGES.find(
-        (pack) => pack.id === row.packagingType
-      );
-      const shippingCharges = packaging
-        ? packaging.cost * totalOrderQuantity
-        : 0;
-
-      // Calculate the order total
-      const orderTotal = row.orderValue + shippingCharges;
-
-      return `£${orderTotal.toFixed(2)}`;
+      return row.orderValue.toFixed(2);
     },
     sortable: true,
   },

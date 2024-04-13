@@ -117,18 +117,6 @@ const Cart: FC<PageProps> = (pageProps) => {
     }
   }, [appState?.member, currentPageIndex]);
 
-  useEffect(() => {
-    if (order) {
-      updateOrder({
-        ...order,
-        products: products,
-        deliveryDetails: JSON.stringify(deliveryDetails),
-        orderValue: calculateOrderValue(products),
-        member: appState.member as Member,
-      });
-    }
-  }, [products, deliveryDetails]);
-
   const totalOrderQuantity = useMemo<number>(
     () =>
       products
@@ -206,10 +194,21 @@ const Cart: FC<PageProps> = (pageProps) => {
   );
 
   // Calculate the order total
-  const orderTotal: number = useMemo(
-    () => order.orderValue + shippingCharges,
-    [order.orderValue, shippingCharges]
-  );
+  const orderTotal: number = calculateOrderValue(products, shippingCharges);
+
+  useEffect(() => {
+    if (order) {
+      updateOrder({
+        ...order,
+        products: products,
+        deliveryDetails: JSON.stringify(deliveryDetails),
+        orderValue: orderTotal,
+        member: appState.member as Member,
+      });
+    }
+  }, [products, deliveryDetails]);
+  console.log("Shipping Charges:", shippingCharges);
+  console.log("Order Total:", orderTotal);
 
   const processOrderCreation = async (): Promise<boolean> => {
     const createdOrder = await createOrder(
