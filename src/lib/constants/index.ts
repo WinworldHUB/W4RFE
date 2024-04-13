@@ -99,33 +99,53 @@ export const DATA_TABLE_DEFAULT_STYLE = {
   },
 };
 
-enum TimelineStatus {
+export enum DeliveryStatus {
+  InTransit = "IN TRANSIT",
+  ArrivedInUK = "READY FOR DELIVERY",
+  Delivered = "DELIVERED",
+}
+
+export enum TimelineStatus {
   Active = "active",
   Completed = "completed",
   Pending = "pending",
 }
 
+enum TimeLineStatusTitle {
+  OrderPlaced = "Order placed",
+  PaymentCompleted = "Payment completed",
+  PreparingOrder = "Preparing order",
+  OrderShipped = "Order shipped",
+  ArrivedInUK = "Arrived in UK",
+  Delivered = "Delivered",
+}
+
 export const TIMELINE_STATUSES = [
   {
-    status: TimelineStatus.Completed,
-    title: "Order placed",
-  },
-  {
-    status: TimelineStatus.Completed,
-    title: "Payment completed",
-  },
-  {
-    status: TimelineStatus.Active,
-    title: "Order shipped",
+    status: TimelineStatus.Pending,
+    title: TimeLineStatusTitle.OrderPlaced,
   },
   {
     status: TimelineStatus.Pending,
-    title: "Arrived in UK",
+    title: TimeLineStatusTitle.PaymentCompleted,
   },
   {
     status: TimelineStatus.Pending,
-    title: "Delivered",
+    title: TimeLineStatusTitle.PreparingOrder,
   },
+  {
+    status: TimelineStatus.Pending,
+    title: TimeLineStatusTitle.OrderShipped,
+  },
+  {
+    status: TimelineStatus.Pending,
+    title: TimeLineStatusTitle.ArrivedInUK,
+  },
+  {
+    status: TimelineStatus.Pending,
+    title: TimeLineStatusTitle.Delivered,
+  },
+
 ] as TimelineItem[];
 
 export const EMPTY_STRING = "";

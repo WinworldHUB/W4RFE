@@ -94,14 +94,10 @@ export const isDeliveryDetailsValid = (deliveryDetails: string): boolean => {
   );
 };
 
-export const calculateOrderValue = (products: Product[], shippingCharges: number): number => {
-  const subtotal = products.reduce(
+export const calculateOrderValue = (products: Product[], shippingCharges: number): number => products.reduce(
     (total, product) => total + product.price * product.quantity,
     0
-  );
-  const total = subtotal + shippingCharges;
-  return Number(total.toFixed(2));
-};
+  ) + shippingCharges;
 
 
 export const generateOrderNumber = (totalOrders: number) =>
