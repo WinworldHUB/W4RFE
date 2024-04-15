@@ -82,7 +82,8 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                             addProduct({
                               ...product,
                               quantity: 1, // Set the default quantity to 1
-                              size: variants[selectedVariantIndex].size, // Set the size from the selected variant
+                              size: variants[selectedVariantIndex].size,
+                              price: variants[selectedVariantIndex].price,
                             });
                             toast("Product added to cart", {
                               position: "bottom-center",

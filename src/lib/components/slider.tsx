@@ -11,6 +11,7 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { useMediaQuery } from "react-responsive";
 
 interface SliderProps {
   children: React.ReactNode;
@@ -39,6 +40,7 @@ const Slider: FC<SliderProps> = ({
   onPageChange,
   onLoad,
 }) => {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const swiperRef = useRef<SwiperClass>();
 
   useEffect(() => {
@@ -54,13 +56,13 @@ const Slider: FC<SliderProps> = ({
   }, [swiperRef.current?.slides?.length]);
 
   const numberOfSlidesPerView =
-    Children.count(children) <= 2 ? 1 : slidesPerView;
+    Children.count(children) <= 2 && Children.count(children) < slidesPerView ? 1 : slidesPerView;
 
   return (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
-      slidesPerView={numberOfSlidesPerView}
+      slidesPerView={isMobile ? numberOfSlidesPerView : slidesPerView}
       pagination={
         isShowPagination
           ? {
