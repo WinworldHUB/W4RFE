@@ -441,7 +441,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                           alt={product?.title}
                         />
                       </td>
-                      <td className="" width={"50%"}>
+                      <td className="align-middle" width={"50%"}>
                         {product?.title}
                       </td>
                       <td className="" width={"20%"}>
