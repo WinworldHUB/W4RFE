@@ -2,6 +2,7 @@ interface UseLocalStorageState<T> {
   setValue: (key: string, value: T) => void;
   getValue: (key: string) => T;
   clearValue: (key: string) => void;
+  clearAll: VoidFunction;
 }
 
 const useLocalStorage = <T,>(): UseLocalStorageState<T> => {
@@ -18,10 +19,15 @@ const useLocalStorage = <T,>(): UseLocalStorageState<T> => {
     localStorage.removeItem(key);
   };
 
+  const clearAll = () => {
+    localStorage.clear();
+  };
+
   return {
     getValue,
     setValue,
     clearValue,
+    clearAll,
   };
 };
 

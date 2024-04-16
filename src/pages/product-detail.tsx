@@ -9,14 +9,15 @@ import { CartContext } from "../lib/contexts/cart-context";
 import { Product } from "../lib/awsApis";
 import ProductVariantsList from "../lib/components/product-variants-list";
 import Loader from "../lib/components/loader";
-import { Bounce, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Spinner, Toast, ToastContainer } from "react-bootstrap";
 
 const ProductDetail: FC<PageProps> = (pageProps) => {
   const { data: product, getData: getProductById } = useApi<Product>();
   const { appState } = useContext(AppContext);
   const variants = JSON.parse(product?.variants ?? "[]") as ProductVariant[];
   const [selectedVariantIndex, setSelectedVariantIndex] = useState<number>(0);
+  const [isShowProductAddedToast, setIsShowProductAddedToast] =
+    useState<boolean>(false);
   const { addProduct } = useContext(CartContext);
   useEffect(() => {
     getProductById(
@@ -85,18 +86,7 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                               size: variants[selectedVariantIndex].size,
                               price: variants[selectedVariantIndex].price,
                             });
-                            alert("Product added to cart");
-                            toast("Product added to cart", {
-                              position: "bottom-center",
-                              autoClose: 5000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                              theme: "dark",
-                              transition: Bounce,
-                            });
+                            setIsShowProductAddedToast(true);
                           }}
                         >
                           ADD TO CART
@@ -143,6 +133,26 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
         <Loader />
       )}
       <br />
+      <ToastContainer
+        className="p-3"
+        position="top-end"
+        style={{ zIndex: 2001 }}
+      >
+        <Toast
+          show={isShowProductAddedToast}
+          onClose={() => setIsShowProductAddedToast(false)}
+          animation={true}
+          autohide={true}
+          bg="dark"
+        >
+          <Toast.Body>
+            <h5 className="d-flex justify-content-between align-items-center">
+              Product added to cart!
+              <Spinner animation="border" variant="light" />
+            </h5>
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
     </PageLayout>
   );
 };

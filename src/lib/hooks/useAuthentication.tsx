@@ -8,6 +8,7 @@ import {
   signOut,
 } from "aws-amplify/auth";
 import { useJwt } from "react-jwt";
+import useLocalStorage from "./useLocalStorage";
 
 Amplify.configure(config);
 
@@ -26,6 +27,8 @@ const useAuthentication = (): UseAuthenticationState => {
   const [refreshToken, setRefreshToken] = useState<string>(null);
   const [error, setError] = useState<string>(null);
   const [isUserSignedIn, setIsUserSignedIn] = useState<boolean>(false);
+
+  const { clearAll: clearLocalStorage } = useLocalStorage();
 
   const { decodedToken } = useJwt(accessToken);
 
@@ -90,6 +93,7 @@ const useAuthentication = (): UseAuthenticationState => {
       .then(() => {
         setError(null);
         setIsUserSignedIn(false);
+        clearLocalStorage();
       })
       .catch((reason) => {
         setError(reason.message);

@@ -4,8 +4,6 @@ import useAuthentication from "../lib/hooks/useAuthentication";
 import { AppContext } from "../lib/contexts/app-context";
 import useApi from "../lib/hooks/useApi";
 import { MEMBERS_APIS } from "../lib/constants/api-constants";
-import { Link } from "react-router-dom";
-import { PageRoutes } from "../lib/constants";
 import { Member } from "../lib/awsApis";
 
 const SignIn: FC<PageProps> = (pageProps) => {
@@ -45,6 +43,16 @@ const SignIn: FC<PageProps> = (pageProps) => {
       window.location.reload();
     }
   }, [isUserSignedIn, accessToken, userDetails]);
+
+  useEffect(() => {
+    if (
+      loginError
+        ?.toLocaleLowerCase()
+        .includes("There is already a signed in user.".toLocaleLowerCase())
+    ) {
+      signOutUser();
+    }
+  }, []);
 
   return (
     <PageLayout {...pageProps}>

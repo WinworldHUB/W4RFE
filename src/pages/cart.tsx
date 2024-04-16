@@ -29,7 +29,10 @@ import {
   Col,
   Container,
   Row,
+  Spinner,
   Table,
+  Toast,
+  ToastContainer,
 } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import ProductMobileTile from "../lib/components/product-mobile-tile";
@@ -70,7 +73,8 @@ const Cart: FC<PageProps> = (pageProps) => {
   const [isOrderCreated, setIsOrderCreated] = useState<boolean>(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-
+  const [isShowOrderPlacedToast, setIsShowOrderPlacedToast] =
+    useState<boolean>(false);
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [deliveryDetails, setDeliveryDetails] = useState<OrderDeliveryDetails>(
     EMPTY_DELIVERY_DETAILS
@@ -211,6 +215,7 @@ const Cart: FC<PageProps> = (pageProps) => {
   console.log("Order Total:", orderTotal);
 
   const processOrderCreation = async (): Promise<boolean> => {
+    setIsShowOrderPlacedToast(true);
     const createdOrder = await createOrder(
       ORDERS_APIS.ADD_ORDER_API,
       trimOrder(getOrderFromVM({ ...order, orderValue: orderTotal }), true)
@@ -680,6 +685,27 @@ const Cart: FC<PageProps> = (pageProps) => {
           </Col>
         </Row>
       </Container>
+
+      <ToastContainer
+        className="p-3"
+        position="top-end"
+        style={{ zIndex: 2001 }}
+      >
+        <Toast
+          show={isShowOrderPlacedToast}
+          onClose={() => setIsShowOrderPlacedToast(false)}
+          animation={true}
+          autohide={true}
+          bg="dark"
+        >
+          <Toast.Body>
+            <h5 className="d-flex justify-content-between align-items-center">
+              Placing order ...
+              <Spinner animation="border" variant="light" />
+            </h5>
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
     </PageLayout>
   );
 };
