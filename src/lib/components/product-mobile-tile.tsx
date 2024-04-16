@@ -100,7 +100,7 @@ const ProductMobileTile: FC<ProductMobileTileProps> = ({
                       disabled={true}
                       placeholder="price"
                       className="form-control text-end"
-                      value={selectedVariant?.price}
+                      value={product?.price ?? selectedVariant?.price}
                     />
                   </td>
                 </tr>

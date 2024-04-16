@@ -20,6 +20,19 @@ const ProductTile: FC<ProductTileProps> = ({
 }) => {
   const [isImageLoadError, setIsImageLoadError] = useState<boolean>(false);
 
+  const productVariants = JSON.parse(
+    product?.variants ?? "[]"
+  ) as ProductVariant[];
+
+  const lowestProductPrice =
+    productVariants.length > 0
+      ? productVariants.reduce(
+          (lowestPrice, variant) =>
+            lowestPrice > variant.price ? variant.price : lowestPrice,
+          product?.price ?? 0
+        )
+      : product?.price ?? 0.0;
+
   return (
     <div className={`mt-product1 mt-paddingbottom20 ${className}`}>
       <div className="box">
@@ -59,7 +72,7 @@ const ProductTile: FC<ProductTileProps> = ({
         </strong>
         <p>
           from <i className="fa fa-gbp"></i>{" "}
-          <strong className="price-amount">{product?.price ?? "TBD"}</strong>
+          <strong className="price-amount">{lowestProductPrice}</strong>
         </p>
       </div>
     </div>

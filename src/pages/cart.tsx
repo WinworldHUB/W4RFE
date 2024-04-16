@@ -328,7 +328,7 @@ const Cart: FC<PageProps> = (pageProps) => {
                 <div className="col-md-10">{order?.packaging?.minQuantity}</div>
                 <div className="col-md-2">Maximum quantity:</div>
                 <div className="col-md-10">{order?.packaging?.maxQuantity}</div>
-                <div className="col-md-2">Cost:</div>
+                <div className="col-md-2">Cost (per unit):</div>
                 <div className="col-md-10">£{order?.packaging?.cost}</div>
               </div>
             </fieldset>

@@ -119,12 +119,19 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                   <h3>Shipping details</h3>
                   <div className="">
                     <p>
-                      All Bulk products have a 14-16 day lead time for you to
-                      receive them.
+                      Box Packaging: Minimum quantity - 6 Maximum quantity - 10
                     </p>
                     <p>
-                      Once we receive them In the UK we will ship them straight
-                      to you with next day delivery.
+                      Flat Pack Packaging: Minimum quantity - 6 Maximum quantity
+                      - 12
+                    </p>
+                    <p>
+                      Orders will be delivered directly to your chosen address
+                      within 12-16 working days.
+                    </p>
+                    <p>
+                      You can track the live status of your order via the
+                      'orders' tab.
                     </p>
                   </div>
                 </div>
