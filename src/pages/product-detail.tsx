@@ -85,6 +85,7 @@ const ProductDetail: FC<PageProps> = (pageProps) => {
                               size: variants[selectedVariantIndex].size,
                               price: variants[selectedVariantIndex].price,
                             });
+                            alert("Product added to cart");
                             toast("Product added to cart", {
                               position: "bottom-center",
                               autoClose: 5000,
