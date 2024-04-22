@@ -108,8 +108,14 @@ const Home: FC<PageProps> = (pageProps) => {
         </div>
         <div className="container">
           <img
-            className="pt-4"
+            className="pt-4 d-sm-block d-none"
             src="/assets/images/banner/W4R-how-it-works.png"
+            title="How it works"
+            alt="How it works"
+          />
+          <img
+            className="pt-4 d-xs-block d-sm-none"
+            src="/assets/images/banner/W4R-how-it-works-m.png"
             title="How it works"
             alt="How it works"
           />
