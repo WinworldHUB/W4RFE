@@ -6,6 +6,8 @@ import {
   getCurrentUser,
   signIn,
   signOut,
+  updatePassword,
+  UpdatePasswordInput,
 } from "aws-amplify/auth";
 import { useJwt } from "react-jwt";
 import useLocalStorage from "./useLocalStorage";
@@ -20,6 +22,10 @@ interface UseAuthenticationState {
   isAdmin: boolean;
   signInUser: (credentials: Credentials) => void;
   signOutUser: VoidFunction;
+  changePassword: (
+    updatePasswordInput: UpdatePasswordInput,
+    onSuccessCallback: VoidFunction
+  ) => void;
 }
 
 const useAuthentication = (): UseAuthenticationState => {
@@ -83,7 +89,13 @@ const useAuthentication = (): UseAuthenticationState => {
         }
       })
       .catch((reason) => {
-        setError(reason.message);
+        if (reason.message === "There is already a signed in user.") {
+          signOut().then(() => {
+            signInUser(credentials);
+          });
+        } else {
+          setError(reason.message);
+        }
         setIsUserSignedIn(false);
       });
   };
@@ -101,6 +113,20 @@ const useAuthentication = (): UseAuthenticationState => {
       });
   };
 
+  const changePassword = (
+    updatePasswordInput: UpdatePasswordInput,
+    onSuccessCallback: VoidFunction
+  ) => {
+    updatePassword(updatePasswordInput)
+      .then(() => {
+        setError(null);
+        onSuccessCallback();
+      })
+      .catch((reason) => {
+        setError(reason.message);
+      });
+  };
+
   return {
     accessToken,
     refreshToken,
@@ -109,6 +135,7 @@ const useAuthentication = (): UseAuthenticationState => {
     error,
     signInUser,
     signOutUser,
+    changePassword,
   };
 };
 

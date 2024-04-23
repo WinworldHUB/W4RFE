@@ -79,6 +79,11 @@ interface Credentials {
   password: string;
 }
 
+interface ChangePasswordModel {
+  oldPassword: string;
+  newPassword: string;
+}
+
 interface SignUpCredentials {
   username: string;
   confirmationCode: string;

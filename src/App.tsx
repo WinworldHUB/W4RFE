@@ -9,6 +9,7 @@ import { AppContext } from "./lib/contexts/app-context";
 import Orders from "./pages/orders";
 import Cart from "./pages/cart";
 import SignUp from "./pages/signup";
+import UserProfile from "./pages/profile";
 
 export const APP_MENU: MenuItem[] = [
   {
@@ -29,6 +30,12 @@ export const APP_MENU: MenuItem[] = [
     icon: <></>,
     route: PageRoutes.Orders,
   },
+  {
+    id: 3,
+    label: "Profile",
+    icon: <></>,
+    route: PageRoutes.Profile,
+  },
 ];
 
 function App() {
@@ -39,7 +46,7 @@ function App() {
       <Routes>
         <Route
           path={PageRoutes.SignUp}
-          element={<SignUp menuItems={[]} selectedMenuId={1} username=""/>}
+          element={<SignUp menuItems={[]} selectedMenuId={1} username="" />}
         />
         <Route
           path={PageRoutes.Login}
@@ -120,6 +127,24 @@ function App() {
               <Cart
                 menuItems={APP_MENU}
                 selectedMenuId={APP_MENU[2].id}
+                username={appState.username}
+              />
+            ) : (
+              <SignIn
+                menuItems={[]}
+                selectedMenuId={APP_MENU[0].id}
+                username={appState.username}
+              />
+            )
+          }
+        />
+        <Route
+          path={PageRoutes.Profile}
+          element={
+            appState.isUserLoggedIn ? (
+              <UserProfile
+                menuItems={APP_MENU}
+                selectedMenuId={APP_MENU[3].id}
                 username={appState.username}
               />
             ) : (

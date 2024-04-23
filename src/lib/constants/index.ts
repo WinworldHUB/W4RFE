@@ -26,6 +26,7 @@ export enum PageRoutes {
   Orders = "/orders",
   Cart = "/cart",
   SignUp = "/signup",
+  Profile = "/profile",
 }
 
 export enum CreateOrderSlides {
@@ -145,7 +146,6 @@ export const TIMELINE_STATUSES = [
     status: TimelineStatus.Pending,
     title: TimeLineStatusTitle.Delivered,
   },
-
 ] as TimelineItem[];
 
 export const EMPTY_STRING = "";
@@ -157,4 +157,9 @@ export const EMPTY_DELIVERY_DETAILS: OrderDeliveryDetails = {
   memberEmail: EMPTY_STRING,
   memberPhone: EMPTY_STRING,
   instagramHandle: EMPTY_STRING,
+};
+
+export const EMPTY_CHANGE_PASSWORD_MODEL = {
+  oldPassword: EMPTY_STRING,
+  newPassword: EMPTY_STRING,
 };
